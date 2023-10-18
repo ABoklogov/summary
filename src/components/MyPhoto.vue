@@ -1,12 +1,29 @@
 <template>
   <div class="photo">
-    <img />
+    <img :src="require('@/assets/images/default-avatar.jpg')" />
   </div>
 </template>
 
 <style scoped lang="scss">
+@import '@/assets/scss/variables';
+
 .photo {
   width: 280px;
   height: 280px;
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: $transparentGray;
+  }
+  & img {
+    width: 100%;
+  }
 }
 </style>

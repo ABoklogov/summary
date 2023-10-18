@@ -1,5 +1,6 @@
 @import './reset';
 @import './variables.scss';
+@import './fonts.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Fahkwang:wght@200;300;400;500;600;700&display=swap');
 
@@ -13,7 +14,8 @@
 }
 
 body {
-  font-family: Fahkwang;
+  // font-family: Fahkwang;
+  font-family: RockStar;
   font-size: $fontNorm;
   font-style: normal;
   font-weight: 400;
