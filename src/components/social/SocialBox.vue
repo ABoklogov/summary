@@ -1,14 +1,10 @@
 <template>
   <div class="social-box">
-    <SubTitle 
-      :text="language === 'ru' ? 'Социальные сети' : 'Social'"
-    />
-    <span class="telegram">
+    <SubTitle :text="language === 'ru' ? 'Социальные сети' : 'Social'" />
+    <!-- <span class="telegram">
       Telegram: {{ telegram }}
-    </span>
-    <SocialList 
-      :list="language === 'ru' ? socialLinks.ru : socialLinks.en" 
-    />
+    </span> -->
+    <SocialList :list="language === 'ru' ? socialLinks.ru : socialLinks.en" />
   </div>
 </template>
 
@@ -22,15 +18,15 @@ const { language } = storeToRefs(useViewStore());
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/scss/variables';
-.telegram {
-  display: block;
-  font-family: RockStar;
-  font-size: $fontNorm;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.6;
-  color: $transparentBlack;
-  margin-top: 20px;
-}
+// @import '@/assets/scss/variables';
+// .telegram {
+//   display: block;
+//   font-family: RockStar;
+//   font-size: $fontNorm;
+//   font-style: normal;
+//   font-weight: 400;
+//   line-height: 1.6;
+//   color: $transparentBlack;
+//   margin-top: 20px;
+// }
 </style>
