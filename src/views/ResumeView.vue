@@ -2,15 +2,17 @@
   <div class="resume">
     <div class="resume__left">
       <MyPhoto class="photo--position" />
-      <MyName />
+      <MyNameBox class="my-name-box--position" />
+      <SocialBox class="social-box--position"/>
     </div>
     <div class="resume__right"></div>
   </div>
 </template>
 
 <script setup>
-import MyPhoto from '@/components/MyPhoto.vue'
-import MyName from '@/components/MyName.vue'
+import MyPhoto from '@/components/MyPhoto.vue';
+import MyNameBox from '@/components/MyNameBox.vue';
+import SocialBox from '@/components/social/SocialBox.vue';
 </script>
 
 <style scoped lang="scss">
@@ -32,5 +34,11 @@ import MyName from '@/components/MyName.vue'
 
 .photo--position {
   margin-left: auto;
+}
+.my-name-box {
+  margin-top: 24px;
+}
+.social-box--position {
+  margin-top: 120px;
 }
 </style>

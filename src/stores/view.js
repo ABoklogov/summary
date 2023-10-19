@@ -2,8 +2,9 @@ import { defineStore } from 'pinia'
 
 export const useViewStore = defineStore('view', {
   state: () => ({
-    language: 'ru',
-    theme: 'white'
+    language: 'en',
+    theme: 'white',
+    optionsSelectLanguage: ['en', 'ru']
   }),
   // getters: {
   //   doubleCount: (state) => state.count * 2,

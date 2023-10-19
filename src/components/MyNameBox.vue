@@ -1,0 +1,38 @@
+<template>
+  <div class="my-name-box">
+    <span class="my-name-box__name">
+      {{ language === 'ru' ? myName.ru.name : myName.en.name }}
+    </span>
+    <span class="my-name-box__job-title">
+      {{ language === 'ru' ? myName.ru.profession : myName.en.profession }}
+    </span>
+  </div>
+</template>
+
+<script setup>
+import { storeToRefs } from 'pinia'
+import { myName } from '@/services/data.js';
+import { useViewStore } from '@/stores/view';
+const { language } = storeToRefs(useViewStore());
+</script>
+
+<style scoped lang="scss">
+@import '@/assets/scss/variables';
+
+.my-name-box {
+  &__name,
+  &__job-title {
+    display: block;
+    line-height: normal;
+  }
+  &__name {
+    font-size: $fontTitle;
+    font-weight: 600;
+    color: $black;
+  }
+  &__job-title {
+    font-weight: 400;
+    color: $transparentBlack;
+  }
+}
+</style>
