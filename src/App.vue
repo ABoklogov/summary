@@ -1,6 +1,6 @@
 <template>
   <AppContainer>
-    <Header/>
+    <Header />
 
     <main>
       <RouterView />
@@ -15,4 +15,13 @@ import AppContainer from '@/components/shared/AppContainer.vue';
 </script>
 
 <style scoped lang="scss">
+main {
+  margin-top: 72px;
+}
+
+@media screen and (min-width: 1024px) {
+  main {
+    margin-top: 0;
+  }
+}
 </style>

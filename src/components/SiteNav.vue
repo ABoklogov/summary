@@ -7,8 +7,9 @@
 
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
+
 .site-nav {
-  padding: 20px 0;
+  padding: 10px 0;
 
   & a {
     font-size: $fontBig;
@@ -29,6 +30,12 @@
 
   & .router-link-active {
     color: $orange;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .site-nav {
+    padding: 20px 0;
   }
 }
 </style>
