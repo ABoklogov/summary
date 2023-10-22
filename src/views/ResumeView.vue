@@ -1,8 +1,10 @@
 <template>
   <div class="resume">
     <div class="resume__left">
-      <MyPhoto class="photo--position" />
-      <MyNameBox class="my-name-box--position" />
+      <div class="resume__photo-box" id="photo">
+        <MyPhoto class="photo--position" />
+        <MyNameBox class="my-name-box--position" />
+      </div>
       <SocialBox class="social-box--position" />
     </div>
     <div class="resume__right">
@@ -12,10 +14,10 @@
 </template>
 
 <script setup>
-import MyPhoto from '@/components/MyPhoto.vue';
-import MyNameBox from '@/components/MyNameBox.vue';
-import SocialBox from '@/components/social/SocialBox.vue';
-import EducationBox from '@/components/education/EducationBox.vue';
+import MyPhoto from '@/components/MyPhoto.vue'
+import MyNameBox from '@/components/MyNameBox.vue'
+import SocialBox from '@/components/social/SocialBox.vue'
+import EducationBox from '@/components/education/EducationBox.vue'
 </script>
 
 <style scoped lang="scss">
@@ -23,22 +25,22 @@ import EducationBox from '@/components/education/EducationBox.vue';
 
 .resume {
   display: flex;
-  flex-direction: row;
-  padding: 64px;
+  flex-direction: column;
+  padding: 22px;
   background-color: $pink;
 
   &__left {
-    width: 40%;
+    width: 100%;
   }
 
   &__right {
-    width: 60%;
+    width: 100%;
     margin-left: 12px;
   }
-}
-
-.photo--position {
-  margin-left: auto;
+  &__photo-box {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .my-name-box--position {
@@ -52,5 +54,35 @@ import EducationBox from '@/components/education/EducationBox.vue';
 .education-box--position {
   width: 80%;
   margin-left: auto;
+}
+
+@media screen and (min-width: 600px) {
+  .resume {
+    &__photo-box {
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+    }
+  }
+  .photo--position {
+    margin-left: auto;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .resume {
+    flex-direction: row;
+    padding: 64px;
+    &__left {
+      width: 40%;
+    }
+
+    &__right {
+      width: 60%;
+      margin-left: 12px;
+    }
+
+    &__photo-box {
+      display: block;
+    }
+  }
 }
 </style>
