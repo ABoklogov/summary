@@ -1,7 +1,7 @@
 <template>
-  <div class="resume">
+  <div class="resume" id="resume">
     <div class="resume__left">
-      <div class="resume__photo-box" id="photo">
+      <div class="resume__photo-box">
         <MyPhoto class="photo--position" />
         <MyNameBox class="my-name-box--position" />
       </div>
@@ -37,6 +37,7 @@ import EducationBox from '@/components/education/EducationBox.vue'
     width: 100%;
     margin-left: 12px;
   }
+
   &__photo-box {
     display: flex;
     flex-direction: column;
@@ -63,14 +64,17 @@ import EducationBox from '@/components/education/EducationBox.vue'
       justify-content: flex-end;
     }
   }
+
   .photo--position {
     margin-left: auto;
   }
 }
+
 @media screen and (min-width: 1024px) {
   .resume {
     flex-direction: row;
     padding: 64px;
+
     &__left {
       width: 40%;
     }

@@ -15,8 +15,10 @@ import AppContainer from '@/components/shared/AppContainer.vue';
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/scss/variables';
+
 main {
-  margin-top: 72px;
+  margin-top: $headerTopMobile;
 }
 
 @media screen and (min-width: 1024px) {

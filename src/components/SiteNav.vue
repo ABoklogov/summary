@@ -12,7 +12,7 @@
   padding: 10px 0;
 
   & a {
-    font-size: $fontBig;
+    font-size: $fontMedium;
     font-weight: 500;
     color: $black;
     text-decoration: auto;
@@ -33,9 +33,21 @@
   }
 }
 
+@media screen and (min-width: 600px) {
+  .site-nav {
+    & a {
+      font-size: $fontNorm;
+    }
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .site-nav {
     padding: 20px 0;
+
+    & a {
+      font-size: $fontBig;
+    }
   }
 }
 </style>

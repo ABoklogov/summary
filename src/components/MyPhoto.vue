@@ -1,7 +1,7 @@
 <template>
   <div class="photo">
-    <!-- <img :src="require('@/assets/images/default-avatar.jpg')" /> -->
-    <img :src="require('@/assets/images/photo.jpg')" />
+    <img :src="require('@/assets/images/default-avatar.jpg')" />
+    <!-- <img :src="require('@/assets/images/photo.jpg')" /> -->
   </div>
 </template>
 
@@ -12,6 +12,7 @@
   width: 280px;
   height: 280px;
   position: relative;
+
   &::after {
     content: '';
     display: block;
@@ -23,6 +24,7 @@
     height: 100%;
     background-color: $transparentGray;
   }
+
   & img {
     width: 100%;
   }

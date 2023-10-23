@@ -1,58 +1,50 @@
 <template>
   <header class="header" :class="{ 'header--hidden': scrollBottom }">
     <SiteNav />
-    <Multiselect
-      v-model="language"
-      :options="optionsSelectLanguage"
-      :show-labels="false"
-      :showPointer="false"
-    />
-    {{ console.log('🚀 ~ showHeader:', showHeader) }}
+    <Multiselect v-model="language" :options="optionsSelectLanguage" :show-labels="false" :showPointer="false" />
   </header>
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { ref } from 'vue'
-import SiteNav from '@/components/SiteNav.vue'
-import Multiselect from 'vue-multiselect'
-import { useViewStore } from '@/stores/view'
-const { language, optionsSelectLanguage } = storeToRefs(useViewStore())
+import { storeToRefs } from 'pinia';
+import { ref, onMounted } from 'vue';
+import SiteNav from '@/components/SiteNav.vue';
+import Multiselect from 'vue-multiselect';
+import { useViewStore } from '@/stores/view';
+const { language, optionsSelectLanguage } = storeToRefs(useViewStore());
 
-const scrollBottom = ref(false)
-const showHeader = ref(true)
+const scrollBottom = ref(false);
+const showHeader = ref(true);
 
 const updateShowHeader = () => {
-  let photoBox = document.querySelector('#photo')
-  // console.log('🚀 ~ updateShowHeader ~ photoBox:', photoBox)
-  if (photoBox) {
-    photoBox = photoBox.getBoundingClientRect()
-    // console.log('🚀 ~ updateShowHeader ~ photoBox:', photoBox)
-    if (photoBox.top + photoBox.height < 0) {
-      showHeader.value = false
-      console.log(1)
+  let resume = document.querySelector('#resume');
+  if (resume) {
+    resume = resume.getBoundingClientRect();
+
+    if (resume.top < 0) {
+      showHeader.value = false;
     } else {
-      showHeader.value = true
-      console.log(2)
-    }
-  }
-}
+      showHeader.value = true;
+    };
+  };
+};
 // слушаем скролл
-let last
-// для телефонов и планшетов
-document.addEventListener('touchmove', (e) => {
-  // if (!showHeader) {
-  const current = e.touches[0].clientY
+let last;
+onMounted(() => {
+  document.addEventListener('touchmove', (e) => {
+    if (!showHeader.value) {
+      const current = e.touches[0].clientY;
 
-  if (current > last) {
-    scrollBottom.value = false
-  } else if (current < last) {
-    scrollBottom.value = true
-  }
+      if (current > last) {
+        scrollBottom.value = false;
+      } else if (current < last) {
+        scrollBottom.value = true;
+      };
 
-  last = current
-  // }
-  updateShowHeader()
+      last = current;
+    };
+    updateShowHeader();
+  });
 })
 // для десктопа
 // document.addEventListener('wheel', e => {
@@ -74,11 +66,12 @@ document.addEventListener('touchmove', (e) => {
   left: 0;
   top: 0;
   width: 100vw;
+  padding: 0 22px;
   background-color: $white;
-  transition: top 300ms;
+  transition: top $duration $timingFunction;
 
   &--hidden {
-    top: -57px;
+    top: -$headerTopMobile;
   }
 
   & .multiselect {
@@ -90,7 +83,7 @@ document.addEventListener('touchmove', (e) => {
   .header {
     position: relative;
     width: auto;
-    transition: top 300ms;
+    padding: 0;
   }
 }
 </style>
