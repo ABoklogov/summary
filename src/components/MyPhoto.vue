@@ -1,7 +1,7 @@
 <template>
   <div class="photo">
-    <img :src="require('@/assets/images/default-avatar.jpg')" />
-    <!-- <img :src="require('@/assets/images/photo.jpg')" /> -->
+    <!-- <img :src="require('@/assets/images/default-avatar.jpg')" /> -->
+    <img :src="require('@/assets/images/photo.jpg')" />
   </div>
 </template>
 
@@ -12,8 +12,9 @@
   width: 280px;
   height: 280px;
   position: relative;
+  z-index: calc($indexCurtain + 1);
 
-  &::after {
+  &:after {
     content: '';
     display: block;
     position: absolute;

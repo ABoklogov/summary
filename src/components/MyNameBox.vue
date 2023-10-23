@@ -20,19 +20,34 @@ const { language } = storeToRefs(useViewStore());
 @import '@/assets/scss/variables';
 
 .my-name-box {
+
   &__name,
   &__job-title {
     display: block;
     line-height: normal;
   }
+
   &__name {
-    font-size: $fontTitle;
+    font-size: $fontNorm;
     font-weight: 600;
     color: $black;
   }
+
   &__job-title {
     font-weight: 400;
     color: $transparentBlack;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .my-name-box__name {
+    font-size: $fontBig;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .my-name-box__name {
+    font-size: $fontTitle;
   }
 }
 </style>

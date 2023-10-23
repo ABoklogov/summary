@@ -26,7 +26,7 @@ import EducationBox from '@/components/education/EducationBox.vue'
 .resume {
   display: flex;
   flex-direction: column;
-  padding: 22px;
+  padding: $contentPaddingMobile;
   background-color: $pink;
 
   &__left {
@@ -57,8 +57,10 @@ import EducationBox from '@/components/education/EducationBox.vue'
   margin-left: auto;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
   .resume {
+    padding: $contentPaddingTablete;
+
     &__photo-box {
       flex-direction: row-reverse;
       justify-content: flex-end;
@@ -73,7 +75,7 @@ import EducationBox from '@/components/education/EducationBox.vue'
 @media screen and (min-width: 1024px) {
   .resume {
     flex-direction: row;
-    padding: 64px;
+    padding: $contentPaddingDesktop;
 
     &__left {
       width: 40%;

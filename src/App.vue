@@ -5,12 +5,14 @@
     <main>
       <RouterView />
     </main>
+
+    <Curtain />
   </AppContainer>
 </template>
 
 <script setup>
-// import { RouterLink, RouterView } from 'vue-router'
 import Header from '@/components/shared/Header.vue';
+import Curtain from '@/components/shared/Curtain.vue';
 import AppContainer from '@/components/shared/AppContainer.vue';
 </script>
 

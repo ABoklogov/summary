@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useViewStore = defineStore('view', {
   state: () => ({
     language: 'en',
-    theme: 'white',
+    themeBlack: false,
     optionsSelectLanguage: ['en', 'ru']
   }),
   // getters: {

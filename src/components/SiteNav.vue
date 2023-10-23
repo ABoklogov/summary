@@ -1,15 +1,21 @@
 <template>
-  <nav class="site-nav">
+  <nav class="site-nav" :class="{ 'site-nav--black-theme': themeBlack }">
     <RouterLink to="/">resume</RouterLink>
     <RouterLink to="/portfolio">portfolio</RouterLink>
   </nav>
 </template>
 
+<script setup>
+import { storeToRefs } from 'pinia';
+import { useViewStore } from '@/stores/view';
+const { themeBlack } = storeToRefs(useViewStore());
+</script>
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
 
 .site-nav {
   padding: 10px 0;
+  position: relative;
 
   & a {
     font-size: $fontMedium;
@@ -25,18 +31,26 @@
   }
 
   & a:first-child {
-    margin-right: 20px;
+    margin-right: 12px;
   }
 
   & .router-link-active {
     color: $orange;
   }
+
+  &--black-theme a {
+    color: $white;
+  }
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
   .site-nav {
     & a {
       font-size: $fontNorm;
+    }
+
+    & a:first-child {
+      margin-right: 20px;
     }
   }
 }
