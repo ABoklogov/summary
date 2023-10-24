@@ -1,13 +1,17 @@
 <template>
   <header class="header" :class="{ 'header--hidden': scrollBottom }">
     <SiteNav class="site-nave--position" />
-    <Multiselect 
-      v-model="language" 
-      :options="optionsSelectLanguage" 
-      :show-labels="false" 
-      :showPointer="false" 
-    />
-    <CheckboxTheme />
+
+    <div class="header__control">
+      <Multiselect 
+        v-model="language" 
+        :options="optionsSelectLanguage" 
+        :show-labels="false" 
+        :showPointer="false" 
+        placeholder=""
+      />
+      <CheckboxTheme class="checkbox-theme--position"/>
+    </div>
   
     <Curtain />
   </header>
@@ -41,7 +45,7 @@ const updateShowHeader = () => {
 let last;
 onMounted(() => {
   // слушаем скролл
-  document.addEventListener('touchmove', (e) => {
+  document.addEventListener('touchmove', e => {
     if (!showHeader.value) {
       const current = e.touches[0].clientY;
 
@@ -54,14 +58,13 @@ onMounted(() => {
       last = current;
     };
     updateShowHeader();
-  });
+  })
 });
 </script>
 
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
-
 .header {
   display: flex;
   flex-direction: row;
@@ -80,15 +83,51 @@ onMounted(() => {
     top: -$headerTopMobile;
   }
 
-  & .multiselect {
-    width: 74px;
-  }
-
   & .site-nave--position {
     z-index: calc($indexCurtain + 1);
   }
+
+  &__control {
+    display: flex;
+  }
+
+  & .multiselect {
+    width: 50px;
+  }
+  & .multiselect--active {
+    z-index: calc($indexCurtain + 1);
+  }
+
+  &::v-deep .multiselect {
+    .multiselect__select {
+      width: 20px;
+    }
+    .multiselect__tags {
+      padding: 8px 13px 0 4px;
+      border: 1px solid $transparentBlack;
+    }
+  }
 }
 
+.checkbox-theme--position {
+  margin-left: 6px;
+}
+
+@media screen and (min-width: 375px)  {
+  .header {
+    & .multiselect {
+      width: 74px;
+    }
+    &::v-deep .multiselect {
+      .multiselect__select {
+        width: 40px;
+      }
+      .multiselect__tags {
+        padding: 8px 40px 0 8px;
+      }
+    }
+  }
+}
 @media screen and (min-width: 768px) {
   .header {
     padding: 0 $contentPaddingTablete;
@@ -104,6 +143,10 @@ onMounted(() => {
     position: relative;
     width: auto;
     padding: 0;
+  }
+
+  .checkbox-theme--position {
+    margin-left: 16px;
   }
 }
 </style>

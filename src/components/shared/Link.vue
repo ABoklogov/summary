@@ -20,11 +20,16 @@ defineProps({
 @import '@/assets/scss/variables';
 .link {
   font-family: RockStar;
-  font-size: $fontNorm;
+  font-size: $fontMedium;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
   text-decoration-line: underline;
   color: $transparentBlack;
+}
+@media screen and (min-width: 768px) {
+  .link {
+    font-size: $fontNorm;
+  }
 }
 </style>

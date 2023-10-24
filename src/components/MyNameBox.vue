@@ -20,7 +20,6 @@ const { language } = storeToRefs(useViewStore());
 @import '@/assets/scss/variables';
 
 .my-name-box {
-
   &__name,
   &__job-title {
     display: block;

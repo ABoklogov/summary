@@ -22,7 +22,9 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
-.social-list__item {
-  margin-top: 20px;
+@media screen and (min-width: 1024px) {
+  .social-list__item {
+    margin-top: 20px;
+  }
 }
 </style>

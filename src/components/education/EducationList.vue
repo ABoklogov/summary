@@ -16,12 +16,23 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/scss/variables';
 .education-list__item {
-  margin-top: 20px;
-
   & span {
-    color: rgba(20, 13, 12, 0.30);
+    font-size: $fontMedium;
     line-height: 32px;
+    color: rgba(20, 13, 12, 0.30);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .education-list__item span {
+    font-size: $fontNorm;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .education-list__item {
+    margin-top: 20px;
   }
 }
 </style>

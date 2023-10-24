@@ -6,9 +6,13 @@
         <MyNameBox class="my-name-box--position" />
       </div>
       <SocialBox class="social-box--position" />
+      <TechSkillsBox class="tech-skills-box--position" />
     </div>
     <div class="resume__right">
-      <EducationBox class="education-box--position" />
+      <div class="resume__right-top">
+        <EducationBox class="education-box--position" />
+        <AboutBox class="about-box--position"/>
+      </div>
     </div>
   </div>
 </template>
@@ -18,6 +22,8 @@ import MyPhoto from '@/components/MyPhoto.vue'
 import MyNameBox from '@/components/MyNameBox.vue'
 import SocialBox from '@/components/social/SocialBox.vue'
 import EducationBox from '@/components/education/EducationBox.vue'
+import AboutBox from '@/components/about/AboutBox.vue'
+import TechSkillsBox from '@/components/techSkills/TechSkillsBox.vue'
 </script>
 
 <style scoped lang="scss">
@@ -29,18 +35,19 @@ import EducationBox from '@/components/education/EducationBox.vue'
   padding: $contentPaddingMobile;
   background-color: $pink;
 
-  &__left {
-    width: 100%;
-  }
-
+  &__left,
   &__right {
     width: 100%;
-    margin-left: 12px;
   }
 
   &__photo-box {
     display: flex;
     flex-direction: column;
+  }
+
+  & .resume__right-top {
+    display: flex;
+    flex-direction: column-reverse;
   }
 }
 
@@ -48,13 +55,13 @@ import EducationBox from '@/components/education/EducationBox.vue'
   margin-top: 24px;
 }
 
-.social-box--position {
-  margin-top: 120px;
+.social-box--position,
+.education-box--position,
+.tech-skills-box--position {
+  margin-top: 50px;
 }
-
-.education-box--position {
-  width: 80%;
-  margin-left: auto;
+.about-box--position {
+  margin-top: 20px;
 }
 
 @media screen and (min-width: 768px) {
@@ -69,6 +76,12 @@ import EducationBox from '@/components/education/EducationBox.vue'
 
   .photo--position {
     margin-left: auto;
+  }
+
+  .social-box--position,
+  .education-box--position,
+  .tech-skills-box--position {
+    margin-top: 60px;
   }
 }
 
@@ -89,6 +102,21 @@ import EducationBox from '@/components/education/EducationBox.vue'
     &__photo-box {
       display: block;
     }
+    & .resume__right-top {
+      display: block;
+    }
+  }
+  .social-box--position {
+    margin-top: 120px;
+  }
+  .education-box--position {
+    width: 80%;
+    margin-left: auto;
+    margin-top: 0;
+  }
+  .about-box--position {
+    margin-top: 160px;
+    width: 80%;
   }
 }
 </style>

@@ -15,13 +15,6 @@ const { themeBlack } = storeToRefs(useViewStore());
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
 
-body,
-input {
-  color: $black;
-  font: 1em/1.5 sans-serif;
-}
-
-// form,
 .toggle:before,
 .toggle:after {
   background: $white;
@@ -118,5 +111,11 @@ form {
 
 .toggle:focus {
   outline: transparent;
+}
+
+@media screen and (min-width: 375px)  {
+  input {
+    font: 1em/1.5 sans-serif;
+  }
 }
 </style>

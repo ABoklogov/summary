@@ -9,10 +9,15 @@ export const myName = {
   }
 };
 
+export const about = {
+  ru: 'Я фронтенд-разработчик и я люблю свою работу.',
+  en: 'I’m a Front-end Developer and I love my job.'
+};
+
 export const telegram = '@Baggll';
 export const city = {
-  ru: 'Воронеж',
-  en: 'Voronezh'
+  ru: 'Воронеж, Россия',
+  en: 'Voronezh, RU'
 };
 export const email = {
   link: 'mailto:kashira87@mail.ru',
@@ -59,4 +64,19 @@ export const education = {
       speciality: 'Railway engineer'
     }
   ]
-}
+};
+
+export const techSkills =  [
+  'HTML5/CSS3/SASS',
+  'JS/TS',
+  'React.js',
+  'React Native',
+  'Redux, Redux Toolkit',
+  'Vue.js',
+  'Vuex, Pinia',
+  'Node.js',
+  'REST API',
+  'MongoDB/Express',
+  'Git, GitHub, GitLab',
+  'Webpack/Parcel',
+];
