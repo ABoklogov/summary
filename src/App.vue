@@ -1,19 +1,19 @@
 <template>
   <AppContainer>
     <Header />
-
+    
     <main>
       <RouterView />
     </main>
-
+  
     <Curtain />
   </AppContainer>
 </template>
 
 <script setup>
-import Header from '@/components/shared/Header.vue';
-import Curtain from '@/components/shared/Curtain.vue';
-import AppContainer from '@/components/shared/AppContainer.vue';
+import Header from '@/components/Header.vue'
+import Curtain from '@/components/shared/Curtain.vue'
+import AppContainer from '@/components/shared/AppContainer.vue'
 </script>
 
 <style scoped lang="scss">

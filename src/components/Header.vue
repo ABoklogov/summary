@@ -1,9 +1,14 @@
 <template>
   <header class="header" :class="{ 'header--hidden': scrollBottom }">
     <SiteNav class="site-nave--position" />
-    <Multiselect v-model="language" :options="optionsSelectLanguage" :show-labels="false" :showPointer="false" />
-    <Multicheckbox />
-
+    <Multiselect 
+      v-model="language" 
+      :options="optionsSelectLanguage" 
+      :show-labels="false" 
+      :showPointer="false" 
+    />
+    <CheckboxTheme />
+  
     <Curtain />
   </header>
 </template>
@@ -13,7 +18,7 @@ import { storeToRefs } from 'pinia';
 import { ref, onMounted } from 'vue';
 import SiteNav from '@/components/SiteNav.vue';
 import Curtain from '@/components/shared/Curtain.vue';
-import Multicheckbox from '@/components/shared/Multicheckbox.vue';
+import CheckboxTheme from '@/components/CheckboxTheme.vue';
 import Multiselect from 'vue-multiselect';
 import { useViewStore } from '@/stores/view';
 const { language, optionsSelectLanguage } = storeToRefs(useViewStore());
