@@ -13,6 +13,7 @@
       <EducationBox class="education-box--position" />
       <AboutBox class="about-box--position about-box--desktop"/>
       <ExperienceBox class="experience-box--position"/>
+      <CertificateBox class="certificate-box--position"/>
     </div>
   </div>
 </template>
@@ -21,10 +22,11 @@
 import MyPhoto from '@/components/MyPhoto.vue';
 import MyNameBox from '@/components/MyNameBox.vue';
 import SocialBox from '@/components/social/SocialBox.vue';
+import TechSkillsBox from '@/components/techSkills/TechSkillsBox.vue';
 import EducationBox from '@/components/education/EducationBox.vue';
 import AboutBox from '@/components/about/AboutBox.vue';
 import ExperienceBox from '@/components/experience/ExperienceBox.vue';
-import TechSkillsBox from '@/components/techSkills/TechSkillsBox.vue';
+import CertificateBox from '@/components/certificate/CertificateBox.vue';
 </script>
 
 <style scoped lang="scss">
@@ -58,7 +60,8 @@ import TechSkillsBox from '@/components/techSkills/TechSkillsBox.vue';
 .social-box--position,
 .education-box--position,
 .tech-skills-box--position,
-.experience-box--position {
+.experience-box--position,
+.certificate-box--position {
   margin-top: 50px;
 }
 .about-box--position {
@@ -82,7 +85,8 @@ import TechSkillsBox from '@/components/techSkills/TechSkillsBox.vue';
   .social-box--position,
   .education-box--position,
   .tech-skills-box--position,
-  .experience-box--position {
+  .experience-box--position,
+  .certificate-box--position {
     margin-top: 60px;
   }
 }
@@ -113,7 +117,8 @@ import TechSkillsBox from '@/components/techSkills/TechSkillsBox.vue';
     }
   }
   .social-box--position, 
-  .experience-box--position {
+  .experience-box--position,
+  .certificate-box--position {
     margin-top: 120px;
   }
   .education-box--position {

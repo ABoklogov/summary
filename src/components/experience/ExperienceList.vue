@@ -16,7 +16,6 @@
         :position="position"
         :company="company"
         :webSite="webSite"
-        :responsibility="responsibility"
         :start="start"
         :finish="finish"
         :language="language"
@@ -52,21 +51,14 @@ defineProps({
     margin-top: 0;
   }
   &__responsibility {
+    display: inline-block;
     font-family: $fontBase;
-    font-size: $fontMedium;
+    font-size: $fontMini;
     font-style: $fontStyle;
     font-weight: $fontWeightRegular;
-    line-height: $lineHeight;
-  }
-  &__responsibility {
-    display: inline;
+    line-height: 1.3;
     color: $transparentBlack;
     transition: color $duration $timingFunction;
-  }
-  &__responsibility {
-    display: inline-block;
-    font-size: $fontMini;
-    line-height: 1.3;
     margin-top: 10px;
   }
 }
@@ -75,9 +67,6 @@ defineProps({
   .experience-list {
     &__item {
       margin-top: 60px;
-    }
-    &__responsibility {
-      font-size: $fontNorm;
     }
     &__responsibility {
       font-size: $fontMedium;

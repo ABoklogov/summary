@@ -9,8 +9,10 @@
 import SubTitle from '@/components/shared/SubTitle.vue';
 import TechSkillsList from './TechSkillsList.vue';
 import { techSkills } from '@/services/data.js';
+import { storeToRefs } from 'pinia';
+import { useViewStore } from '@/stores/view';
+const { language } = storeToRefs(useViewStore());
 </script>
 
 <style scoped lang="scss">
-
 </style>

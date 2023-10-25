@@ -115,8 +115,8 @@ export const experience = {
 export const certificate = {
   ru: [
     {
-      exercise: 'Обучение по напрвлению Frontend Full Stack',
-      company: 'IT школа GoIT',
+      position: 'Обучение по напрвлению Frontend Full Stack',
+      company: 'GoIT',
       webSite: 'https://goit.global/',
       start: 'Ноябрь 2020',
       finish: 'Декабрь 2021',
@@ -124,8 +124,8 @@ export const certificate = {
   ],
   en: [
     {
-      exercise: 'Frontend Full Stack Training',
-      company: 'IT School GoIT',
+      position: 'Frontend Full Stack Training',
+      company: 'GoIT',
       webSite: 'https://goit.global/',
       start: 'November 2020',
       finish: 'December 2021',
