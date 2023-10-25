@@ -23,17 +23,19 @@ const { language } = storeToRefs(useViewStore());
   &__name,
   &__job-title {
     display: block;
+    font-family: $fontBase;
+    font-style: $fontStyle;
     line-height: normal;
   }
 
   &__name {
     font-size: $fontNorm;
-    font-weight: 600;
+    font-weight: $fontWeightSemibold;
     color: $black;
   }
 
   &__job-title {
-    font-weight: 400;
+    font-weight: $fontWeightRegular;
     color: $transparentBlack;
   }
 }

@@ -17,9 +17,12 @@ import { about } from '@/services/data.js';
   display: block;
   position: relative;
   z-index: calc($indexCurtain + 1);
+  font-family: $fontBase;
   font-size: $fontMedium;
-  color: $orange;
+  font-style: $fontStyle;
+  font-weight: $fontWeightRegular;
   line-height: 1.7;
+  color: $orange;
 }
 @media screen and (min-width: 768px) {
   .about {

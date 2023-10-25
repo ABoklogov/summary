@@ -15,11 +15,11 @@
 
 body {
   // font-family: Fahkwang;
-  font-family: RockStar;
+  font-family: $fontBase;
   font-size: $fontNorm;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.6;
+  font-style: $fontStyle;
+  font-weight: $fontWeightRegular;
+  line-height: $lineHeight;
 }
 
 a {

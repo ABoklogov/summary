@@ -19,9 +19,12 @@ defineProps({
 @import '@/assets/scss/variables';
 .education-list__item {
   & span {
+    font-family: $fontBase;
     font-size: $fontMedium;
+    font-style: $fontStyle;
+    font-weight: $fontWeightRegular;
     line-height: 32px;
-    color: rgba(20, 13, 12, 0.30);
+    color: $transparentBlack;
   }
 }
 

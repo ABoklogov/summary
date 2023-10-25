@@ -5,25 +5,26 @@
         <MyPhoto class="photo--position" />
         <MyNameBox class="my-name-box--position" />
       </div>
+      <AboutBox class="about-box--position about-box--mobile"/>
       <SocialBox class="social-box--position" />
       <TechSkillsBox class="tech-skills-box--position" />
     </div>
     <div class="resume__right">
-      <div class="resume__right-top">
-        <EducationBox class="education-box--position" />
-        <AboutBox class="about-box--position"/>
-      </div>
+      <EducationBox class="education-box--position" />
+      <AboutBox class="about-box--position about-box--desktop"/>
+      <ExperienceBox class="experience-box--position"/>
     </div>
   </div>
 </template>
 
 <script setup>
-import MyPhoto from '@/components/MyPhoto.vue'
-import MyNameBox from '@/components/MyNameBox.vue'
-import SocialBox from '@/components/social/SocialBox.vue'
-import EducationBox from '@/components/education/EducationBox.vue'
-import AboutBox from '@/components/about/AboutBox.vue'
-import TechSkillsBox from '@/components/techSkills/TechSkillsBox.vue'
+import MyPhoto from '@/components/MyPhoto.vue';
+import MyNameBox from '@/components/MyNameBox.vue';
+import SocialBox from '@/components/social/SocialBox.vue';
+import EducationBox from '@/components/education/EducationBox.vue';
+import AboutBox from '@/components/about/AboutBox.vue';
+import ExperienceBox from '@/components/experience/ExperienceBox.vue';
+import TechSkillsBox from '@/components/techSkills/TechSkillsBox.vue';
 </script>
 
 <style scoped lang="scss">
@@ -45,9 +46,8 @@ import TechSkillsBox from '@/components/techSkills/TechSkillsBox.vue'
     flex-direction: column;
   }
 
-  & .resume__right-top {
-    display: flex;
-    flex-direction: column-reverse;
+  & .about-box--desktop {
+    display: none;
   }
 }
 
@@ -57,11 +57,12 @@ import TechSkillsBox from '@/components/techSkills/TechSkillsBox.vue'
 
 .social-box--position,
 .education-box--position,
-.tech-skills-box--position {
+.tech-skills-box--position,
+.experience-box--position {
   margin-top: 50px;
 }
 .about-box--position {
-  margin-top: 20px;
+  margin-top: 35px;
 }
 
 @media screen and (min-width: 768px) {
@@ -80,7 +81,8 @@ import TechSkillsBox from '@/components/techSkills/TechSkillsBox.vue'
 
   .social-box--position,
   .education-box--position,
-  .tech-skills-box--position {
+  .tech-skills-box--position,
+  .experience-box--position {
     margin-top: 60px;
   }
 }
@@ -102,11 +104,16 @@ import TechSkillsBox from '@/components/techSkills/TechSkillsBox.vue'
     &__photo-box {
       display: block;
     }
-    & .resume__right-top {
+
+    & .about-box--desktop {
       display: block;
     }
+    & .about-box--mobile {
+      display: none;
+    }
   }
-  .social-box--position {
+  .social-box--position, 
+  .experience-box--position {
     margin-top: 120px;
   }
   .education-box--position {

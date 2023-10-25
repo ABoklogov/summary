@@ -16,12 +16,11 @@ defineProps({
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
 .sub-title {
-  font-family: RockStar;
+  font-family: $fontBase;
   font-size: $fontMedium;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.6;
-  font-weight: 600;
+  font-style: $fontStyle;
+  line-height: $lineHeight;
+  font-weight: $fontWeightSemibold;
 }
 @media screen and (min-width: 768px) {
   .sub-title {

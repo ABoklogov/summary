@@ -142,7 +142,6 @@ onMounted(() => {
   .header {
     position: relative;
     width: auto;
-    padding: 0;
   }
 
   .checkbox-theme--position {

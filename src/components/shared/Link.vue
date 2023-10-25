@@ -1,5 +1,5 @@
 <template>
-  <a class="link" :href="link">
+  <a class="link" :href="link" target="_blank">
     {{ text }}
   </a>
 </template>
@@ -19,13 +19,18 @@ defineProps({
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
 .link {
-  font-family: RockStar;
+  font-family: $fontBase;
   font-size: $fontMedium;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.6;
+  font-style: $fontStyle;
+  font-weight: $fontWeightRegular;
+  line-height: $lineHeight;
   text-decoration-line: underline;
   color: $transparentBlack;
+  transition: color $duration $timingFunction;
+  &:hover,
+  &:focus {
+    color: $orange;
+  }
 }
 @media screen and (min-width: 768px) {
   .link {

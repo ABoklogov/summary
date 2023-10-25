@@ -19,9 +19,18 @@ import { telegram, city, email, phone } from '@/services/data.js';
 .contacts a,
 .contacts span {
   display: block;
+  font-family: $fontBase;
   font-size: $fontMini;
+  font-style: $fontStyle;
+  font-weight: $fontWeightRegular;
   line-height: 1.7;
+  color: $black;
   text-align: right;
   text-decoration: auto;
+  transition: color $duration $timingFunction;
+}
+.contacts a:hover,
+.contacts a:focus {
+  color: $orange;
 }
 </style>

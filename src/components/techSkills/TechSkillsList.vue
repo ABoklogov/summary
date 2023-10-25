@@ -21,19 +21,29 @@ defineProps({
 
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
-.tech-skills-list__item span {
+.tech-skills-list__item {
   margin-top: 4px;
-  display: block;
-  font-family: RockStar;
-  font-size: $fontMedium;
-  color: $transparentBold;
+  & span {
+    display: block;
+    font-family: $fontBase;
+    font-size: $fontMedium;
+    font-style: $fontStyle;
+    font-weight: $fontWeightRegular;
+    line-height: $lineHeight;
+    color: $transparentBold;
+  }
+}
+@media screen and (min-width: 768px) {
+  .tech-skills-list__item span {
+    font-size: $fontNorm;
+  }
 }
 @media screen and (min-width: 1024px) {
   .tech-skills-list__item {
     margin-top: 16px;
-    & span {
-      font-size: $fontNorm;
-    }
+  }
+  .tech-skills-list__item:first-child {
+    margin-top: 20px;
   }
 }
 </style>

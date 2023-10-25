@@ -18,8 +18,11 @@ const { themeBlack } = storeToRefs(useViewStore());
   position: relative;
 
   & a {
+    font-family: $fontBase;
     font-size: $fontMedium;
-    font-weight: 500;
+    font-weight: $fontWeightRegular;
+    font-style: $fontStyle;
+    line-height: $lineHeight;
     color: $black;
     text-decoration: auto;
     transition: color $duration $timingFunction;
