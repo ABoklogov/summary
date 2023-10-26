@@ -20,7 +20,7 @@ const { themeBlack } = storeToRefs(useViewStore());
   & a {
     font-family: $fontBase;
     font-size: $fontMedium;
-    font-weight: $fontWeightRegular;
+    font-weight: $fontWeightSemibold;
     font-style: $fontStyle;
     line-height: $lineHeight;
     color: $black;

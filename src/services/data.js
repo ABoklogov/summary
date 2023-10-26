@@ -120,6 +120,7 @@ export const certificate = {
       webSite: 'https://goit.global/',
       start: 'Ноябрь 2020',
       finish: 'Декабрь 2021',
+      path: require('@/assets/images/certificateGoIt.pdf'),
     },
   ],
   en: [
@@ -129,6 +130,7 @@ export const certificate = {
       webSite: 'https://goit.global/',
       start: 'November 2020',
       finish: 'December 2021',
+      path: require('@/assets/images/certificateGoIt.pdf'),
     },
   ]
 }

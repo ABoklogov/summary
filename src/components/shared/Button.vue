@@ -2,7 +2,6 @@
   <button 
     class="button" 
     type="button"
-    :text="text"
     :aria-label="ariaLabel"
   >
     <slot name="icon"></slot>

@@ -20,7 +20,7 @@ import { about } from '@/services/data.js';
   font-family: $fontBase;
   font-size: $fontMedium;
   font-style: $fontStyle;
-  font-weight: $fontWeightRegular;
+  font-weight: $fontWeightSemibold;
   line-height: 1.7;
   color: $orange;
 }

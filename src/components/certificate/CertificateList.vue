@@ -6,7 +6,8 @@
         company, 
         webSite, 
         start, 
-        finish 
+        finish,
+        path
       }) in list" 
       :key="webSite" 
       class="certificate-list__item"
@@ -19,9 +20,9 @@
         :finish="finish"
         :language="language"
       />
-      <Button #icon class="btn-download">
+      <a :href="path" download class="btn-download">
         <IconDownload />
-      </Button>
+      </a>
     </li>
   </ul>
 </template>
@@ -29,7 +30,6 @@
 <script setup>
 import ActivityBox from '@/components/shared/ActivityBox.vue';
 import IconDownload from '@/components/icons/IconDownload.vue';
-import Button from '@/components/shared/Button.vue';
 
 defineProps({
   list: {

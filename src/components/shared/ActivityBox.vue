@@ -56,11 +56,18 @@ defineProps({
     font-family: $fontBase;
     font-size: $fontMedium;
     font-style: $fontStyle;
-    font-weight: $fontWeightRegular;
     line-height: $lineHeight;
   }
   &__position {
     color: $transparentBold;
+  }
+  &__position,
+  &__company,
+  &__pretext {
+    font-weight: $fontWeightSemibold;
+  }
+  &__activity-time {
+    font-weight: $fontWeightRegular;
   }
   &__company,
   &__activity-time,
