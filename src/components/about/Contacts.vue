@@ -11,7 +11,7 @@
 import { storeToRefs } from 'pinia';
 import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
-import { telegram, city, email, phone } from '@/services/data.js';
+import { telegram, city, email, phone } from '@/services/dataResume.js';
 </script>
 
 <style scoped lang="scss">

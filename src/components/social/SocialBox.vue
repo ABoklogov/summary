@@ -9,7 +9,7 @@
 import { storeToRefs } from 'pinia'
 import SubTitle from '@/components/shared/SubTitle.vue';
 import SocialList from './SocialList.vue';
-import { socialLinks } from '@/services/data.js';
+import { socialLinks } from '@/services/dataResume.js';
 import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
 </script>

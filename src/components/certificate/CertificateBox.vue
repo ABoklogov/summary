@@ -9,7 +9,7 @@
 import { storeToRefs } from 'pinia'
 import SubTitle from '@/components/shared/SubTitle.vue';
 import CertificateList from './CertificateList.vue';
-import { certificate } from '@/services/data.js';
+import { certificate } from '@/services/dataResume.js';
 import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
 </script>

@@ -8,7 +8,7 @@
 import { storeToRefs } from 'pinia';
 import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
-import { about } from '@/services/data.js';
+import { about } from '@/services/dataResume.js';
 </script>
 
 <style scoped lang="scss">

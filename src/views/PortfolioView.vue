@@ -1,9 +1,35 @@
-
 <template>
   <div class="portfolio">
-    <h1>portfolio</h1>
+    <HeaderPortfolio/>
+    
+    <div class="portfolio__content">
+
+    </div>
   </div>
 </template>
 
 <script setup>
+import HeaderPortfolio from '@/components/headerPortfolio/HeaderPortfolio.vue';
 </script>
+
+<style scoped lang="scss">
+@import '@/assets/scss/variables';
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  &__content {
+    padding: $paddingPortfolioMobile;
+  }
+}
+
+@media screen and (min-width: 768px) {
+
+}
+@media screen and (min-width: 1024px) {
+  .portfolio {
+    &__content {
+      padding: $paddingPortfolioDesktop;
+    }
+  }
+}
+</style>

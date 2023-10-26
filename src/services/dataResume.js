@@ -9,9 +9,10 @@ export const myName = {
   }
 };
 
+// В прошлом я работал в команде разработчиков, где мы успешно сотрудничали для достижения общих целей. Я открыт для обратной связи и готов к обучению новым технологиям и методам разработки.
 export const about = {
-  ru: 'Я фронтенд-разработчик и я люблю свою работу.',
-  en: 'I’m a Front-end Developer and I love my job.'
+  ru: "Я ищу возможность присоединиться к динамичной команде, где смогу продолжить свое развитие и внести свой вклад в создание инновационных веб-приложений.",
+  en: "I'm looking for an opportunity to join a dynamic team where I can continue my development and contribute to the creation of innovative web applications."
 };
 
 export const telegram = '@Baggll';
@@ -120,7 +121,7 @@ export const certificate = {
       webSite: 'https://goit.global/',
       start: 'Ноябрь 2020',
       finish: 'Декабрь 2021',
-      path: require('@/assets/images/certificateGoIt.pdf'),
+      path: require('@/assets/documents/certificateGoIt.pdf'),
     },
   ],
   en: [
@@ -130,7 +131,7 @@ export const certificate = {
       webSite: 'https://goit.global/',
       start: 'November 2020',
       finish: 'December 2021',
-      path: require('@/assets/images/certificateGoIt.pdf'),
+      path: require('@/assets/documents/certificateGoIt.pdf'),
     },
   ]
 }

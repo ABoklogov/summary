@@ -1,0 +1,4 @@
+export const aboutText = {
+  ru: 'Я стремлюсь к постоянному росту и развитию в области frontend разработки, поэтому я всегда готов к новым вызовам и возможностям. Моя страсть к технологиям и желание создавать превосходные пользовательские интерфейсы позволяют мне быть эффективным и успешным frontend разработчиком. Если вам нужна более подробная информация, вы можете посмотреть мое ',
+  en: 'I strive for constant growth and development in the field of frontend development, so I am always ready for new challenges and opportunities. My passion for technology and desire to create excellent user experiences allows me to be an efficient and successful frontend developer. If you need more details, you can look at my '
+};

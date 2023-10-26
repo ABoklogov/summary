@@ -21,7 +21,7 @@ import About from './About.vue';
 
 @media screen and (min-width: 1024px) {
   .about--position {
-    max-width: 425px;
+    max-width: 450px;
     margin-top: 56px;
   }
 }

@@ -11,7 +11,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
-import { myName } from '@/services/data.js';
+import { myName } from '@/services/dataResume.js';
 import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
 </script>

@@ -1,6 +1,6 @@
 <template>
   <AppContainer>
-    <Header />
+    <Header id="header"/>
     
     <main>
       <RouterView />
