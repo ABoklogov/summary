@@ -1,7 +1,7 @@
 <template>
   <div class="portfolio">
     <HeaderPortfolio/>
-    
+
     <div class="portfolio__content">
 
     </div>
@@ -17,6 +17,7 @@ import HeaderPortfolio from '@/components/headerPortfolio/HeaderPortfolio.vue';
 .portfolio {
   display: flex;
   flex-direction: column;
+  background-color: $pink;
   &__content {
     padding: $paddingPortfolioMobile;
   }

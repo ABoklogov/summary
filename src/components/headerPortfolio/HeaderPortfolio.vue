@@ -4,14 +4,24 @@
     ref="headerPortfolio" 
     :style="heightHeader"
   >
-    <AboutPortfolioBox/>
+    <AboutPortfolioBox class="about-portfolio-box--position"/>
+    <Button class="header-portfolio__btn-scroll">
+      <IconArrow/>
+      <span>
+       {{ language === 'ru' ? 'Смотреть ниже' : 'Scroll down' }}
+      </span>
+    </Button>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useViewStore } from '@/stores/view';
 import AboutPortfolioBox from './AboutPortfolioBox.vue';
-
+import Button from '@/components/shared/Button.vue';
+import IconArrow from '@/components/icons/IconArrow.vue';
+const { language } = storeToRefs(useViewStore());
 const headerPortfolio = ref(null);
 
 const heightHeader = computed(() => {
@@ -31,15 +41,78 @@ const heightHeader = computed(() => {
 @import '@/assets/scss/variables';
 
 .header-portfolio {
+  position: relative;
+  z-index: calc($indexCurtain + 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   width: 100%;
-  min-height: 360px;
+  min-height: 374px;
   background-color: $black;
   padding: 48px 24px 32px;
-}
 
+  &__btn-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 96px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 62px;
+  }
+  &__btn-scroll span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: $pink;
+    font-family: $fontBase;
+    font-size: $fontMicro;
+    font-style: $fontStyle;
+    font-weight: $fontWeightLight;
+    line-height: normal;
+    margin-top: 4px;
+    transition: color $duration $timingFunction;
+  }
+  &__btn-scroll svg {
+    display: block;
+    transform: rotate(90deg);
+    color: $pink;
+    width: 24px;
+    height: 24px;
+    transition: color $duration $timingFunction;
+  }
+  &__btn-scroll:hover svg,
+  &__btn-scroll:focus svg,
+  &__btn-scroll:hover span,
+  &__btn-scroll:focus span {
+    color: $orange;
+  }
+}
+@media screen and (min-width: 768px) {
+  .about-portfolio-box--position {
+    max-width: 653px;
+  }
+}
 @media screen and (min-width: 1024px) {
   .header-portfolio {
     padding: 48px 120px 32px;
+
+    &__btn-scroll {
+      width: 126px;
+      margin-top: 175px;
+    }
+    &__btn-scroll span {
+      font-size: $fontSmall;
+      margin-top: 8px;
+    }
+    &__btn-scroll svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  .about-portfolio-box--position {
+    max-width: 815px;
   }
 }
 </style>

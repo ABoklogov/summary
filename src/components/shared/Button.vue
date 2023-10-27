@@ -4,7 +4,7 @@
     type="button"
     :aria-label="ariaLabel"
   >
-    <slot name="icon"></slot>
+    <slot></slot>
   </button>
 </template>
 
@@ -20,7 +20,6 @@ defineProps({
 @import '@/assets/scss/variables';
 .button {
   border: none;
-  outline: none;
   font: inherit;
   color: inherit;
   padding: 0;

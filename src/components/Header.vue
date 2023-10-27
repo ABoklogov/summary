@@ -92,6 +92,8 @@ onMounted(() => {
   }
 
   & .multiselect {
+    position: relative;
+    z-index: calc($indexCurtain + 1);
     width: 50px;
   }
   & .multiselect--active {
