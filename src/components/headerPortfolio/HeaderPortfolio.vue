@@ -1,7 +1,6 @@
 <template>
   <div 
     class="header-portfolio" 
-    ref="headerPortfolio" 
     :style="heightHeader"
   >
     <AboutPortfolioBox class="about-portfolio-box--position"/>
@@ -15,25 +14,17 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { storeToRefs } from 'pinia';
-import { useViewStore } from '@/stores/view';
 import AboutPortfolioBox from './AboutPortfolioBox.vue';
 import Button from '@/components/shared/Button.vue';
 import IconArrow from '@/components/icons/IconArrow.vue';
-const { language } = storeToRefs(useViewStore());
-const headerPortfolio = ref(null);
 
-const heightHeader = computed(() => {
-  let header = document.querySelector('#header');
-  let heightHeaderPortfolio = '100vh';
-  const heightView = document.documentElement.clientHeight;
-
-  if (header) {
-    header = header.getBoundingClientRect();
-    heightHeaderPortfolio = `${heightView - header.height}px`;
-  };
-  return { height: heightHeaderPortfolio };
+defineProps({
+  language: {
+    type: String
+  },
+  heightHeader: {
+    type: Object,
+  }
 });
 </script>
 
@@ -90,12 +81,16 @@ const heightHeader = computed(() => {
   }
 }
 @media screen and (min-width: 768px) {
+  .header-portfolio {
+    min-height: 406px;
+  }
   .about-portfolio-box--position {
     max-width: 653px;
   }
 }
 @media screen and (min-width: 1024px) {
   .header-portfolio {
+    min-height: 612px;
     padding: 48px 120px 32px;
 
     &__btn-scroll {
