@@ -10,7 +10,7 @@ export const projects = {
       link: 'https://magic-forest.netlify.app/',
       preText: 'В этом приложении реализована красивая 3D визуализация магического леса, дополненое плеером с тчательно подобранными тематическими треками.',
       picture: require('@/assets/images/projects/magicForest.jpg'),
-      backgroundColor: 'rgb(147 171 151 .3)',
+      backgroundColor: 'rgba(147, 171, 151, .2)',
       description: '',
     }
   ],
@@ -20,7 +20,7 @@ export const projects = {
       link: 'https://magic-forest.netlify.app/',
       preText: 'This application features a beautiful 3D visualization of a magical forest, complemented by a player with carefully selected thematic tracks.',
       picture: require('@/assets/images/projects/magicForest.jpg'),
-      backgroundColor: 'rgb(147 171 151 .3)',
+      backgroundColor: 'rgba(147, 171, 151, .2)',
       description: '',
     }
   ]

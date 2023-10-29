@@ -1,9 +1,6 @@
 <template>
-  <div 
-    class="header-portfolio" 
-    :style="heightHeader"
-  >
-    <AboutPortfolioBox class="about-portfolio-box--position"/>
+  <div class="header-portfolio" :style="heightHeader">
+    <AboutPortfolioBox class="about-portfolio-box--position" :language="language"/>
     <Button class="header-portfolio__btn-scroll">
       <IconArrow/>
       <span>
@@ -14,6 +11,7 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import AboutPortfolioBox from './AboutPortfolioBox.vue';
 import Button from '@/components/shared/Button.vue';
 import IconArrow from '@/components/icons/IconArrow.vue';
@@ -22,9 +20,18 @@ defineProps({
   language: {
     type: String
   },
-  heightHeader: {
-    type: Object,
-  }
+});
+
+const heightHeader = computed(() => {
+  let header = document.querySelector('#header');
+  let heightHeaderPortfolio = '100vh';
+  const heightView = document.documentElement.clientHeight;
+
+  if (header) {
+    header = header.getBoundingClientRect();
+    heightHeaderPortfolio = `${heightView - header.height}px`;
+  };
+  return { height: heightHeaderPortfolio };
 });
 </script>
 

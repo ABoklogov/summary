@@ -1,13 +1,3 @@
-// colors
-$white: #fff;
-$black: #140D0C;
-$orange: #FE5900;
-$pink: #F9F2F2;
-$pinkSaturated: #f5e1e1;
-$transparentGray: rgba(249, 242, 242, 0.32);
-$transparentLightGrey: rgba(249, 242, 242, 0.64);
-$transparentBlack: rgba(20, 13, 12, 0.30);
-$transparentBold: rgba(20, 13, 12, 0.60);
 // fonts
 $fontBase: Winston;
 $fontWeightLight: 300;
@@ -16,7 +6,6 @@ $fontWeightSemibold: 500;
 $fontWeightBold: 700;
 
 $lineHeight: 1.6;
-
 $fontStyle: normal;
 
 $fontTitle: 36px;
@@ -27,14 +16,26 @@ $fontSmall: 16px;
 $fontMini: 14px;
 $fontMicro: 12px;
 
+// colors
+$white: #fff;
+$black: #140D0C;
+$orange: #FE5900;
+$pink: #F9F2F2;
+$pinkSaturated: #f5e1e1;
+$transparentGray: rgba(249, 242, 242, 0.32);
+$transparentLightGrey: rgba(249, 242, 242, 0.64);
+$transparentBlack: rgba(20, 13, 12, 0.30);
+$transparentBold: rgba(20, 13, 12, 0.60);
+
 // indentation
 $headerTopMobile: 58px;
 $contentPaddingMobile: 12px;
 $contentPaddingTablete: 24px;
 $contentPaddingDesktop: 64px;
 
-$paddingPortfolioMobile: 0 24px;
-$paddingPortfolioDesktop: 0 120px;
+$paddingPortfolioMobile: 24px;
+$paddingPortfolioTablete: 64px;
+$paddingPortfolioDesktop: 120px;
 
 // layers
 $indexCurtain: 999;

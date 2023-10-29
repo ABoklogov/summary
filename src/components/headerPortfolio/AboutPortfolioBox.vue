@@ -14,10 +14,13 @@
 
 <script setup>
 import IconArrow from '@/components/icons/IconArrow.vue';
-import { storeToRefs } from 'pinia';
 import { aboutText } from '@/services/dataPortfolio.js';
-import { useViewStore } from '@/stores/view';
-const { language } = storeToRefs(useViewStore());
+
+defineProps({
+  language: {
+    type: String
+  },
+});
 </script>
 
 <style scoped lang="scss">

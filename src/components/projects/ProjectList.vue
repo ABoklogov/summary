@@ -9,13 +9,13 @@
       }) in projects" 
       :key="name"
       class="project-list__item"
+      :style="{ backgroundColor: backgroundColor }"
     >
       <ProjectItem 
         :name="name"
         :link="link"
         :preText="preText"
         :picture="picture"
-        :backgroundColor="backgroundColor"
         :language="language"
       />
     </li>
@@ -40,21 +40,21 @@ defineProps({
 @import '@/assets/scss/variables';
 .project-list {
   &__item {
-    padding: 24px 0;
+    padding: $paddingPortfolioMobile;
   }
 }
 
 @media screen and (min-width: 768px) {
 .project-list {
   &__item {
-    padding: 64px 0;
+
   }
 }
 }
 @media screen and (min-width: 1024px) {
 .project-list {
   &__item {
-    padding: 136px 0;
+    padding: 136px $paddingPortfolioDesktop;
   }
 }
 }

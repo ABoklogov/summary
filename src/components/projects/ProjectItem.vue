@@ -1,9 +1,15 @@
 <template>
   <div class="project-item">
     <div class="project-item__content">
-      <a :href="link">{{ link }}</a>
-      <span>{{ name }}</span>
-      <span>{{ preText }}</span>
+      <a :href="link" class="project-item__link">
+        {{ link }}
+      </a>
+      <span class="project-item__name">
+        {{ name }}
+      </span>
+      <span class="project-item__text">
+        {{ preText }}
+      </span>
     </div>
 
     <img :src="picture"  class="project-item__image"/>
@@ -28,10 +34,10 @@ defineProps({
     type: String,
     required: true
   },
-  backgroundColor: {
-    type: String,
-    required: true
-  },
+  // backgroundColor: {
+  //   type: String,
+  //   required: true
+  // },
   language: {
     type: String
   }
@@ -47,6 +53,30 @@ defineProps({
   align-items: center;
   min-height: 374px;
 
+  &__link,
+  &__name,
+  &__text {
+    display: block;
+    font-family: $fontBase;
+    font-style: $fontStyle;
+    line-height: normal;
+    color: $black;
+  }
+  &__link {
+    font-size: $fontMicro;
+    font-weight: $fontWeightLight;
+  }
+  &__name {
+    font-size: $fontMedium;
+    font-weight: $fontWeightBold;
+    margin-top: 8px;
+  }
+  &__text {
+    font-size: $fontMini;
+    font-weight: $fontWeightRegular;
+    line-height: $lineHeight;
+    margin-top: 8px;
+  }
   &__image {
     max-width: 327px;
   }
@@ -57,14 +87,38 @@ defineProps({
     flex-direction: row;
     min-height: 406px;
 
+    &__content {
+      max-width: 510px;
+    }
+    &__link {
+      font-size: $fontMini;
+    }
+    &__name {
+      font-size: $fontNorm;
+    }
+    &__text {
+      font-size: $fontMedium;
+    }
     &__image {
-
+      margin-left: 30px;
     }
   }
 }
 @media screen and (min-width: 1024px) {
   .project-item {
 
+    
+    &__link {
+      font-size: $fontSmall;
+    }
+    &__name {
+      font-size: $fontBig;
+    }
+    &__text {
+      font-size: $fontNorm;
+      font-weight: $fontWeightLight;
+      margin-top: 16px;
+    }
     &__image {
       max-width: 368px;
     }
