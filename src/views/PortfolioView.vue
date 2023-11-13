@@ -2,7 +2,7 @@
   <div class="portfolio">
     <HeaderPortfolio :language="language"/>
 
-    <div class="portfolio__content">
+    <div class="portfolio__content" id="projects">
       <ProjectList 
         :projects="language === 'ru' ? projects.ru : projects.en" 
         :language="language"

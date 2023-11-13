@@ -1,7 +1,7 @@
 <template>
   <div class="header-portfolio" :style="heightHeader">
     <AboutPortfolioBox class="about-portfolio-box--position" :language="language"/>
-    <Button class="header-portfolio__btn-scroll">
+    <Button class="header-portfolio__btn-scroll" @click="scrollToProject">
       <IconArrow/>
       <span>
        {{ language === 'ru' ? 'Смотреть ниже' : 'Scroll down' }}
@@ -21,6 +21,10 @@ defineProps({
     type: String
   },
 });
+
+const scrollToProject = () => {
+  document.querySelector('#projects').scrollIntoView({ behavior: 'smooth'});
+};
 
 const heightHeader = computed(() => {
   let header = document.querySelector('#header');

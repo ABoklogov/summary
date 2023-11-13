@@ -48,7 +48,7 @@ defineProps({
 @import '@/assets/scss/variables';
 .project-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   justify-content: space-between;
   align-items: center;
   min-height: 374px;
@@ -65,6 +65,12 @@ defineProps({
   &__link {
     font-size: $fontMicro;
     font-weight: $fontWeightLight;
+    transition: color $duration $timingFunction;
+    margin-top: 16px;
+  }
+  &__link:hover,
+  &__link:focus {
+    color: $orange;
   }
   &__name {
     font-size: $fontMedium;
@@ -78,7 +84,9 @@ defineProps({
     margin-top: 8px;
   }
   &__image {
-    max-width: 327px;
+    position: relative;
+    z-index: calc($indexCurtain + 1);
+    max-width: 100%;
   }
 }
 
@@ -92,6 +100,7 @@ defineProps({
     }
     &__link {
       font-size: $fontMini;
+      margin-top: 0;
     }
     &__name {
       font-size: $fontNorm;
@@ -101,6 +110,7 @@ defineProps({
     }
     &__image {
       margin-left: 30px;
+      max-width: 327px;
     }
   }
 }

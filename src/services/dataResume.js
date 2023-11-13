@@ -78,11 +78,8 @@ export const education = {
 export const techSkills =  [
   'HTML5/CSS3/SASS',
   'JS/TS',
-  'React.js',
-  'React Native',
-  'Redux, Redux Toolkit',
-  'Vue.js',
-  'Vuex, Pinia',
+  'React.js/React Native/Redux',
+  'Vue.js/Vuex/Pinia',
   'Node.js',
   'REST API',
   'MongoDB/Express',
