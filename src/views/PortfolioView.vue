@@ -1,12 +1,9 @@
 <template>
   <div class="portfolio">
-    <HeaderPortfolio :language="language"/>
+    <HeaderPortfolio :language="language" />
 
     <div class="portfolio__content" id="projects">
-      <ProjectList 
-        :projects="language === 'ru' ? projects.ru : projects.en" 
-        :language="language"
-      />
+      <ProjectList :projects="language === 'ru' ? projects.ru : projects.en" :language="language" />
     </div>
   </div>
 </template>
@@ -36,7 +33,6 @@ const { language } = storeToRefs(useViewStore());
 }
 @media screen and (min-width: 1024px) {
   .portfolio {
-
   }
 }
 </style>

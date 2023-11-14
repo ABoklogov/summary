@@ -1,6 +1,6 @@
 <template>
   <ul class="education-list">
-    <li v-for="({ institution, speciality }) in list" :key="institution" class="education-list__item">
+    <li v-for="{ institution, speciality } in list" :key="institution" class="education-list__item">
       <span>{{ institution }}</span> - <span>{{ speciality }}</span>
     </li>
   </ul>

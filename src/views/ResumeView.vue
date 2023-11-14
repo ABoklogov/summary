@@ -5,15 +5,15 @@
         <MyPhoto class="photo--position" />
         <MyNameBox class="my-name-box--position" />
       </div>
-      <AboutBox class="about-box--position about-box--mobile"/>
+      <AboutBox class="about-box--position about-box--mobile" />
       <SocialBox class="social-box--position" />
       <TechSkillsBox class="tech-skills-box--position" />
     </div>
     <div class="resume__right">
       <EducationBox class="education-box--position" />
-      <AboutBox class="about-box--position about-box--desktop"/>
-      <ExperienceBox class="experience-box--position"/>
-      <CertificateBox class="certificate-box--position"/>
+      <AboutBox class="about-box--position about-box--desktop" />
+      <ExperienceBox class="experience-box--position" />
+      <CertificateBox class="certificate-box--position" />
     </div>
   </div>
 </template>
@@ -116,7 +116,7 @@ import CertificateBox from '@/components/certificate/CertificateBox.vue';
       display: none;
     }
   }
-  .social-box--position, 
+  .social-box--position,
   .experience-box--position,
   .certificate-box--position {
     margin-top: 120px;

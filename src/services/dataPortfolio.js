@@ -9,17 +9,19 @@ export const projects = {
       name: 'Magic Forest',
       link: {
         text: 'magic-forest.netlify.app',
-        url:'https://magic-forest.netlify.app/',
+        url: 'https://magic-forest.netlify.app/'
       },
-      preText: 'В этом приложении реализована красивая 3D визуализация магического леса, дополненое плеером с тщательно подобранными тематическими треками.',
-      description: 'Не стоит серьезно относиться к данному сайту. Я его сделал, чтобы самому попробовать поработать с 3D перспективой и показать возможности современного CSS.',
+      preText:
+        'В этом приложении реализована красивая 3D визуализация магического леса, дополненое плеером с тщательно подобранными тематическими треками.',
+      description:
+        'Не стоит серьезно относиться к данному сайту. Я его сделал, чтобы самому попробовать поработать с 3D перспективой и показать возможности современного CSS.',
       tehnology: ['HTML', 'CSS', 'JS', 'Vue.js', 'Parcel'],
       linkFiles: {
         text: 'github.com/ABoklogov/magicForest',
-        url: 'https://github.com/ABoklogov/magicForest',
+        url: 'https://github.com/ABoklogov/magicForest'
       },
       picture: require('@/assets/images/projects/magicForest.jpg'),
-      backgroundColor: 'rgba(147, 171, 151, .3)',
+      backgroundColor: 'rgba(147, 171, 151, .3)'
     }
   ],
   en: [
@@ -27,17 +29,19 @@ export const projects = {
       name: 'Magic Forest',
       link: {
         text: 'magic-forest.netlify.app',
-        url:'https://magic-forest.netlify.app/',
+        url: 'https://magic-forest.netlify.app/'
       },
-      preText: 'This application features a beautiful 3D visualization of a magical forest, complemented by a player with carefully selected thematic tracks.',
-      description: "Don't take this site seriously. I made it to try to work with 3D perspective myself and show the capabilities of modern CSS.",
+      preText:
+        'This application features a beautiful 3D visualization of a magical forest, complemented by a player with carefully selected thematic tracks.',
+      description:
+        "Don't take this site seriously. I made it to try to work with 3D perspective myself and show the capabilities of modern CSS.",
       tehnology: ['HTML', 'CSS', 'JS', 'Vue.js', 'Parcel'],
       linkFiles: {
         text: 'github.com/ABoklogov/magicForest',
-        url: 'https://github.com/ABoklogov/magicForest',
+        url: 'https://github.com/ABoklogov/magicForest'
       },
       picture: require('@/assets/images/projects/magicForest.jpg'),
-      backgroundColor: 'rgba(147, 171, 151, .3)',
+      backgroundColor: 'rgba(147, 171, 151, .3)'
     }
   ]
 };

@@ -1,9 +1,5 @@
 <template>
-  <button 
-    class="button" 
-    type="button"
-    :aria-label="ariaLabel"
-  >
+  <button class="button" type="button" :aria-label="ariaLabel">
     <slot></slot>
   </button>
 </template>
@@ -11,7 +7,7 @@
 <script setup>
 defineProps({
   ariaLabel: {
-    type: String,
+    type: String
   }
 });
 </script>

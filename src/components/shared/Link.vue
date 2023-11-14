@@ -11,7 +11,7 @@ defineProps({
     required: true
   },
   text: {
-    type: String,
+    type: String
   }
 });
 </script>

@@ -1,20 +1,21 @@
 <template>
   <ul class="project-list">
-    <li v-for="({ 
-        name, 
-        link, 
-        preText, 
-        picture, 
+    <li
+      v-for="{
+        name,
+        link,
+        preText,
+        picture,
         description,
         tehnology,
         linkFiles,
         backgroundColor
-      }) in projects" 
+      } in projects"
       :key="name"
       class="project-list__item"
       :style="{ backgroundColor: backgroundColor }"
     >
-      <ProjectItem 
+      <ProjectItem
         :name="name"
         :link="link"
         :preText="preText"
@@ -38,7 +39,7 @@ defineProps({
   },
   language: {
     type: String
-  },
+  }
 });
 </script>
 
@@ -53,7 +54,6 @@ defineProps({
 @media screen and (min-width: 768px) {
   .project-list {
     &__item {
-
     }
   }
 }

@@ -1,10 +1,6 @@
 <template>
   <ul class="tech-skills-list">
-    <li 
-      v-for="item in list" 
-      :key="item"
-      class="tech-skills-list__item"
-    >
+    <li v-for="item in list" :key="item" class="tech-skills-list__item">
       <span>{{ item }}</span>
     </li>
   </ul>

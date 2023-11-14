@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+import { storeToRefs } from 'pinia';
 import SubTitle from '@/components/shared/SubTitle.vue';
 import EducationList from '@/components/education/EducationList.vue';
 import { education } from '@/services/dataResume.js';

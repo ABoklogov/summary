@@ -7,8 +7,8 @@
         {{ language === 'ru' ? 'Технологии' : 'Technologies' }}:
       </span>
       <ul class="description__list-tehnology">
-        <li 
-          v-for="(item, idx) in tehnology" 
+        <li
+          v-for="(item, idx) in tehnology"
           :key="`item-${idx}`"
           class="description__item-tehnology"
         >
@@ -42,7 +42,7 @@ defineProps({
   },
   language: {
     type: String
-  },
+  }
 });
 </script>
 
@@ -85,13 +85,13 @@ defineProps({
   }
 }
 
-@media screen and (min-width: 768px) { 
+@media screen and (min-width: 768px) {
   .description__text,
   .description__item-tehnology {
     font-size: $fontMedium;
   }
 }
-@media screen and (min-width: 1024px) { 
+@media screen and (min-width: 1024px) {
   .description {
     &__text,
     &__item-tehnology {

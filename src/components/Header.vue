@@ -3,16 +3,16 @@
     <SiteNav class="site-nave--position" />
 
     <div class="header__control">
-      <Multiselect 
-        v-model="language" 
-        :options="optionsSelectLanguage" 
-        :show-labels="false" 
-        :showPointer="false" 
+      <Multiselect
+        v-model="language"
+        :options="optionsSelectLanguage"
+        :show-labels="false"
+        :showPointer="false"
         placeholder=""
       />
-      <CheckboxTheme class="checkbox-theme--position"/>
+      <CheckboxTheme class="checkbox-theme--position" />
     </div>
-  
+
     <Curtain />
   </header>
 </template>
@@ -39,13 +39,13 @@ const updateShowHeader = () => {
       showHeader.value = false;
     } else {
       showHeader.value = true;
-    };
-  };
+    }
+  }
 };
 let last;
 onMounted(() => {
   // слушаем скролл
-  document.addEventListener('touchmove', e => {
+  document.addEventListener('touchmove', (e) => {
     if (!showHeader.value) {
       const current = e.touches[0].clientY;
 
@@ -53,12 +53,12 @@ onMounted(() => {
         scrollBottom.value = false;
       } else if (current < last) {
         scrollBottom.value = true;
-      };
+      }
 
       last = current;
-    };
+    }
     updateShowHeader();
-  })
+  });
 });
 </script>
 
@@ -115,7 +115,7 @@ onMounted(() => {
   margin-left: 6px;
 }
 
-@media screen and (min-width: 375px)  {
+@media screen and (min-width: 375px) {
   .header {
     & .multiselect {
       width: 74px;

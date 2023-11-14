@@ -1,12 +1,15 @@
 <template>
   <div class="certificate-box">
     <SubTitle :text="language === 'ru' ? 'Сертификаты' : 'Certificate'" />
-    <CertificateList :list="language === 'ru' ? certificate.ru : certificate.en" :language="language"/>
+    <CertificateList
+      :list="language === 'ru' ? certificate.ru : certificate.en"
+      :language="language"
+    />
   </div>
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+import { storeToRefs } from 'pinia';
 import SubTitle from '@/components/shared/SubTitle.vue';
 import CertificateList from './CertificateList.vue';
 import { certificate } from '@/services/dataResume.js';

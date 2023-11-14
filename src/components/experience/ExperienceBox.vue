@@ -1,7 +1,10 @@
 <template>
   <div class="experience-box">
     <SubTitle :text="language === 'ru' ? 'Опыт' : 'Experience'" />
-    <ExperienceList :list="language === 'ru' ? experience.ru : experience.en" :language="language"/>
+    <ExperienceList
+      :list="language === 'ru' ? experience.ru : experience.en"
+      :language="language"
+    />
   </div>
 </template>
 

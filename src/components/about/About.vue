@@ -1,7 +1,5 @@
 <template>
-  <span class="about">
-    "{{ language === 'ru' ? about.ru : about.en }}"
-  </span>
+  <span class="about"> "{{ language === 'ru' ? about.ru : about.en }}" </span>
 </template>
 
 <script setup>

@@ -5,7 +5,7 @@
       <span class="project-item__name">{{ name }}</span>
       <span class="project-item__text">{{ preText }}</span>
 
-      <DescriptionProject 
+      <DescriptionProject
         v-if="showDescription"
         :language="language"
         :description="description"
@@ -15,14 +15,14 @@
       />
 
       <ButtonDescription
-        class="button-description--position" 
+        class="button-description--position"
         :textButton="textButton"
         :showDescription="showDescription"
         @click="toggleDescription"
       />
     </div>
 
-    <img :src="picture" class="project-item__image"/>
+    <img :src="picture" class="project-item__image" />
   </div>
 </template>
 
@@ -55,7 +55,7 @@ const props = defineProps({
         result = typeof obj[key] === 'string';
       }
       return result;
-    },
+    }
   },
   preText: {
     type: String,
@@ -66,12 +66,12 @@ const props = defineProps({
     required: true
   },
   description: {
-    type: String,
+    type: String
   },
   tehnology: {
-    type:  Array,
+    type: Array,
     validator(arr) {
-      return arr.every(el => typeof el === 'string');
+      return arr.every((el) => typeof el === 'string');
     },
     required: true
   },
@@ -91,7 +91,7 @@ const textButton = computed(() => {
     return showDescription.value ? 'Скрыть подробности' : 'Смотреть подробности';
   } else {
     return showDescription.value ? 'Hide details' : 'See details';
-  };
+  }
 });
 </script>
 
@@ -147,7 +147,7 @@ const textButton = computed(() => {
 }
 .button-description--position {
   position: relative;
-  z-index: calc($indexCurtain + 1); 
+  z-index: calc($indexCurtain + 1);
 }
 @media screen and (min-width: 768px) {
   .project-item {

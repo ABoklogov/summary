@@ -1,11 +1,7 @@
 <template>
   <ul class="social-list">
-    <li 
-      v-for="({ link, text}) in list" 
-      :key="link"
-      class="social-list__item"
-    >
-      <Link :link="link" :text="text"/>
+    <li v-for="{ link, text } in list" :key="link" class="social-list__item">
+      <Link :link="link" :text="text" />
     </li>
   </ul>
 </template>

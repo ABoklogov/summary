@@ -1,9 +1,10 @@
 <template>
   <Button class="button" @click="$emit('click')">
     <span class="button__text">
-    {{ textButton }}
+      {{ textButton }}
     </span>
-    <IconArrow :style="{
+    <IconArrow
+      :style="{
         transform: showDescription ? 'rotate(-90deg)' : 'rotate(0deg)'
       }"
     />
@@ -22,7 +23,7 @@ defineProps({
   showDescription: {
     type: Boolean,
     required: true
-  },
+  }
 });
 const emit = defineEmits(['click']);
 </script>
@@ -48,7 +49,8 @@ const emit = defineEmits(['click']);
     width: 24px;
     height: 24px;
     transform: rotate(0deg);
-    transition: color $duration $timingFunction, 
+    transition:
+      color $duration $timingFunction,
       transform $duration $timingFunction;
   }
   &:hover svg,

@@ -1,15 +1,8 @@
 <template>
   <ul class="experience-list">
-    <li 
-      v-for="({ 
-        position, 
-        company, 
-        webSite, 
-        responsibility, 
-        start, 
-        finish 
-      }) in list" 
-      :key="webSite" 
+    <li
+      v-for="{ position, company, webSite, responsibility, start, finish } in list"
+      :key="webSite"
       class="experience-list__item"
     >
       <ActivityBox
@@ -36,7 +29,7 @@ defineProps({
     required: true
   },
   language: {
-    type: String,
+    type: String
   }
 });
 </script>

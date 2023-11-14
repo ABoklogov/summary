@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
+import { storeToRefs } from 'pinia';
 import SubTitle from '@/components/shared/SubTitle.vue';
 import SocialList from './SocialList.vue';
 import { socialLinks } from '@/services/dataResume.js';
@@ -14,6 +14,4 @@ import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

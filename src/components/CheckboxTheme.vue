@@ -1,7 +1,14 @@
 <template>
   <form>
-    <input id="dark-mode" class="toggle" :class="{ 'toggle--checked': themeBlack }" type="checkbox" name="Dark mode" role="switch"
-      v-model="themeBlack">
+    <input
+      id="dark-mode"
+      class="toggle"
+      :class="{ 'toggle--checked': themeBlack }"
+      type="checkbox"
+      name="Dark mode"
+      role="switch"
+      v-model="themeBlack"
+    />
     <label for="dark-mode" class="sr">Dark Mode</label>
   </form>
 </template>
@@ -78,7 +85,7 @@ form {
 .toggle:before,
 .toggle:after {
   border-radius: 50%;
-  content: "";
+  content: '';
   display: block;
   top: 0.25em;
   left: 0.25em;
@@ -113,7 +120,7 @@ form {
   outline: transparent;
 }
 
-@media screen and (min-width: 375px)  {
+@media screen and (min-width: 375px) {
   input {
     font: 1em/1.5 sans-serif;
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="tech-skills-box">
     <SubTitle :text="language === 'ru' ? 'Технические навыки' : 'Tech skills'" />
-    <TechSkillsList :list="techSkills"/>
+    <TechSkillsList :list="techSkills" />
   </div>
 </template>
 
@@ -14,5 +14,4 @@ import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

@@ -1,15 +1,8 @@
 <template>
   <ul class="certificate-list">
-    <li 
-      v-for="({ 
-        position, 
-        company, 
-        webSite, 
-        start, 
-        finish,
-        path
-      }) in list" 
-      :key="webSite" 
+    <li
+      v-for="{ position, company, webSite, start, finish, path } in list"
+      :key="webSite"
       class="certificate-list__item"
     >
       <ActivityBox
@@ -37,7 +30,7 @@ defineProps({
     required: true
   },
   language: {
-    type: String,
+    type: String
   }
 });
 </script>

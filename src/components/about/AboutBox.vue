@@ -1,7 +1,7 @@
 <template>
   <div class="about-box">
-    <Contacts class="contacts--position"/>
-    <About class="about--position"/>
+    <Contacts class="contacts--position" />
+    <About class="about--position" />
   </div>
 </template>
 

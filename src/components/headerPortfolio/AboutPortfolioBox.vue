@@ -5,9 +5,7 @@
     </span>
     <span class="about-portfolio-box__text about-portfolio-box__text--position">
       {{ language === 'ru' ? aboutText.ru : aboutText.en }}
-      <RouterLink to="/" class="about-portfolio-box__link">
-        CV <IconArrow/>
-      </RouterLink>
+      <RouterLink to="/" class="about-portfolio-box__link"> CV <IconArrow /> </RouterLink>
     </span>
   </div>
 </template>
@@ -19,7 +17,7 @@ import { aboutText } from '@/services/dataPortfolio.js';
 defineProps({
   language: {
     type: String
-  },
+  }
 });
 </script>
 
@@ -50,7 +48,7 @@ defineProps({
     align-items: center;
     color: $orange;
     text-decoration: auto;
-  } 
+  }
   &__link:hover,
   &__link:focus {
     text-decoration: underline;

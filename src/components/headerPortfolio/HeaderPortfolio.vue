@@ -1,10 +1,10 @@
 <template>
   <div class="header-portfolio" :style="heightHeader">
-    <AboutPortfolioBox class="about-portfolio-box--position" :language="language"/>
+    <AboutPortfolioBox class="about-portfolio-box--position" :language="language" />
     <Button class="header-portfolio__btn-scroll" @click="scrollToProject">
-      <IconArrow/>
+      <IconArrow />
       <span>
-       {{ language === 'ru' ? 'Смотреть ниже' : 'Scroll down' }}
+        {{ language === 'ru' ? 'Смотреть ниже' : 'Scroll down' }}
       </span>
     </Button>
   </div>
@@ -19,12 +19,12 @@ import IconArrow from '@/components/icons/IconArrow.vue';
 defineProps({
   language: {
     type: String
-  },
+  }
 });
 
 const scrollToProject = () => {
   const scrollTarget = document.querySelector('#projects');
-  const topOffset = (window.innerWidth < 1024) ? document.querySelector('header').offsetHeight : 0;
+  const topOffset = window.innerWidth < 1024 ? document.querySelector('header').offsetHeight : 0;
 
   const elementPosition = scrollTarget.getBoundingClientRect().top;
   const offsetPosition = elementPosition - topOffset;
@@ -43,7 +43,7 @@ const heightHeader = computed(() => {
   if (header) {
     header = header.getBoundingClientRect();
     heightHeaderPortfolio = `${heightView - header.height}px`;
-  };
+  }
   return { height: heightHeaderPortfolio };
 });
 </script>
