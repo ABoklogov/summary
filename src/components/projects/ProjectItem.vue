@@ -1,30 +1,61 @@
 <template>
   <div class="project-item">
     <div class="project-item__content">
-      <a :href="link" class="project-item__link">
-        {{ link }}
-      </a>
-      <span class="project-item__name">
-        {{ name }}
-      </span>
-      <span class="project-item__text">
-        {{ preText }}
-      </span>
+      <a :href="link.url" class="project-item__link">{{ link.text }}</a>
+      <span class="project-item__name">{{ name }}</span>
+      <span class="project-item__text">{{ preText }}</span>
+
+      <DescriptionProject 
+        v-if="showDescription"
+        :language="language"
+        :description="description"
+        :tehnology="tehnology"
+        :linkFiles="linkFiles"
+        class="description--position"
+      />
+
+      <ButtonDescription
+        class="button-description--position" 
+        :textButton="textButton"
+        :showDescription="showDescription"
+        @click="toggleDescription"
+      />
     </div>
 
-    <img :src="picture"  class="project-item__image"/>
+    <img :src="picture" class="project-item__image"/>
   </div>
 </template>
 
 <script setup>
-defineProps({
+import { ref, computed } from 'vue';
+import DescriptionProject from './DescriptionProject.vue';
+import ButtonDescription from './ButtonDescription.vue';
+
+const props = defineProps({
   name: {
     type: String,
     required: true
   },
   link: {
-    type: String,
+    type: Object,
+    validator(obj) {
+      let result;
+      for (var key in obj) {
+        result = typeof obj[key] === 'string';
+      }
+      return result;
+    },
     required: true
+  },
+  linkFiles: {
+    type: Object,
+    validator(obj) {
+      let result;
+      for (var key in obj) {
+        result = typeof obj[key] === 'string';
+      }
+      return result;
+    },
   },
   preText: {
     type: String,
@@ -34,13 +65,33 @@ defineProps({
     type: String,
     required: true
   },
-  // backgroundColor: {
-  //   type: String,
-  //   required: true
-  // },
+  description: {
+    type: String,
+  },
+  tehnology: {
+    type:  Array,
+    validator(arr) {
+      return arr.every(el => typeof el === 'string');
+    },
+    required: true
+  },
   language: {
     type: String
   }
+});
+
+const showDescription = ref(false);
+
+const toggleDescription = () => {
+  showDescription.value = !showDescription.value;
+};
+
+const textButton = computed(() => {
+  if (props.language === 'ru') {
+    return showDescription.value ? 'Скрыть подробности' : 'Смотреть подробности';
+  } else {
+    return showDescription.value ? 'Hide details' : 'See details';
+  };
 });
 </script>
 
@@ -50,7 +101,7 @@ defineProps({
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   min-height: 374px;
 
   &__link,
@@ -87,9 +138,17 @@ defineProps({
     position: relative;
     z-index: calc($indexCurtain + 1);
     max-width: 100%;
+    margin: 0 auto;
   }
 }
-
+.description--position,
+.button-description--position {
+  margin-top: 8px;
+}
+.button-description--position {
+  position: relative;
+  z-index: calc($indexCurtain + 1); 
+}
 @media screen and (min-width: 768px) {
   .project-item {
     flex-direction: row;
@@ -109,6 +168,7 @@ defineProps({
       font-size: $fontMedium;
     }
     &__image {
+      margin: 0;
       margin-left: 30px;
       max-width: 327px;
     }
@@ -116,8 +176,6 @@ defineProps({
 }
 @media screen and (min-width: 1024px) {
   .project-item {
-
-    
     &__link {
       font-size: $fontSmall;
     }
@@ -133,13 +191,14 @@ defineProps({
       max-width: 368px;
     }
   }
+  .description--position,
+  .button-description--position {
+    margin-top: 16px;
+  }
 }
 @media screen and (min-width: 1300px) {
-  .project-item {
-
-    &__image {
-      max-width: 570px;
-    }
+  .project-item__image {
+    max-width: 570px;
   }
 }
 </style>

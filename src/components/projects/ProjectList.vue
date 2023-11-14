@@ -5,6 +5,9 @@
         link, 
         preText, 
         picture, 
+        description,
+        tehnology,
+        linkFiles,
         backgroundColor
       }) in projects" 
       :key="name"
@@ -17,6 +20,9 @@
         :preText="preText"
         :picture="picture"
         :language="language"
+        :description="description"
+        :tehnology="tehnology"
+        :linkFiles="linkFiles"
       />
     </li>
   </ul>
@@ -45,17 +51,17 @@ defineProps({
 }
 
 @media screen and (min-width: 768px) {
-.project-list {
-  &__item {
+  .project-list {
+    &__item {
 
+    }
   }
-}
 }
 @media screen and (min-width: 1024px) {
-.project-list {
-  &__item {
-    padding: 136px $paddingPortfolioDesktop;
+  .project-list {
+    &__item {
+      padding: 136px $paddingPortfolioDesktop;
+    }
   }
-}
 }
 </style>

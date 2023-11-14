@@ -23,7 +23,16 @@ defineProps({
 });
 
 const scrollToProject = () => {
-  document.querySelector('#projects').scrollIntoView({ behavior: 'smooth'});
+  const scrollTarget = document.querySelector('#projects');
+  const topOffset = (window.innerWidth < 1024) ? document.querySelector('header').offsetHeight : 0;
+
+  const elementPosition = scrollTarget.getBoundingClientRect().top;
+  const offsetPosition = elementPosition - topOffset;
+
+  window.scrollBy({
+    top: offsetPosition,
+    behavior: 'smooth'
+  });
 };
 
 const heightHeader = computed(() => {
