@@ -1,27 +1,29 @@
 <template>
-  <div calss="description">
-    <span class="description__text">{{ description }}</span>
+  <div calss="main">
+    <a :href="link.url" class="main__link">{{ link.text }}</a>
+    <span class="main__name">{{ name }}</span>
+    <span class="main__text main__text--position">{{ preText }}</span>
 
-    <div class="description__tehnology">
-      <span class="description__text description__text--bold">
+    <div class="main__tehnology">
+      <span class="main__text main__text--bold">
         {{ language === 'ru' ? 'Технологии' : 'Technologies' }}:
       </span>
-      <ul class="description__list-tehnology">
+      <ul class="main__list-tehnology">
         <li
           v-for="(item, idx) in tehnology"
           :key="`item-${idx}`"
-          class="description__item-tehnology"
+          class="main__item-tehnology"
         >
           {{ item }}
         </li>
       </ul>
     </div>
 
-    <div class="description__source">
-      <span class="description__text description__text--bold">
+    <div class="main__source">
+      <span class="main__text main__text--bold">
         {{ language === 'ru' ? 'Исходные файлы' : 'Source files' }}:
       </span>
-      <a :href="linkFiles.url" class="description__text description__text--link">
+      <a :href="linkFiles.url" class="main__text main__text--link">
         {{ linkFiles.text }}
       </a>
     </div>
@@ -30,15 +32,20 @@
 
 <script setup>
 defineProps({
-  description: {
-    type: String,
-    required: true
-  },
   tehnology: {
     type: Array
   },
   linkFiles: {
     type: Object
+  },
+  link: {
+    type: Object
+  },
+  name: {
+    type: String,
+  },
+  preText: {
+    type: String,
   },
   language: {
     type: String
@@ -48,7 +55,9 @@ defineProps({
 
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
-.description {
+.main {
+  &__link,
+  &__name,
   &__text,
   &__item-tehnology {
     display: block;
@@ -59,16 +68,39 @@ defineProps({
     font-style: $fontStyle;
     color: $black;
     transition: color $duration $timingFunction;
-    &.description__text--bold {
+    &.main__text--bold {
       font-weight: $fontWeightSemibold;
     }
   }
+  &__link {
+    display: inline-block;
+    font-weight: $fontWeightLight;
+    margin-top: 16px;
+  }
+  &__link:hover,
+  &__link:focus {
+    color: $orange;
+  }
+  &__name {
+    font-size: $fontMedium;
+    font-weight: $fontWeightBold;
+    line-height: normal;
+    margin-top: 8px;
+  }
+  &__tehnology,
+  &__source {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__text--position,
   &__tehnology,
   &__source {
     margin-top: 8px;
   }
   &__list-tehnology {
     display: flex;
+    flex-wrap: wrap;
+    margin-left: 8px;
   }
   &__item-tehnology:not(:last-child) {
     margin-right: 8px;
@@ -79,25 +111,43 @@ defineProps({
   &__item-tehnology:last-child:after {
     content: '.';
   }
+  &__text--link {
+    margin-left: 8px;
+  }
   &__text--link:hover,
   &__text--link:focus {
     color: $orange;
   }
 }
-
 @media screen and (min-width: 768px) {
-  .description__text,
-  .description__item-tehnology {
-    font-size: $fontMedium;
+  .main  {
+    &__link,
+    &__text,
+    &__item-tehnology {
+      font-size: $fontMedium;
+    }
+    &__link {
+      margin-top: 0;
+    }
+    &__name {
+      font-size: $fontNorm;
+    }
   }
 }
 @media screen and (min-width: 1024px) {
-  .description {
+  .main {
     &__text,
     &__item-tehnology {
       font-size: $fontNorm;
       font-weight: $fontWeightLight;
     }
+    &__link {
+      font-size: $fontMedium;
+    }
+    &__name {
+      font-size: $fontBig;
+    }
+    &__text--position,
     &__tehnology,
     &__source {
       margin-top: 16px;

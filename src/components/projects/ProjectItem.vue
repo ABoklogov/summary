@@ -1,18 +1,18 @@
 <template>
   <div class="project-item">
     <div class="project-item__content">
-      <a :href="link.url" class="project-item__link">{{ link.text }}</a>
-      <span class="project-item__name">{{ name }}</span>
-      <span class="project-item__text">{{ preText }}</span>
-
-      <DescriptionProject
-        v-if="showDescription"
+      <MainProject
         :language="language"
-        :description="description"
         :tehnology="tehnology"
         :linkFiles="linkFiles"
-        class="description--position"
+        :link="link"
+        :name="name"
+        :preText="preText"
       />
+
+      <span v-if="showDescription" class="project-item__description-text">
+        {{ description }}
+      </span>
 
       <ButtonDescription
         class="button-description--position"
@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import DescriptionProject from './DescriptionProject.vue';
+import MainProject from './MainProject.vue';
 import ButtonDescription from './ButtonDescription.vue';
 
 const props = defineProps({
@@ -104,31 +104,8 @@ const textButton = computed(() => {
   align-items: flex-start;
   min-height: 374px;
 
-  &__link,
-  &__name,
-  &__text {
+  &__description-text {
     display: block;
-    font-family: $fontBase;
-    font-style: $fontStyle;
-    line-height: normal;
-    color: $black;
-  }
-  &__link {
-    font-size: $fontMicro;
-    font-weight: $fontWeightLight;
-    transition: color $duration $timingFunction;
-    margin-top: 16px;
-  }
-  &__link:hover,
-  &__link:focus {
-    color: $orange;
-  }
-  &__name {
-    font-size: $fontMedium;
-    font-weight: $fontWeightBold;
-    margin-top: 8px;
-  }
-  &__text {
     font-size: $fontMini;
     font-weight: $fontWeightRegular;
     line-height: $lineHeight;
@@ -155,16 +132,9 @@ const textButton = computed(() => {
     min-height: 406px;
 
     &__content {
-      max-width: 510px;
+      max-width: 570px;
     }
-    &__link {
-      font-size: $fontMini;
-      margin-top: 0;
-    }
-    &__name {
-      font-size: $fontNorm;
-    }
-    &__text {
+    &__description-text {
       font-size: $fontMedium;
     }
     &__image {
@@ -176,13 +146,7 @@ const textButton = computed(() => {
 }
 @media screen and (min-width: 1024px) {
   .project-item {
-    &__link {
-      font-size: $fontSmall;
-    }
-    &__name {
-      font-size: $fontBig;
-    }
-    &__text {
+    &__description-text {
       font-size: $fontNorm;
       font-weight: $fontWeightLight;
       margin-top: 16px;
