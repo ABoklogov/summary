@@ -14,9 +14,16 @@
 </template>
 
 <script setup>
+import { watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useViewStore } from '@/stores/view';
+import { setStorage } from '@/helpers/localStorage.js';
 const { themeBlack } = storeToRefs(useViewStore());
+
+// следим за темой интерфейса
+watch(themeBlack, () => {
+  setStorage('themeBlack', themeBlack.value);
+});
 </script>
 
 <style scoped lang="scss">
