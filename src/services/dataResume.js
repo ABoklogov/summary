@@ -15,7 +15,10 @@ export const about = {
   en: "I'm looking for an opportunity to join a dynamic team where I can continue my development and contribute to the creation of innovative web applications."
 };
 
-export const telegram = '@Baggll';
+export const telegram = {
+  link: 'https://t.me/Baggll',
+  text: '@Baggll'
+};
 export const city = {
   ru: 'Воронеж, Россия',
   en: 'Voronezh, RU'

@@ -5,12 +5,15 @@
     <div class="portfolio__content" id="projects">
       <ProjectList :projects="language === 'ru' ? projects.ru : projects.en" :language="language" />
     </div>
+
+    <Footer/>
   </div>
 </template>
 
 <script setup>
 import HeaderPortfolio from '@/components/headerPortfolio/HeaderPortfolio.vue';
 import ProjectList from '@/components/projects/ProjectList.vue';
+import Footer from '@/components/footer/Footer.vue';
 
 import { projects } from '@/services/dataPortfolio.js';
 import { storeToRefs } from 'pinia';

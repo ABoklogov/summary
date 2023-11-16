@@ -19,20 +19,14 @@
 
 <script setup>
 import { storeToRefs } from 'pinia';
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted } from 'vue';
 import SiteNav from '@/components/SiteNav.vue';
 import Curtain from '@/components/shared/Curtain.vue';
 import CheckboxTheme from '@/components/CheckboxTheme.vue';
 import Multiselect from 'vue-multiselect';
-import { setStorage } from '@/helpers/localStorage.js';
 import { useViewStore } from '@/stores/view';
 const store = useViewStore();
 const { language, optionsSelectLanguage } = storeToRefs(useViewStore());
-
-// следим за языком интерфейса
-watch(language, () => {
-  setStorage('language', language.value);
-});
 
 const scrollBottom = ref(false);
 const showHeader = ref(true);

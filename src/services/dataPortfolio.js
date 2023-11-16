@@ -3,6 +3,23 @@ export const aboutText = {
   en: 'I strive for constant growth and development in the field of frontend development, so I am always ready for new challenges and opportunities. My passion for technology and desire to create excellent user experiences allows me to be an efficient and successful frontend developer. My works can be found on this page. If you want more information about me, you can look at my '
 };
 
+export const footerText = {
+  ru: 'Исходные файлы этого веб-сайта доступны с открытым исходным кодом. Вы можете ознакомиться с ними по ',
+  en: 'The source files of this website are available as open source. You can view them at the'
+};
+
+export const linkThisProject = 'https://github.com/ABoklogov/summary';
+export const developer = {
+  ru: {
+    text: 'Алексей Боклогов',
+    link: 'https://github.com/ABoklogov/'
+  },
+  en: {
+    text: 'Alexey Boklogov',
+    link: 'https://github.com/ABoklogov/'
+  }
+}
+
 export const projects = {
   ru: [
     {

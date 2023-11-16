@@ -1,6 +1,6 @@
 <template>
-  <div class="contacts">
-    <span>Telegram: {{ telegram }}</span>
+  <div class="contacts"> 
+    <a :href="telegram.link">{{ telegram.text }}</a>
     <a :href="phone.link">{{ phone.text }}</a>
     <a :href="email.link">{{ email.text }}</a>
     <span>{{ language === 'ru' ? city.ru : city.en }}</span>
