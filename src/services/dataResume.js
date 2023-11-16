@@ -36,21 +36,25 @@ export const socialLinks = {
   ru: [
     {
       link: 'https://github.com/ABoklogov',
-      text: 'github.com/ABoklogov'
+      text: 'github.com/ABoklogov',
+      shortLink: 'Github'
     },
     {
       link: 'https://linkedin.com/in/alexey-boklogov',
-      text: 'linkedin.com/in/alexey-boklogov'
+      text: 'linkedin.com/in/alexey-boklogov',
+      shortLink: 'Linkedin'
     }
   ],
   en: [
     {
       link: 'https://github.com/ABoklogov',
-      text: 'github.com/ABoklogov'
+      text: 'github.com/ABoklogov',
+      shortLink: 'Github'
     },
     {
       link: 'https://linkedin.com/in/alexey-boklogov',
-      text: 'linkedin.com/in/alexey-boklogov'
+      text: 'linkedin.com/in/alexey-boklogov',
+      shortLink: 'Linkedin'
     }
   ]
 };

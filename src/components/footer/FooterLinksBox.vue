@@ -1,10 +1,18 @@
 <template>
  <div class="links-box">
     <span class="links-box__title">{{ title }}</span>
-    <ul>
-      <li v-for="item in list" :key="item.link">
-        <a class="links-box__item" :href="item.link">
-          {{ item.text }}
+    <ul :class="{'links-box__list--social': social}">
+      <li 
+        v-for="item in list" 
+        :key="item.link"
+        :class="{'links-box__item--social': social}"
+      >
+        <a 
+          class="links-box__link" 
+          :class="{'links-box__link--social': social}"
+          :href="item.link"
+        >
+          {{ social ? item.shortLink : item.text }}
         </a>
       </li>
     </ul>
@@ -25,6 +33,9 @@ defineProps({
       });
     },
     required: true
+  },
+  social: {
+    type: Boolean
   }
 });
 </script>
@@ -42,7 +53,15 @@ defineProps({
     color: $white;
     margin-bottom: 8px;
   }
-  &__item {
+  &__list--social {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  &__item--social:not(:first-child) {
+    margin-left: 8px;
+  }
+  &__link {
     display: block;
     font-family: $fontBase;
     font-size: $fontMini;
@@ -54,9 +73,37 @@ defineProps({
     text-decoration: none;
     transition: color $duration $timingFunction;
   }
-  &__item:hover,
-  &__item:focus {
+  &__link:hover,
+  &__link:focus {
     color: $orangeHover;
+  }
+  &__link--social {
+    text-decoration: underline;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .links-box {
+    &__title {
+      font-size: $fontNorm;
+    }
+    &__link {
+      font-size: $fontMedium;
+    }
+  }
+}
+@media screen and (min-width: 1024px) {
+  .links-box {
+    &__title {
+      font-size: $fontBig;
+      margin-bottom: 16px;
+    }
+    &__item--social:not(:first-child) {
+      margin-left: 16px;
+    }
+    &__link {
+      font-size: $fontNorm;
+    }
   }
 }
 </style>

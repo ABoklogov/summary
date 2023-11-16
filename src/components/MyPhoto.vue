@@ -1,7 +1,7 @@
 <template>
   <div class="photo">
-    <img :src="require('@/assets/images/default-avatar.jpg')" />
-    <!-- <img :src="require('@/assets/images/photo.jpg')" /> -->
+    <!-- <img :src="require('@/assets/images/default-avatar.jpg')" /> -->
+    <img :src="require('@/assets/images/photo.jpg')" />
   </div>
 </template>
 
