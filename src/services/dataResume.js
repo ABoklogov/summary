@@ -1,11 +1,13 @@
 export const myName = {
   ru: {
     name: 'Алексей Боклогов',
-    profession: 'Front-end разработчик'
+    profession: 'Front-end разработчик',
+    link: 'https://github.com/ABoklogov/'
   },
   en: {
     name: 'Alexey Boklogov',
-    profession: 'Front-end developer'
+    profession: 'Front-end developer',
+    link: 'https://github.com/ABoklogov/'
   }
 };
 

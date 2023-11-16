@@ -9,20 +9,21 @@
 
     <span class="text-box__text text-box__text--name">
       {{ language === 'ru' ? 'Разработал' : 'Developed by' }}
-      <a :href="nameDeveloper.link">{{ nameDeveloper.text }}</a>
+      <a :href="nameDeveloper.link">{{ nameDeveloper.name }}</a>
     </span>
   </div>
 </template>
 
 <script setup>
 import { computed } from 'vue';
-import { footerText, linkThisProject, developer } from '@/services/dataPortfolio.js';
+import { footerText, linkThisProject } from '@/services/dataPortfolio.js';
+import { myName } from '@/services/dataResume.js';
 import { storeToRefs } from 'pinia';
 import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
 
 const nameDeveloper = computed(() => {
-  return (language.velue === 'ru') ? developer.ru : developer.en;
+  return (language.value === 'ru') ? myName.ru : myName.en;
 });
 </script>
 

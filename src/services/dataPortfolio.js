@@ -9,16 +9,6 @@ export const footerText = {
 };
 
 export const linkThisProject = 'https://github.com/ABoklogov/summary';
-export const developer = {
-  ru: {
-    text: 'Алексей Боклогов',
-    link: 'https://github.com/ABoklogov/'
-  },
-  en: {
-    text: 'Alexey Boklogov',
-    link: 'https://github.com/ABoklogov/'
-  }
-}
 
 export const projects = {
   ru: [
