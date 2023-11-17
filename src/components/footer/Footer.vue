@@ -3,9 +3,9 @@
     <div class="footer__top">
       <FooterLinksBox
         :title="language === 'ru' ? 'Контакты' : 'Contact'"
-        :list="[ email, phone, telegram ]"
+        :list="[email, phone, telegram]"
       />
-  
+
       <FooterLinksBox
         class="footer__social"
         :title="language === 'ru' ? 'Социальные сети' : 'Social'"
@@ -14,7 +14,7 @@
       />
     </div>
 
-    <FooterTextBox class="text-box--position"/>
+    <FooterTextBox class="text-box--position" />
   </footer>
 </template>
 
@@ -28,7 +28,7 @@ import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
 
 const socialList = computed(() => {
-  return (language.velue === 'ru') ? socialLinks.ru : socialLinks.en;
+  return language.velue === 'ru' ? socialLinks.ru : socialLinks.en;
 });
 </script>
 

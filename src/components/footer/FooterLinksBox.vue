@@ -1,17 +1,9 @@
 <template>
- <div class="links-box">
+  <div class="links-box">
     <span class="links-box__title">{{ title }}</span>
-    <ul :class="{'links-box__list--social': social}">
-      <li 
-        v-for="item in list" 
-        :key="item.link"
-        :class="{'links-box__item--social': social}"
-      >
-        <a 
-          class="links-box__link" 
-          :class="{'links-box__link--social': social}"
-          :href="item.link"
-        >
+    <ul :class="{ 'links-box__list--social': social }">
+      <li v-for="item in list" :key="item.link" :class="{ 'links-box__item--social': social }">
+        <a class="links-box__link" :class="{ 'links-box__link--social': social }" :href="item.link">
           {{ social ? item.shortLink : item.text }}
         </a>
       </li>
@@ -28,8 +20,8 @@ defineProps({
   list: {
     type: Array,
     validator(arr) {
-      return arr.every(obj => {
-        return Object.values(obj).every(el => typeof el === 'string')
+      return arr.every((obj) => {
+        return Object.values(obj).every((el) => typeof el === 'string');
       });
     },
     required: true

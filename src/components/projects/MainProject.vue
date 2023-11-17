@@ -9,17 +9,13 @@
         {{ language === 'ru' ? 'Технологии' : 'Technologies' }}:
       </span>
       <ul class="main__list-tehnology">
-        <li
-          v-for="(item, idx) in tehnology"
-          :key="`item-${idx}`"
-          class="main__item-tehnology"
-        >
+        <li v-for="(item, idx) in tehnology" :key="`item-${idx}`" class="main__item-tehnology">
           {{ item }}
         </li>
       </ul>
     </div>
 
-    <div class="main__source">
+    <div v-if="linkFiles" class="main__source">
       <span class="main__text main__text--bold">
         {{ language === 'ru' ? 'Исходные файлы' : 'Source files' }}:
       </span>
@@ -42,10 +38,10 @@ defineProps({
     type: Object
   },
   name: {
-    type: String,
+    type: String
   },
   preText: {
-    type: String,
+    type: String
   },
   language: {
     type: String
@@ -120,7 +116,7 @@ defineProps({
   }
 }
 @media screen and (min-width: 768px) {
-  .main  {
+  .main {
     &__link,
     &__text,
     &__item-tehnology {

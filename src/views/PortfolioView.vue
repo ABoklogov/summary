@@ -6,7 +6,7 @@
       <ProjectList :projects="language === 'ru' ? projects.ru : projects.en" :language="language" />
     </div>
 
-    <Footer/>
+    <Footer />
   </div>
 </template>
 

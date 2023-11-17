@@ -1,5 +1,5 @@
 <template>
-  <div class="contacts"> 
+  <div class="contacts">
     <a :href="telegram.link">{{ telegram.text }}</a>
     <a :href="phone.link">{{ phone.text }}</a>
     <a :href="email.link">{{ email.text }}</a>

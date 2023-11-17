@@ -2,9 +2,7 @@
   <div class="text-box">
     <span class="text-box__text">
       {{ language === 'ru' ? footerText.ru : footerText.en }}
-      <a :href="linkThisProject">
-        {{ language === 'ru' ? 'ссылке' : 'link' }}
-      </a>.
+      <a :href="linkThisProject"> {{ language === 'ru' ? 'ссылке' : 'link' }} </a>.
     </span>
 
     <span class="text-box__text text-box__text--name">
@@ -23,7 +21,7 @@ import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
 
 const nameDeveloper = computed(() => {
-  return (language.value === 'ru') ? myName.ru : myName.en;
+  return language.value === 'ru' ? myName.ru : myName.en;
 });
 </script>
 

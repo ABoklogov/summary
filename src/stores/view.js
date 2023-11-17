@@ -21,8 +21,8 @@ export const useViewStore = defineStore('view', () => {
       localStorage.setItem('language', 'en');
     } else {
       language.value = result;
-    };
-  };
+    }
+  }
 
   function getTheme() {
     const result = localStorage.getItem('themeBlack');
@@ -32,8 +32,8 @@ export const useViewStore = defineStore('view', () => {
       localStorage.setItem('themeBlack', false);
     } else {
       themeBlack.value = JSON.parse(result);
-    };
-  };
+    }
+  }
 
-  return { language, themeBlack, optionsSelectLanguage, getLanguage, getTheme }
+  return { language, themeBlack, optionsSelectLanguage, getLanguage, getTheme };
 });
