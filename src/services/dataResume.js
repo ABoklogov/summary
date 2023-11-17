@@ -93,7 +93,7 @@ export const techSkills = [
   'REST API',
   'MongoDB/Express',
   'Git, GitHub, GitLab',
-  'Webpack/Parcel'
+  'Webpack/Parcel/Vite'
 ];
 
 export const experience = {
@@ -103,7 +103,7 @@ export const experience = {
       company: 'НПП Микрос',
       webSite: 'https://xn--h1aeekjh.xn--p1ai/',
       responsibility:
-        'Поддержка сайта компании (Vue.js, React.js, React Native, PHP, JS). Разработка новых компонентов. Обновление дизайна сайта (Адаптивная, кроссбраузерная верстка). Рефакторинг старого кода. Клиент-серверное взаимодействие, REST API. Использование системы контроля версий Git.',
+        'Поддержка сайта компании (Vue.js, React Native, PHP, JS, Git, REST API). Разработка новых компонентов. Обновление дизайна сайта (Адаптивная, кроссбраузерная верстка). Рефакторинг старого кода. Клиент-серверное взаимодействие, REST API. Использование системы контроля версий Git.',
       start: 'Февраль 2022',
       finish: 'настоящее время'
     }
@@ -114,7 +114,7 @@ export const experience = {
       company: 'SPE Mikros',
       webSite: 'https://xn--h1aeekjh.xn--p1ai/',
       responsibility:
-        'Support of the company website (Vue.js, React.js, React Native, PHP, JS). Development of new components. Website design update (Adaptive, cross-browser layout). Refactoring old code. Client-server interaction, REST API. Using the Git version control system.',
+        'Support of the company website (Vue.js, React Native, PHP, JS, Git, REST API). Development of new components. Website design update (Adaptive, cross-browser layout). Refactoring old code. Client-server interaction, REST API. Using the Git version control system.',
       start: 'February 2022',
       finish: 'Now'
     }
@@ -124,7 +124,7 @@ export const experience = {
 export const certificate = {
   ru: [
     {
-      position: 'Обучение по напрвлению Frontend Full Stack',
+      position: 'Обучение по направлению Frontend Full Stack',
       company: 'GoIT',
       webSite: 'https://goit.global/',
       start: 'Ноябрь 2020',

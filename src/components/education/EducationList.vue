@@ -23,7 +23,7 @@ defineProps({
     font-size: $fontMedium;
     font-style: $fontStyle;
     font-weight: $fontWeightRegular;
-    line-height: 32px;
+    line-height: $lineHeight;
     color: $transparentBlack;
   }
 }

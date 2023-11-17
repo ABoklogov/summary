@@ -27,15 +27,5 @@ const { language } = storeToRefs(useViewStore());
   display: flex;
   flex-direction: column;
   background-color: $pink;
-
-  // &__content {
-  // }
-}
-
-@media screen and (min-width: 768px) {
-}
-@media screen and (min-width: 1024px) {
-  .portfolio {
-  }
 }
 </style>

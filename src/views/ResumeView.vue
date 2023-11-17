@@ -1,5 +1,5 @@
 <template>
-  <div class="resume" id="resume">
+  <div class="resume">
     <div class="resume__left">
       <div class="resume__photo-box">
         <MyPhoto class="photo--position" />

@@ -2,7 +2,7 @@
   <AppContainer>
     <Header id="header" />
 
-    <main>
+    <main id="main">
       <RouterView />
     </main>
 

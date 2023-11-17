@@ -32,11 +32,11 @@ const scrollBottom = ref(false);
 const showHeader = ref(true);
 
 const updateShowHeader = () => {
-  let resume = document.querySelector('#resume');
-  if (resume) {
-    resume = resume.getBoundingClientRect();
+  let main = document.querySelector('#main');
+  if (main) {
+    main = main.getBoundingClientRect();
 
-    if (resume.top < 0) {
+    if (main.top < 0) {
       showHeader.value = false;
     } else {
       showHeader.value = true;
