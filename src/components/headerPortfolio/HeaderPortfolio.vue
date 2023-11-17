@@ -100,6 +100,11 @@ const heightHeader = computed(() => {
     color: $orange;
   }
 }
+@media screen and (max-height: 600px) {
+  .header-portfolio__btn-scroll {
+    margin-top: 15px;
+  }
+}
 @media screen and (min-width: 768px) {
   .header-portfolio {
     min-height: 406px;
