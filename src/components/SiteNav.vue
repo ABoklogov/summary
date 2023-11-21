@@ -10,6 +10,7 @@ import { storeToRefs } from 'pinia';
 import { useViewStore } from '@/stores/view';
 const { themeBlack } = storeToRefs(useViewStore());
 </script>
+
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
 
