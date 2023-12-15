@@ -19,9 +19,9 @@ const router = createRouter({
       component: () => import('../views/NotPageView.vue')
     },
     {
-      path: "/:catchAll(.*)",
-      redirect: '/404',
-    },
+      path: '/:catchAll(.*)',
+      redirect: '/404'
+    }
   ]
 });
 

@@ -1,10 +1,8 @@
 <template>
-  <img class="image" :src="require('@/assets/images/404.jpg')" alt="page-404"/>
+  <img class="image" :src="require('@/assets/images/404.jpg')" alt="page-404" />
 </template>
 
-<script setup>
-
-</script>
+<script setup></script>
 
 <style lang="scss" scoped>
 .image {
