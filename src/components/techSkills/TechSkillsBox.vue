@@ -13,5 +13,3 @@ import { storeToRefs } from 'pinia';
 import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
 </script>
-
-<style scoped lang="scss"></style>
