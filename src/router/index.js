@@ -11,7 +11,12 @@ const router = createRouter({
     {
       path: '/portfolio',
       name: 'portfolio',
-      component: import('../views/PortfolioView.vue')
+      component: () => import('../views/PortfolioView.vue')
+    },
+    {
+      path: '/admin',
+      name: 'adminPage',
+      component: () => import('../views/AdminView.vue')
     },
     {
       path: '/404',
