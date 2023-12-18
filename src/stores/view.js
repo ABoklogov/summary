@@ -1,16 +1,21 @@
 import { defineStore } from 'pinia';
-import { watch, ref } from 'vue';
+import { watch, ref, computed } from 'vue';
 
 export const useViewStore = defineStore('view', () => {
   const language = ref('en');
   const themeBlack = ref(false);
   const optionsSelectLanguage = ref(['en', 'ru']);
+  const token = ref('');
 
   watch(themeBlack, () => {
     localStorage.setItem('themeBlack', themeBlack.value);
   });
   watch(language, () => {
     localStorage.setItem('language', language.value);
+  });
+
+  const isLoggedIn = computed(() => {
+    return Boolean(token.value);
   });
 
   function getLanguage() {
@@ -35,5 +40,5 @@ export const useViewStore = defineStore('view', () => {
     }
   }
 
-  return { language, themeBlack, optionsSelectLanguage, getLanguage, getTheme };
+  return { language, themeBlack, optionsSelectLanguage, getLanguage, getTheme, isLoggedIn };
 });
