@@ -1,18 +1,27 @@
 <template>
-  <div class="card flex align-items-center justify-content-center">
+  <div class="admin-auth">
     <Card class="card-component">
       <template #header>
         <img alt="settings" :src="require('@/assets/images/setting.png')" />
       </template>
       <template #title>
-        <span class="card-component__title">Введите пароль</span>
-      </template>
-      <template #content>
-        <InputText class="card-component__input" />
+        <span class="card-component__title">Введите логин/пароль</span>
       </template>
 
-      <template #footer>
-        <Button label="Войти" class="card-component__btn" />
+      <template #content>
+        <form>
+          <FloatLabel>
+            <InputText id="login" class="card-component__input" />
+            <label for="login">login</label>
+          </FloatLabel>
+
+          <FloatLabel>
+            <InputText id="password" class="card-component__input" />
+            <label for="password">password</label>
+          </FloatLabel>
+          
+          <Button label="Войти" class="card-component__btn" />
+        </form>
       </template>
     </Card>
   </div>
@@ -21,6 +30,13 @@
 <script setup></script>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/variables';
+.admin-auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $pink;
+}
 .card-component {
   max-width: 500px;
   padding: 30px;
@@ -38,12 +54,13 @@
   }
   &__input {
     display: block;
-    margin: 20px auto 0;
+    margin: 30px auto 0;
+    width: 100%;
   }
   &__btn {
     display: block;
     margin: 30px auto 0;
-    width: 250px;
+    width: 100%;
   }
 }
 </style>
