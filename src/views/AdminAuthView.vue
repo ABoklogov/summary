@@ -11,23 +11,39 @@
       <template #content>
         <form>
           <FloatLabel>
-            <InputText id="login" class="card-component__input" />
+            <InputText id="login" v-model="login" class="card-component__input" />
             <label for="login">login</label>
           </FloatLabel>
 
           <FloatLabel>
-            <InputText id="password" class="card-component__input" />
+            <InputText id="password" v-model="password" class="card-component__input" />
             <label for="password">password</label>
           </FloatLabel>
           
-          <Button label="Войти" class="card-component__btn" />
+          <Button label="Войти" class="card-component__btn" @click="submitUser"/>
         </form>
       </template>
     </Card>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useAuthStore } from '@/stores/auth';
+  const store = useAuthStore();
+  import { ref } from 'vue';
+
+  const login = ref(null);
+  const password = ref(null);
+
+  const submitUser = () => {
+    const userData = { 
+      login: login.value, 
+      password: password.value 
+    };
+
+    store.logIn(userData);
+  };
+</script>
 
 <style lang="scss" scoped>
 @import '@/assets/scss/variables';
@@ -36,11 +52,11 @@
   align-items: center;
   justify-content: center;
   background-color: $pink;
+  padding: 50px 0;
 }
 .card-component {
   max-width: 500px;
   padding: 30px;
-  margin-top: 50px;
 
   & img {
     display: block;
