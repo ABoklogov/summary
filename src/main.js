@@ -15,7 +15,7 @@ import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
 import InputText from 'primevue/inputtext';
 import Card from 'primevue/card';
-import FloatLabel from 'primevue/floatlabel';
+import Password from 'primevue/password';
 
 const app = createApp(App);
 const pinia = createPinia();
@@ -30,6 +30,6 @@ app.component('Spiner', ProgressSpinner);
 app.component('InputText', InputText);
 app.component('Toast', Toast);
 app.component('Card', Card);
-app.component('FloatLabel', FloatLabel);
+app.component('Password', Password);
 
 app.mount('#app');

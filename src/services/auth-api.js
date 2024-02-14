@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-axios.defaults.baseURL = 'http://boklogovserver.areaprod.ru/api/v1';
+import axios from '@/utils/axios';
 
 // регистрация
 // async function registerUser(credentials) {

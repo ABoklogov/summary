@@ -3,7 +3,7 @@ import { computed, ref } from 'vue';
 import API from '@/services/auth-api';
 
 export const useAuthStore = defineStore('auth', () => {
-  const user = ref(null);
+  const login = ref('');
   const token = ref('');
 
   const isLoggedIn = computed(() => {
@@ -11,7 +11,7 @@ export const useAuthStore = defineStore('auth', () => {
   });
 
   function setUser(userData) {
-    user.value = userData;
+    login.value = userData;
   };
   function setToken(tokenData) {
     token.value = tokenData;
@@ -21,8 +21,12 @@ export const useAuthStore = defineStore('auth', () => {
   //   const data = await API.registerUser(credentials);
   // };
   async function logIn(credentials) {
-    const { data } = await API.logInUser(credentials);
-    console.log("🚀 ~ logIn ~ data:", data)
+    try {
+      const { data } = await API.logInUser(credentials);
+      console.log("🚀 ~ logIn ~ data:", data)
+    } catch (error) {
+      console.log(error.message);
+    };
   };
 
   return { isLoggedIn, setUser, setToken, logIn };
