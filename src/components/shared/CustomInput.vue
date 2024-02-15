@@ -8,17 +8,8 @@
       @input="$emit('update:value', $event.target.value)"
       :invalid="!isValid"
       @blur="blurHandler"
+      :data-valid="isValid && !isFirstInput"
     />
-    <Password 
-      v-else
-      v-bind="$attrs" 
-      toggleMask 
-      :value="value"
-      @input="$emit('update:value', $event.target.value)"
-      :invalid="!isValid"
-      @blur="blurHandler"
-    />
-
     <span v-if="!isValid" class="input__error">{{ error }}</span>
   </div>
 </template>
@@ -50,7 +41,7 @@ const validate = () => {
     const { hasPassed, message } = rule(props.value);
     
     if (!hasPassed) {
-      error.value = message;
+      error.value = message || props.errorMessage;
     };
  
     return hasPassed;
@@ -58,7 +49,6 @@ const validate = () => {
 };
 
 watch(() => props.value, () => {
-  console.log("🚀 ~ watch ~ props.value:", props.value)
   if (isFirstInput.value) return;
   validate();
 });
@@ -84,12 +74,5 @@ const blurHandler = () => {
     font-size: $fontMicro;
     color: $red;
   }
-}
-
-.input:deep .p-password-input {
-  width: 100%;
-}
-.input:deep svg {
-  cursor: pointer;
 }
 </style>

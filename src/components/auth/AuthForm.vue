@@ -1,50 +1,29 @@
 <template>
-  <form class="auth-form" @submit.prevent="submitUser">
-    <!-- <div class="auth-form__input">
-      <label for="login">login</label>
-      <InputText 
-        id="login" 
-        v-model="login" 
-        :invalid="!validLogin" 
-        @blur="blurLogin"
-      />
-      <span v-if="!validLogin" class="auth-form__error">{{ errorLogin }}</span>
-    </div>
-    
-    <div class="auth-form__input">
-      <label for="password">password</label>
-      <Password 
-        id="password" 
-        v-model="password" 
-        toggleMask 
-        :invalid="!validPassword" 
-        @blur="blurPassword"
-      />
-      <span v-if="!validPassword" class="auth-form__error">{{ errorPassword }}</span>
-    </div> -->
-
-
+  <form class="auth-form" @submit.prevent="submitUser" ref="authForm">
     <CustomInput 
       id="login" 
       v-model:value="formData.login"
       :rules="loginRules"
       class="auth-form__input"
     />
-    <CustomInput 
-      id="password" 
-      v-model:value="formData.password" 
-      :rules="passwordRules"
-      class="auth-form__input"
-    />
-    
+    <div class="auth-form__input">
+      <label for="password">password</label>
+      <Password  
+        id="password" 
+        toggleMask 
+        v-model="formData.password"
+        :invalid="!validPassword"
+        @blur="blurPassword"
+      />
+      <span v-if="!validPassword" class="auth-form__error">{{ errorPassword }}</span>
+    </div>
+
     <Button 
       type="submit" 
       label="Войти" 
       aria-label="Войти"
       class="auth-form__btn"
     />
-      <!-- :disabled="!validateForm" -->
-
   </form>
 </template>
 
@@ -60,16 +39,11 @@ const formData = ref({
   login: '',
   password: ''
 });
+const isFirstPassword  = ref(true);
+const validPassword = ref(true);
+const errorPassword = ref('');
 
-// const login = ref('');
-// const isFirstLogin = ref(true);
-// const validLogin = ref(true);
-// const errorLogin = ref('');
-
-// const password = ref('');
-// const isFirstPassword  = ref(true);
-// const validPassword = ref(true);
-// const errorPassword = ref('');
+const authForm = ref(null)
 
 const loginRules = computed(() => {
   return [isRequired, charLimit(10), loginValidation];
@@ -77,60 +51,44 @@ const loginRules = computed(() => {
 const passwordRules = computed(() => {
   return [isRequired, charLimit(15), passwordValidation];
 });
-// const validateForm = computed(() => {
-//   return !isFirstLogin.value && !isFirstPassword.value && validLogin.value && validPassword.value
-// });
 
-// const validateLogin = () => {
-//   return (validLogin.value = loginRules.value.every(rule => {
-//     const { hasPassed, message } = rule(login.value);
+const validateForm = computed(() => {
+  if (!authForm.value) {
+    return false
+  } else {
+    const validLogin = authForm.value[0].attributes[5].value;
+    return JSON.parse(validLogin) && !isFirstPassword.value && validPassword.value
+  };
+});
 
-//     if (!hasPassed) {
-//       errorLogin.value = message;
-//     };
- 
-//     return hasPassed;
-//   }));
-// };
-// const validatePassword = () => {
-//   return (validPassword.value = passwordRules.value.every(rule => {
-//     const { hasPassed, message } = rule(password.value);
+const validatePassword = () => {
+  return (validPassword.value = passwordRules.value.every(rule => {
+    const { hasPassed, message } = rule(formData.value.password);
+    
+    if (!hasPassed) {
+      errorPassword.value = message;
+    };
 
-//     if (!hasPassed) {
-//       errorPassword.value = message;
-//     };
- 
-//     return hasPassed;
-//   }));
-// };
+    return hasPassed;
+  }));
+};
 
-// watch(login, () => {
-//   if (isFirstLogin.value) return;
-//   validateLogin();
-// });
-// watch(password, () => {
-//   if (isFirstPassword.value) return;
-//   validatePassword();
-// });
+watch(() => formData.value.password, () => {
+  if (isFirstPassword.value) return;
+  validatePassword();
+});
 
-// const blurLogin = () => {
-//   if (isFirstLogin.value) validateLogin();
-//   isFirstLogin.value = false;
-// };
-// const blurPassword = () => {
-//   if (isFirstPassword.value) validatePassword();
-//   isFirstPassword.value = false;
-// };
+const blurPassword = () => {
+  if (isFirstPassword.value) validatePassword();
+  isFirstPassword.value = false;
+};
 
 const submitUser = () => {
-  // if (!validateForm) return;
-
-  // const userData = { 
-  //   login: login.value, 
-  //   password: password.value 
-  // };
-console.log(formData.value);
-  // store.logIn(userData);
+  if (!validateForm.value) {
+    return
+  };
+    // console.log(formData.value);
+  store.logIn(formData.value);
 };
 </script>
 
