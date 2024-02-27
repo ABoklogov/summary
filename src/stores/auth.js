@@ -23,7 +23,8 @@ export const useAuthStore = defineStore('auth', () => {
   async function logIn(credentials) {
     try {
       const { data } = await API.logInUser(credentials);
-      console.log("🚀 ~ logIn ~ data:", data)
+      // console.log("🚀 ~ logIn ~ data:", data)
+      return data
     } catch (error) {
       console.log(error.message);
     };

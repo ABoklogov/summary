@@ -2,7 +2,6 @@
   <div class="input">
     <label :for="$attrs.id">{{ $attrs.id }}</label>
     <InputText 
-      v-if="$attrs.id !== 'password'"
       v-bind="$attrs"
       :value="value"
       @input="$emit('update:value', $event.target.value)"
@@ -57,6 +56,12 @@ const blurHandler = () => {
   if (isFirstInput.value) validate();
   isFirstInput.value = false;
 };
+
+const reset = () => {
+  isFirstInput.value = true;
+  isValid.value = true;
+};
+
 </script>
 
 <style lang="scss" scoped>

@@ -6,7 +6,13 @@
       :rules="loginRules"
       class="auth-form__input"
     />
-    <div class="auth-form__input">
+    <CustomInput 
+      id="password" 
+      v-model="formData.password"
+      :rules="passwordRules"
+      class="auth-form__input"
+    />
+    <!-- <div class="auth-form__input">
       <label for="password">password</label>
       <Password  
         id="password" 
@@ -16,7 +22,7 @@
         @blur="blurPassword"
       />
       <span v-if="!validPassword" class="auth-form__error">{{ errorPassword }}</span>
-    </div>
+    </div> -->
 
     <Button 
       type="submit" 
@@ -39,9 +45,9 @@ const formData = ref({
   login: '',
   password: ''
 });
-const isFirstPassword  = ref(true);
-const validPassword = ref(true);
-const errorPassword = ref('');
+// const isFirstPassword  = ref(true);
+// const validPassword = ref(true);
+// const errorPassword = ref('');
 
 const authForm = ref(null)
 
@@ -61,35 +67,45 @@ const validateForm = computed(() => {
   };
 });
 
-const validatePassword = () => {
-  return (validPassword.value = passwordRules.value.every(rule => {
-    const { hasPassed, message } = rule(formData.value.password);
+// const validatePassword = () => {
+//   return (validPassword.value = passwordRules.value.every(rule => {
+//     const { hasPassed, message } = rule(formData.value.password);
     
-    if (!hasPassed) {
-      errorPassword.value = message;
-    };
+//     if (!hasPassed) {
+//       errorPassword.value = message;
+//     };
 
-    return hasPassed;
-  }));
-};
+//     return hasPassed;
+//   }));
+// };
 
-watch(() => formData.value.password, () => {
-  if (isFirstPassword.value) return;
-  validatePassword();
-});
+// watch(() => formData.value.password, () => {
+//   if (isFirstPassword.value) return;
+//   validatePassword();
+// });
 
-const blurPassword = () => {
-  if (isFirstPassword.value) validatePassword();
-  isFirstPassword.value = false;
-};
+// const blurPassword = () => {
+//   if (isFirstPassword.value) validatePassword();
+//   isFirstPassword.value = false;
+// };
 
-const submitUser = () => {
+const submitUser = async () => {
   if (!validateForm.value) {
     return
   };
     // console.log(formData.value);
-  store.logIn(formData.value);
+  const data = await store.logIn(formData.value);
+  console.log("🚀 ~ submitUser ~ data:", data)
+  if (data) {
+    resetForm();
+  }
 };
+
+const resetForm = () => {
+  formData.value.password = '';
+  formData.value.login = '';
+};
+
 </script>
 
 <style scoped lang="scss">
@@ -100,8 +116,11 @@ const submitUser = () => {
     position: relative;
     display: flex;
     flex-direction: column;
-    margin: 10px auto 0;
+    margin: 0 auto;
     width: 100%;
+  }
+  &__input:not(:first-child) {
+    margin-top: 10px;
   }
   &__btn {
     display: block;
@@ -125,8 +144,8 @@ const submitUser = () => {
 
 @media screen and (min-width: 768px) {
   .auth-form {
-    &__input {
-      margin: 20px auto 0;
+    &__input:not(:first-child) {
+      margin-top: 20px;
     }
   }
 }
