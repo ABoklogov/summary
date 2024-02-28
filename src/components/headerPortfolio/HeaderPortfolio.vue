@@ -1,19 +1,19 @@
 <template>
   <div class="header-portfolio" :style="heightHeader">
     <AboutPortfolioBox class="about-portfolio-box--position" :language="language" />
-    <Button class="header-portfolio__btn-scroll" @click="scrollToProject">
+    <CustomButton class="header-portfolio__btn-scroll" @click="scrollToProject">
       <IconArrow />
       <span>
         {{ language === 'ru' ? 'Смотреть ниже' : 'Scroll down' }}
       </span>
-    </Button>
+    </CustomButton>
   </div>
 </template>
 
 <script setup>
 import { computed } from 'vue';
 import AboutPortfolioBox from './AboutPortfolioBox.vue';
-import Button from '@/components/shared/Button.vue';
+import CustomButton from '@/components/shared/CustomButton.vue';
 import IconArrow from '@/components/icons/IconArrow.vue';
 
 defineProps({

@@ -1,5 +1,5 @@
 <template>
-  <Button class="button" @click="$emit('click')">
+  <CustomButton class="button" @click="$emit('click')">
     <span class="button__text">
       {{ textButton }}
     </span>
@@ -8,11 +8,11 @@
         transform: showDescription ? 'rotate(-90deg)' : 'rotate(0deg)'
       }"
     />
-  </Button>
+  </CustomButton>
 </template>
 
 <script setup>
-import Button from '@/components/shared/Button.vue';
+import CustomButton from '@/components/shared/CustomButton.vue';
 import IconArrow from '@/components/icons/IconArrow.vue';
 
 defineProps({

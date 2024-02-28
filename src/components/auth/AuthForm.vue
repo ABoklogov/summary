@@ -1,55 +1,67 @@
 <template>
-  <form class="auth-form" @submit.prevent="submitUser" ref="authForm">
-    <CustomInput 
-      id="login" 
-      v-model:value="formData.login"
-      :rules="loginRules"
-      class="auth-form__input"
-    />
-    <CustomInput 
-      id="password" 
-      v-model="formData.password"
-      :rules="passwordRules"
-      class="auth-form__input"
-    />
-    <!-- <div class="auth-form__input">
-      <label for="password">password</label>
-      <Password  
-        id="password" 
-        toggleMask 
-        v-model="formData.password"
-        :invalid="!validPassword"
-        @blur="blurPassword"
+  <CustomForm 
+    class="auth-form" 
+    @submit.prevent="submitUser" 
+    ref="authForm"
+  >
+    <div class="auth-form__input">
+      <CustomInput 
+        name="login"
+        id="login" 
+        type="text"
+        autocomplete="login"
+        v-model:value="formData.login"
+        :rules="loginRules"
       />
-      <span v-if="!validPassword" class="auth-form__error">{{ errorPassword }}</span>
-    </div> -->
-
+    </div>
+    <div class="auth-form__input">
+      <CustomInput 
+        name="password"
+        id="password"
+        :type="showPassword ? 'text' : 'password'"
+        autocomplete="current-password"
+        :rules="passwordRules"
+        v-model:value="formData.password"
+      >
+        <template #btn>
+          <CustomButton @click="toggleShowPassword">
+            <IconViewNotPassword v-if="!showPassword"/>
+            <IconViewPassword v-else/>
+          </CustomButton>
+        </template>
+      </CustomInput>
+    </div>
     <Button 
       type="submit" 
       label="Войти" 
       aria-label="Войти"
       class="auth-form__btn"
     />
-  </form>
+  </CustomForm>
 </template>
 
 <script setup>
 import { useAuthStore } from '@/stores/auth'; 
 import CustomInput from '@/components/shared/CustomInput.vue'; 
+import CustomForm from '@/components/shared/CustomForm.vue'; 
+import CustomButton from '@/components/shared/CustomButton.vue'; 
+import IconViewPassword from '@/components/icons/IconViewPassword.vue'; 
+import IconViewNotPassword from '@/components/icons/IconViewNotPassword.vue'; 
 import {isRequired, charLimit, loginValidation, passwordValidation} from '@/utils/validationRules';
 
 const store = useAuthStore();
-import { ref, watch, computed } from 'vue';
+import { ref, computed } from 'vue';
 
+const authForm = ref(null);
 const formData = ref({
   login: '',
   password: ''
 });
-// const isFirstPassword  = ref(true);
-// const validPassword = ref(true);
-// const errorPassword = ref('');
+const showPassword = ref(false);
 
-const authForm = ref(null)
+const toggleShowPassword = () => {
+  showPassword.value = !showPassword.value;
+};
 
 const loginRules = computed(() => {
   return [isRequired, charLimit(10), loginValidation];
@@ -58,54 +70,21 @@ const passwordRules = computed(() => {
   return [isRequired, charLimit(15), passwordValidation];
 });
 
-const validateForm = computed(() => {
-  if (!authForm.value) {
-    return false
-  } else {
-    const validLogin = authForm.value[0].attributes[5].value;
-    return JSON.parse(validLogin) && !isFirstPassword.value && validPassword.value
-  };
-});
-
-// const validatePassword = () => {
-//   return (validPassword.value = passwordRules.value.every(rule => {
-//     const { hasPassed, message } = rule(formData.value.password);
-    
-//     if (!hasPassed) {
-//       errorPassword.value = message;
-//     };
-
-//     return hasPassed;
-//   }));
-// };
-
-// watch(() => formData.value.password, () => {
-//   if (isFirstPassword.value) return;
-//   validatePassword();
-// });
-
-// const blurPassword = () => {
-//   if (isFirstPassword.value) validatePassword();
-//   isFirstPassword.value = false;
-// };
-
 const submitUser = async () => {
-  if (!validateForm.value) {
+  const isVolidForm = authForm.value.validate();
+  
+  if (!isVolidForm) {
     return
   };
-    // console.log(formData.value);
+
   const data = await store.logIn(formData.value);
   console.log("🚀 ~ submitUser ~ data:", data)
   if (data) {
-    resetForm();
+    authForm.value.reset();
+  } else {
+    // TODO: сделать нотификашкку
   }
 };
-
-const resetForm = () => {
-  formData.value.password = '';
-  formData.value.login = '';
-};
-
 </script>
 
 <style scoped lang="scss">

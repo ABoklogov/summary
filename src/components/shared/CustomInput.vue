@@ -1,20 +1,25 @@
 <template>
-  <div class="input">
+  <div class="input" ref="input">
     <label :for="$attrs.id">{{ $attrs.id }}</label>
-    <InputText 
-      v-bind="$attrs"
-      :value="value"
-      @input="$emit('update:value', $event.target.value)"
-      :invalid="!isValid"
-      @blur="blurHandler"
-      :data-valid="isValid && !isFirstInput"
-    />
+    <div class="input__wrapper">
+      <InputText 
+        v-bind="$attrs"
+        :value="value"
+        @input="$emit('update:value', $event.target.value)"
+        :invalid="!isValid"
+        @blur="blurHandler"
+      />
+      <div class="input__btn">
+        <slot name="btn"></slot>
+      </div>
+    </div>
+
     <span v-if="!isValid" class="input__error">{{ error }}</span>
   </div>
 </template>
 
 <script setup>
-import { ref, watch, defineProps, defineEmits } from 'vue';
+import { ref, watch, defineProps, defineEmits, inject, onMounted, onBeforeUnmount } from 'vue';
 const props = defineProps({
   value: {
     type: String,
@@ -29,11 +34,39 @@ const props = defineProps({
     default: () => [],
   },
 });
-defineEmits(["update:value"]);
 
+defineOptions({
+  inheritAttrs: false
+});
+
+const emit = defineEmits(["update:value"]);
+const { form, registerInput, unRegisterInput } = inject('form');
+
+const input = ref(null);
 const isFirstInput = ref(true);
 const isValid = ref(true);
 const error = ref('');
+
+//при маунте регистрируем инпут в компоненте формы CustomForm
+onMounted(() => {
+  if (!form.value) return;
+  registerInput({
+    input: input.value,
+    isValid,
+    validate,
+    reset
+  });
+});
+//при размонтировании компонента удаляем инпут из компонента CustomForm
+onBeforeUnmount(() => {
+  if (!form.value) return;
+  unRegisterInput(input.value);
+});
+
+watch(() => props.value, () => {
+  if (isFirstInput.value) return;
+  validate();
+});
 
 const validate = () => {
   return (isValid.value = props.rules.every(rule => {
@@ -47,11 +80,6 @@ const validate = () => {
   }));
 };
 
-watch(() => props.value, () => {
-  if (isFirstInput.value) return;
-  validate();
-});
-
 const blurHandler = () => {
   if (isFirstInput.value) validate();
   isFirstInput.value = false;
@@ -60,24 +88,35 @@ const blurHandler = () => {
 const reset = () => {
   isFirstInput.value = true;
   isValid.value = true;
+  emit('update:value', '');
 };
-
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/scss/variables';
 .input {
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
 
+  &__wrapper {
+    position: relative;
+  }
+  & input {
+    width: 100%;
+  }
   &__error {
     position: absolute;
     top: 100%;
     left: 0;
     font-size: $fontMicro;
     color: $red;
+  }
+  &__btn {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translate(0, -50%);
   }
 }
 </style>
