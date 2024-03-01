@@ -46,10 +46,12 @@ import CustomInput from '@/components/shared/CustomInput.vue';
 import CustomForm from '@/components/shared/CustomForm.vue'; 
 import CustomButton from '@/components/shared/CustomButton.vue'; 
 import IconViewPassword from '@/components/icons/IconViewPassword.vue'; 
-import IconViewNotPassword from '@/components/icons/IconViewNotPassword.vue'; 
+import IconViewNotPassword from '@/components/icons/IconViewNotPassword.vue';
+import { useToast } from 'primevue/usetoast';
 import {isRequired, charLimit, loginValidation, passwordValidation} from '@/utils/validationRules';
 
 const store = useAuthStore();
+const toast = useToast();
 import { ref, computed } from 'vue';
 
 const authForm = ref(null);
@@ -78,12 +80,13 @@ const submitUser = async () => {
   };
 
   const data = await store.logIn(formData.value);
-  console.log("🚀 ~ submitUser ~ data:", data)
+
   if (data) {
     authForm.value.reset();
+    toast.add({ severity: 'success', summary: 'Успешно авторизован', detail: `Добро пожаловать ${data.user.login}`, life: 5000 });
   } else {
-    // TODO: сделать нотификашкку
-  }
+    toast.add({ severity: 'error', summary: 'Ошибка', detail: 'Пользователя с таким логином не существует', life: 5000 });
+  };
 };
 </script>
 

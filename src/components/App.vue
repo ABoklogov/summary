@@ -1,5 +1,6 @@
 <template>
   <AppContainer>
+    <Toast />
     <Header id="header" />
 
     <main id="main">

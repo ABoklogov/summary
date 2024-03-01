@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
+import { useToast } from 'primevue/usetoast';
 import API from '@/services/auth-api';
 
 export const useAuthStore = defineStore('auth', () => {
   const login = ref('');
   const token = ref('');
+  const toast = useToast();
 
   const isLoggedIn = computed(() => {
     return Boolean(token.value);
