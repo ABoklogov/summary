@@ -4,6 +4,13 @@ import { useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import API from '@/services/auth-api';
 
+// для сохранения токена в localStorage
+const optionsPersist = {
+  persist: {
+  storage: localStorage,
+  paths: ['token'],
+}};
+
 export const useAuthStore = defineStore('auth', () => {
   const router = useRouter();
   const toast = useToast();
@@ -57,4 +64,4 @@ export const useAuthStore = defineStore('auth', () => {
   };
 
   return { login, token, loading, error, isLoggedIn, logIn };
-});
+}, optionsPersist);
