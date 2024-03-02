@@ -31,28 +31,30 @@
         </template>
       </CustomInput>
     </div>
+
     <Button 
       type="submit" 
       label="Войти" 
       aria-label="Войти"
       class="auth-form__btn"
+      :loading="loading"
     />
   </CustomForm>
 </template>
 
 <script setup>
 import { useAuthStore } from '@/stores/auth'; 
+import { storeToRefs } from 'pinia';
 import CustomInput from '@/components/shared/CustomInput.vue'; 
 import CustomForm from '@/components/shared/CustomForm.vue'; 
 import CustomButton from '@/components/shared/CustomButton.vue'; 
 import IconViewPassword from '@/components/icons/IconViewPassword.vue'; 
 import IconViewNotPassword from '@/components/icons/IconViewNotPassword.vue';
-import { useToast } from 'primevue/usetoast';
 import {isRequired, charLimit, loginValidation, passwordValidation} from '@/utils/validationRules';
+import { ref, computed } from 'vue';
 
 const store = useAuthStore();
-const toast = useToast();
-import { ref, computed } from 'vue';
+const { error, loading } = storeToRefs(useAuthStore());
 
 const authForm = ref(null);
 const formData = ref({
@@ -79,13 +81,10 @@ const submitUser = async () => {
     return
   };
 
-  const data = await store.logIn(formData.value);
+  await store.logIn(formData.value);
 
-  if (data) {
+  if (!error.value) {
     authForm.value.reset();
-    toast.add({ severity: 'success', summary: 'Успешно авторизован', detail: `Добро пожаловать ${data.user.login}`, life: 5000 });
-  } else {
-    toast.add({ severity: 'error', summary: 'Ошибка', detail: 'Пользователя с таким логином не существует', life: 5000 });
   };
 };
 </script>

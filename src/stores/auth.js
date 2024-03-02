@@ -1,12 +1,17 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import API from '@/services/auth-api';
 
 export const useAuthStore = defineStore('auth', () => {
+  const router = useRouter();
+  const toast = useToast();
+
   const login = ref('');
   const token = ref('');
-  const toast = useToast();
+  const loading = ref(false);
+  const error = ref('');
 
   const isLoggedIn = computed(() => {
     return Boolean(token.value);
@@ -18,19 +23,38 @@ export const useAuthStore = defineStore('auth', () => {
   function setToken(tokenData) {
     token.value = tokenData;
   };
+  function setLoading(payload) {
+    loading.value = payload;
+  };
+  function setError(payload) {
+    error.value = payload;
+  };
 
-  // async function registration(credentials) {
-  //   const data = await API.registerUser(credentials);
-  // };
   async function logIn(credentials) {
     try {
+      setLoading(true);
       const { data } = await API.logInUser(credentials);
-      // console.log("🚀 ~ logIn ~ data:", data)
-      return data
+
+      if (data === undefined) {
+        throw new Error('Server Error!');
+      } else {
+        setLoading(false);
+        setError('');
+
+        const {user, token} = data;
+        setUser(user.login);
+        setToken(token);
+
+        toast.add({ severity: 'success', summary: 'Успешно авторизован', detail: `Добро пожаловать ${user.login}`, life: 5000 });
+        router.push({ name: 'adminPage' });
+      };
     } catch (error) {
-      console.log(error.message);
+      // console.log("🚀 ~ logIn ~ error:", error)
+      setLoading(false);
+      setError(error.message);
+      toast.add({ severity: 'error', summary: 'Ошибка', detail: error.message, life: 5000 });
     };
   };
 
-  return { isLoggedIn, setUser, setToken, logIn };
+  return { login, token, loading, error, isLoggedIn, logIn };
 });
