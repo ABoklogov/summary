@@ -63,5 +63,41 @@ export const useAuthStore = defineStore('auth', () => {
     };
   };
 
-  return { login, token, loading, error, isLoggedIn, logIn };
+  async function fetchCurrentUser() {
+    const persistedToken = token.value;
+
+    if (!persistedToken) return;
+
+    try {
+      setLoading(true);
+      const { data } = await API.fetchCurrentUser(persistedToken);
+
+      if (data === undefined) {
+        throw new Error('Server Error!');
+      } else {
+        setLoading(false);
+        setError('');
+
+        setUser(data.login);
+
+        // toast.add({ severity: 'success', summary: 'Произошла повторная авторизован', detail: `Добро пожаловать ${data.login}`, life: 5000 });
+      };
+    } catch (error) {
+      setLoading(false);
+      setError(error.message);
+      setToken('');
+      router.push({ name: 'adminAuthPage' });
+      toast.add({ severity: 'error', summary: 'Ошибка', detail: error.message, life: 5000 });
+    };
+  };
+
+  return { 
+    login, 
+    token, 
+    loading, 
+    error, 
+    isLoggedIn, 
+    logIn, 
+    fetchCurrentUser 
+  };
 }, optionsPersist);

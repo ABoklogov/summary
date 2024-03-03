@@ -9,12 +9,6 @@ const token = {
   },
 };
 
-// регистрация
-// async function registerUser(credentials) {
-//   const data = await axios.post('/auth/register', credentials);
-//   return data;
-// };
-
 // вход
 async function logInUser(credentials) {
   const { data } = await axios.post('/auth/login', credentials);
@@ -28,15 +22,16 @@ async function logOutUser() {
 };
 
 // определение текущего юзера
-// async function fetchCurrentUser() {
-//   const data = await axios.get('/personal/profile');
-//   return data;
-// };
+async function fetchCurrentUser(persistedToken) {
+  token.set(persistedToken);
+
+  const { data } = await axios.get('/auth/current');
+  return data;
+};
 
 const API = {
-  // registerUser,
   logInUser,
   logOutUser,
-  // fetchCurrentUser,
+  fetchCurrentUser,
 };
 export default API;

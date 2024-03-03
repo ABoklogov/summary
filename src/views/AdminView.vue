@@ -1,8 +1,10 @@
 <template>
   <div>AdminView</div>
+  <UserBlock/>
 </template>
 
 <script setup>
+import UserBlock from '@/components/auth/UserBlock.vue'; 
 // import { storeToRefs } from 'pinia';
 // import { useViewStore } from '@/stores/view';
 // const { isLoggedIn } = storeToRefs(useViewStore());
