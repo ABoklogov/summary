@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { storeToRefs } from 'pinia';
-import { useViewStore } from '@/stores/view';
+import { useAuthStore } from '@/stores/auth';
 
 import ResumeView from '@/views/ResumeView.vue';
 import PortfolioView from '@/views/PortfolioView.vue';
@@ -50,7 +50,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const { isLoggedIn } = storeToRefs(useViewStore());
+  const { isLoggedIn } = storeToRefs(useAuthStore());
 
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (!isLoggedIn.value) {

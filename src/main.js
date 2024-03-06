@@ -6,6 +6,7 @@ import 'primeflex/primeflex.css';
 
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import App from '@/components/App.vue';
 import router from './router';
 import PrimeVue from 'primevue/config';
@@ -18,6 +19,7 @@ import Card from 'primevue/card';
 
 const app = createApp(App);
 const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
 
 app.use(router);
 app.use(pinia);
@@ -29,5 +31,6 @@ app.component('Spiner', ProgressSpinner);
 app.component('InputText', InputText);
 app.component('Toast', Toast);
 app.component('Card', Card);
+
 
 app.mount('#app');

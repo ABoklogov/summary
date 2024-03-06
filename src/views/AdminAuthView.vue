@@ -1,30 +1,36 @@
 <template>
-  <div class="card flex align-items-center justify-content-center">
+  <div class="admin-auth">
     <Card class="card-component">
       <template #header>
         <img alt="settings" :src="require('@/assets/images/setting.png')" />
       </template>
       <template #title>
-        <span class="card-component__title">Введите пароль</span>
-      </template>
-      <template #content>
-        <InputText class="card-component__input" />
+        <span class="card-component__title">Введите логин/пароль</span>
       </template>
 
-      <template #footer>
-        <Button label="Войти" class="card-component__btn" />
+      <template #content>
+        <AuthForm/>
       </template>
     </Card>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import AuthForm from '@/components/auth/AuthForm.vue';
+</script>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/variables';
+.admin-auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $pink;
+  padding: 50px 0;
+}
 .card-component {
   max-width: 500px;
-  padding: 30px;
-  margin-top: 50px;
+  padding: 5px;
 
   & img {
     display: block;
@@ -36,14 +42,11 @@
     display: block;
     text-align: center;
   }
-  &__input {
-    display: block;
-    margin: 20px auto 0;
-  }
-  &__btn {
-    display: block;
-    margin: 30px auto 0;
-    width: 250px;
+}
+
+@media screen and (min-width: 768px) {
+  .card-component {
+    padding: 30px;
   }
 }
 </style>

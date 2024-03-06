@@ -105,7 +105,7 @@ onMounted(() => {
     z-index: calc($indexCurtain + 1);
   }
 
-  &::v-deep .multiselect {
+  &:deep .multiselect {
     .multiselect__select {
       width: 20px;
     }
@@ -125,7 +125,7 @@ onMounted(() => {
     & .multiselect {
       width: 74px;
     }
-    &::v-deep .multiselect {
+    &:deep .multiselect {
       .multiselect__select {
         width: 40px;
       }
