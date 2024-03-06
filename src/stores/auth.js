@@ -56,11 +56,29 @@ export const useAuthStore = defineStore('auth', () => {
         router.push({ name: 'adminPage' });
       };
     } catch (error) {
-      // console.log("🚀 ~ logIn ~ error:", error)
       setLoading(false);
       setError(error.message);
       toast.add({ severity: 'error', summary: 'Ошибка', detail: error.message, life: 5000 });
     };
+  };
+
+  async function logOutUser() {
+    try {
+      setLoading(true);
+
+      await API.logOutUser();
+
+      setLoading(false);
+      setError('');
+      setUser('');
+      setToken('');
+      toast.add({ severity: 'success', summary: 'Успешно вышел', life: 5000 });
+      router.push({ name: 'adminAuthPage' });
+    } catch (error) {
+      setLoading(false);
+      setError(error.message);
+      toast.add({ severity: 'error', summary: 'Ошибка', detail: error.message, life: 5000 });
+    }
   };
 
   async function fetchCurrentUser() {
@@ -79,15 +97,12 @@ export const useAuthStore = defineStore('auth', () => {
         setError('');
 
         setUser(data.login);
-
-        // toast.add({ severity: 'success', summary: 'Произошла повторная авторизован', detail: `Добро пожаловать ${data.login}`, life: 5000 });
       };
     } catch (error) {
       setLoading(false);
       setError(error.message);
-      setToken('');
-      router.push({ name: 'adminAuthPage' });
       toast.add({ severity: 'error', summary: 'Ошибка', detail: error.message, life: 5000 });
+      router.push({ name: 'adminAuthPage' });
     };
   };
 
@@ -97,7 +112,8 @@ export const useAuthStore = defineStore('auth', () => {
     loading, 
     error, 
     isLoggedIn, 
-    logIn, 
-    fetchCurrentUser 
+    logIn,
+    logOutUser,
+    fetchCurrentUser
   };
 }, optionsPersist);
