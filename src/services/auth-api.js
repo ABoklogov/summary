@@ -11,21 +11,21 @@ const token = {
 
 // вход
 async function logInUser(credentials) {
-  const { data } = await axios.post('/auth/login', credentials);
+  const { data } = await axios.post('/auth/login/', credentials);
   if (data) token.set(data.token);
   return data;
 }
 
 // выход
 async function logOutUser() {
-  axios.get('/auth/logout');
+  axios.get('/auth/logout/');
 }
 
 // определение текущего юзера
 async function fetchCurrentUser(persistedToken) {
   token.set(persistedToken);
 
-  const { data } = await axios.get('/auth/current');
+  const { data } = await axios.get('/auth/current/');
   return data;
 }
 
