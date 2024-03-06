@@ -1,10 +1,5 @@
 <template>
-  <button 
-    class="button" 
-    type="button" 
-    :aria-label="ariaLabel"
-    @click="$emit('click')"
-  >
+  <button class="button" type="button" :aria-label="ariaLabel" @click="$emit('click')">
     <slot></slot>
   </button>
 </template>

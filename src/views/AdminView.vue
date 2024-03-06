@@ -1,12 +1,11 @@
 <template>
   <div class="admin-view">
-
-    <UserBlock class="user-box"/>
+    <UserBlock class="user-box" />
   </div>
 </template>
 
 <script setup>
-import UserBlock from '@/components/auth/UserBlock.vue'; 
+import UserBlock from '@/components/auth/UserBlock.vue';
 // import { storeToRefs } from 'pinia';
 // import { useViewStore } from '@/stores/view';
 // const { isLoggedIn } = storeToRefs(useViewStore());

@@ -1,30 +1,30 @@
 <template>
   <Box class="user-block">
-    <Spiner 
-      v-if="loading" 
-      style="width: 30px; height: 30px; margin: 0 auto; display: block;" 
-      strokeWidth="8" 
-      animationDuration=".5s" 
+    <Spiner
+      v-if="loading"
+      style="width: 30px; height: 30px; margin: 0 auto; display: block"
+      strokeWidth="8"
+      animationDuration=".5s"
       aria-label="Custom ProgressSpinner"
     />
     <div v-else class="user-block__wrapper-name">
       <span class="user-block__name">
-        {{login}}
+        {{ login }}
       </span>
       <CustomButton @click="store.logOutUser">
-        <IconLogOut/>
+        <IconLogOut />
       </CustomButton>
     </div>
   </Box>
 </template>
 
 <script setup>
-import { useAuthStore } from '@/stores/auth'; 
+import { useAuthStore } from '@/stores/auth';
 import { storeToRefs } from 'pinia';
 // import { ref, computed } from 'vue';
 import Box from '@/components/shared/Box.vue';
-import CustomButton from '@/components/shared/CustomButton.vue'; 
-import IconLogOut from '@/components/icons/IconLogOut.vue'; 
+import CustomButton from '@/components/shared/CustomButton.vue';
+import IconLogOut from '@/components/icons/IconLogOut.vue';
 
 const store = useAuthStore();
 const { login, loading } = storeToRefs(useAuthStore());

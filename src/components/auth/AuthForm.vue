@@ -1,13 +1,9 @@
 <template>
-  <CustomForm 
-    class="auth-form" 
-    @submit.prevent="submitUser" 
-    ref="authForm"
-  >
+  <CustomForm class="auth-form" @submit.prevent="submitUser" ref="authForm">
     <div class="auth-form__input">
-      <CustomInput 
+      <CustomInput
         name="login"
-        id="login" 
+        id="login"
         type="text"
         autocomplete="login"
         v-model:value="formData.login"
@@ -15,7 +11,7 @@
       />
     </div>
     <div class="auth-form__input">
-      <CustomInput 
+      <CustomInput
         name="password"
         id="password"
         :type="showPassword ? 'text' : 'password'"
@@ -25,16 +21,16 @@
       >
         <template #btn>
           <CustomButton @click="toggleShowPassword">
-            <IconViewNotPassword v-if="!showPassword"/>
-            <IconViewPassword v-else/>
+            <IconViewNotPassword v-if="!showPassword" />
+            <IconViewPassword v-else />
           </CustomButton>
         </template>
       </CustomInput>
     </div>
 
-    <Button 
-      type="submit" 
-      label="Войти" 
+    <Button
+      type="submit"
+      label="Войти"
       aria-label="Войти"
       class="auth-form__btn"
       :loading="loading"
@@ -43,14 +39,19 @@
 </template>
 
 <script setup>
-import { useAuthStore } from '@/stores/auth'; 
+import { useAuthStore } from '@/stores/auth';
 import { storeToRefs } from 'pinia';
-import CustomInput from '@/components/shared/CustomInput.vue'; 
-import CustomForm from '@/components/shared/CustomForm.vue'; 
-import CustomButton from '@/components/shared/CustomButton.vue'; 
-import IconViewPassword from '@/components/icons/IconViewPassword.vue'; 
+import CustomInput from '@/components/shared/CustomInput.vue';
+import CustomForm from '@/components/shared/CustomForm.vue';
+import CustomButton from '@/components/shared/CustomButton.vue';
+import IconViewPassword from '@/components/icons/IconViewPassword.vue';
 import IconViewNotPassword from '@/components/icons/IconViewNotPassword.vue';
-import {isRequired, charLimit, loginValidation, passwordValidation} from '@/utils/validationRules';
+import {
+  isRequired,
+  charLimit,
+  loginValidation,
+  passwordValidation
+} from '@/utils/validationRules';
 import { ref, computed } from 'vue';
 
 const store = useAuthStore();
@@ -76,16 +77,16 @@ const passwordRules = computed(() => {
 
 const submitUser = async () => {
   const isVolidForm = authForm.value.validate();
-  
+
   if (!isVolidForm) {
-    return
-  };
+    return;
+  }
 
   await store.logIn(formData.value);
 
   if (!error.value) {
     authForm.value.reset();
-  };
+  }
 };
 </script>
 

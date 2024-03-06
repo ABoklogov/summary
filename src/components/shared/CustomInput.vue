@@ -2,7 +2,7 @@
   <div class="input" ref="input">
     <label :for="$attrs.id">{{ $attrs.id }}</label>
     <div class="input__wrapper">
-      <InputText 
+      <InputText
         v-bind="$attrs"
         :value="value"
         @input="$emit('update:value', $event.target.value)"
@@ -23,23 +23,23 @@ import { ref, watch, defineProps, defineEmits, inject, onMounted, onBeforeUnmoun
 const props = defineProps({
   value: {
     type: String,
-    default: '',
+    default: ''
   },
   errorMessage: {
     type: String,
-    default: '',
+    default: ''
   },
   rules: {
     type: Array,
-    default: () => [],
-  },
+    default: () => []
+  }
 });
 
 defineOptions({
   inheritAttrs: false
 });
 
-const emit = defineEmits(["update:value"]);
+const emit = defineEmits(['update:value']);
 const { form, registerInput, unRegisterInput } = inject('form');
 
 const input = ref(null);
@@ -63,19 +63,22 @@ onBeforeUnmount(() => {
   unRegisterInput(input.value);
 });
 
-watch(() => props.value, () => {
-  if (isFirstInput.value) return;
-  validate();
-});
+watch(
+  () => props.value,
+  () => {
+    if (isFirstInput.value) return;
+    validate();
+  }
+);
 
 const validate = () => {
-  return (isValid.value = props.rules.every(rule => {
+  return (isValid.value = props.rules.every((rule) => {
     const { hasPassed, message } = rule(props.value);
-    
+
     if (!hasPassed) {
       error.value = message || props.errorMessage;
-    };
- 
+    }
+
     return hasPassed;
   }));
 };
