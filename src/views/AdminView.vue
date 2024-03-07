@@ -5,11 +5,15 @@
 </template>
 
 <script setup>
+import { useAuthStore } from '@/stores/auth';
+import { onBeforeMount } from 'vue';
 import UserBlock from '@/components/auth/UserBlock.vue';
-// import { storeToRefs } from 'pinia';
-// import { useViewStore } from '@/stores/view';
-// const { isLoggedIn } = storeToRefs(useViewStore());
-// console.log("🚀 ~ file: AdminView.vue:12 ~ isLoggedIn:", isLoggedIn.value)
+
+const store = useAuthStore();
+// запрашиваем текущего юзера
+onBeforeMount(() => {
+  store.fetchCurrentUser();
+});
 </script>
 
 <style lang="scss" scoped>
