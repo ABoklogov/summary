@@ -10,16 +10,26 @@
     <template v-else>
       <div class="resume__left">
         <div class="resume__photo-box">
-          <MyPhoto class="photo--position" :avatar="dataResume.about?.avatar"/>
-          <MyNameBox class="my-name-box--position" />
+          <MyPhoto c
+            lass="photo--position" 
+            :avatar="dataResume.about?.avatar"/>
+          <MyNameBox 
+            :name="dataResume.about?.name"
+            class="my-name-box--position" />
         </div>
-        <AboutBox class="about-box--position about-box--mobile" />
+        <AboutBox 
+          :about="dataResume.about?.about"
+          :contacts="dataResume.contacts"
+          class="about-box--position about-box--mobile" />
         <SocialBox class="social-box--position" />
         <TechSkillsBox class="tech-skills-box--position" />
       </div>
       <div class="resume__right">
         <EducationBox class="education-box--position" />
-        <AboutBox class="about-box--position about-box--desktop" />
+        <AboutBox 
+          :about="dataResume.about?.about"
+          :contacts="dataResume.contacts"
+          class="about-box--position about-box--desktop" />
         <ExperienceBox class="experience-box--position" />
         <CertificateBox class="certificate-box--position" />
       </div>

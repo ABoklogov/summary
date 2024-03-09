@@ -1,6 +1,11 @@
 <template>
   <div class="photo">
-    <img v-if="avatar" :src="baseUrl + avatar" alt="avatar" />
+    <img 
+      v-if="avatar" 
+      :src="baseUrl + avatar" 
+      alt="avatar" 
+      crossorigin="anonymous"
+    />
     <img v-else :src="require('@/assets/images/default-avatar.jpg')" />
   </div>
 </template>

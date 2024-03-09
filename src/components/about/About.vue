@@ -1,12 +1,17 @@
 <template>
-  <span class="about"> "{{ language === 'ru' ? about.ru : about.en }}" </span>
+  <span class="about"> "{{ language === 'ru' ? about?.ru : about?.en }}" </span>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia';
 import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
-import { about } from '@/services/dataResume.js';
+
+defineProps({
+  about: {
+    type: Object,
+  },
+});
 </script>
 
 <style scoped lang="scss">

@@ -1,13 +1,19 @@
 <template>
   <div class="about-box">
-    <Contacts class="contacts--position" />
-    <About class="about--position" />
+    <Contacts 
+      class="contacts--position" 
+      :contacts="contacts"/>
+    <About 
+      class="about--position" 
+      :about="about" />
   </div>
 </template>
 
 <script setup>
 import Contacts from './Contacts.vue';
 import About from './About.vue';
+
+const {about, contacts} = defineProps(['about', 'contacts']);
 </script>
 
 <style scoped lang="scss">
