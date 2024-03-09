@@ -1,9 +1,19 @@
 <template>
   <div class="photo">
-    <!-- <img :src="require('@/assets/images/default-avatar.jpg')" /> -->
-    <img :src="require('@/assets/images/photo.jpg')" alt="avatart" />
+    <img v-if="avatar" :src="baseUrl + avatar" alt="avatar" />
+    <img v-else :src="require('@/assets/images/default-avatar.jpg')" />
   </div>
 </template>
+
+<script setup>
+import {baseUrl} from '@/services/urls.js';
+
+defineProps({
+  avatar: {
+    type: String,
+  },
+});
+</script>
 
 <style scoped lang="scss">
 @import '@/assets/scss/variables';

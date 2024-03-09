@@ -1,5 +1,5 @@
 <template>
-  <div class="resume">
+  <div class="resume" :style="{height: loading ? '100vh' : 'auto'}">
     <Spiner
       v-if="loading"
       style="width: 50px; height: 50px; margin: auto; display: block"
@@ -10,7 +10,7 @@
     <template v-else>
       <div class="resume__left">
         <div class="resume__photo-box">
-          <MyPhoto class="photo--position" />
+          <MyPhoto class="photo--position" :avatar="dataResume.about?.avatar"/>
           <MyNameBox class="my-name-box--position" />
         </div>
         <AboutBox class="about-box--position about-box--mobile" />
@@ -29,8 +29,8 @@
 
 <script setup>
 import { useResumeStore } from '@/stores/resume';
-import { onBeforeMount } from 'vue';
 import { storeToRefs } from 'pinia';
+import { onBeforeMount } from 'vue';
 import MyPhoto from '@/components/MyPhoto.vue';
 import MyNameBox from '@/components/MyNameBox.vue';
 import SocialBox from '@/components/social/SocialBox.vue';
@@ -41,8 +41,7 @@ import ExperienceBox from '@/components/experience/ExperienceBox.vue';
 import CertificateBox from '@/components/certificate/CertificateBox.vue';
 
 const store = useResumeStore();
-const { loading } = storeToRefs(useResumeStore());
-
+const { loading, dataResume } = storeToRefs(useResumeStore());
 // запрашиваем dataResume
 onBeforeMount(() => {
   store.getDataResume();
