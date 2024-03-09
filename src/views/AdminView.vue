@@ -25,7 +25,8 @@ onBeforeMount(() => {
 
 @media screen and (min-width: 768px) {
   .admin-view {
-    padding: 0 $contentPaddingTablete;
+    background-color: $pink;
+    padding: 50px $contentPaddingTablete;
   }
 }
 </style>

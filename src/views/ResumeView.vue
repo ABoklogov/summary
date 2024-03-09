@@ -1,24 +1,36 @@
 <template>
   <div class="resume">
-    <div class="resume__left">
-      <div class="resume__photo-box">
-        <MyPhoto class="photo--position" />
-        <MyNameBox class="my-name-box--position" />
+    <Spiner
+      v-if="loading"
+      style="width: 50px; height: 50px; margin: auto; display: block"
+      strokeWidth="5"
+      animationDuration=".5s"
+      aria-label="Custom ProgressSpinner"
+    />
+    <template v-else>
+      <div class="resume__left">
+        <div class="resume__photo-box">
+          <MyPhoto class="photo--position" />
+          <MyNameBox class="my-name-box--position" />
+        </div>
+        <AboutBox class="about-box--position about-box--mobile" />
+        <SocialBox class="social-box--position" />
+        <TechSkillsBox class="tech-skills-box--position" />
       </div>
-      <AboutBox class="about-box--position about-box--mobile" />
-      <SocialBox class="social-box--position" />
-      <TechSkillsBox class="tech-skills-box--position" />
-    </div>
-    <div class="resume__right">
-      <EducationBox class="education-box--position" />
-      <AboutBox class="about-box--position about-box--desktop" />
-      <ExperienceBox class="experience-box--position" />
-      <CertificateBox class="certificate-box--position" />
-    </div>
+      <div class="resume__right">
+        <EducationBox class="education-box--position" />
+        <AboutBox class="about-box--position about-box--desktop" />
+        <ExperienceBox class="experience-box--position" />
+        <CertificateBox class="certificate-box--position" />
+      </div>
+    </template>
   </div>
 </template>
 
 <script setup>
+import { useResumeStore } from '@/stores/resume';
+import { onBeforeMount } from 'vue';
+import { storeToRefs } from 'pinia';
 import MyPhoto from '@/components/MyPhoto.vue';
 import MyNameBox from '@/components/MyNameBox.vue';
 import SocialBox from '@/components/social/SocialBox.vue';
@@ -27,6 +39,14 @@ import EducationBox from '@/components/education/EducationBox.vue';
 import AboutBox from '@/components/about/AboutBox.vue';
 import ExperienceBox from '@/components/experience/ExperienceBox.vue';
 import CertificateBox from '@/components/certificate/CertificateBox.vue';
+
+const store = useResumeStore();
+const { loading } = storeToRefs(useResumeStore());
+
+// запрашиваем dataResume
+onBeforeMount(() => {
+  store.getDataResume();
+});
 </script>
 
 <style scoped lang="scss">
@@ -35,6 +55,7 @@ import CertificateBox from '@/components/certificate/CertificateBox.vue';
 .resume {
   display: flex;
   flex-direction: column;
+  height: 100vh;
   padding: $contentPaddingMobile;
   background-color: $pink;
 

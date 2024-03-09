@@ -19,6 +19,7 @@ async function logInUser(credentials) {
 // выход
 async function logOutUser() {
   axios.get('/auth/logout');
+  token.unset();
 }
 
 // определение текущего юзера
