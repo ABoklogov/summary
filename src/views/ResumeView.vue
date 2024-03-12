@@ -10,8 +10,8 @@
     <template v-else>
       <div class="resume__left">
         <div class="resume__photo-box">
-          <MyPhoto c
-            lass="photo--position" 
+          <MyPhoto
+            class="photo--position" 
             :avatar="dataResume.about?.avatar"/>
           <MyNameBox 
             :name="dataResume.about?.name"

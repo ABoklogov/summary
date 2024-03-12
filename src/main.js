@@ -16,6 +16,9 @@ import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
 import InputText from 'primevue/inputtext';
 import Card from 'primevue/card';
+import TabView from 'primevue/tabview';
+import TabPanel from 'primevue/tabpanel';
+import FileUpload from 'primevue/fileupload';
 
 const app = createApp(App);
 const pinia = createPinia();
@@ -31,5 +34,8 @@ app.component('Spiner', ProgressSpinner);
 app.component('InputText', InputText);
 app.component('Toast', Toast);
 app.component('Card', Card);
+app.component('TabView', TabView);
+app.component('TabPanel', TabPanel);
+app.component('FileUpload', FileUpload);
 
 app.mount('#app');
