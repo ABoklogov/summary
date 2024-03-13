@@ -1,18 +1,21 @@
 <template>
   <form class="form-avatar">
     <label class="form-avatar__label">
-      Загрузка аватара
       <input 
-      type="file" 
-      id="avatar" 
-      ref="avatar" 
-      @change="handleFileUpload"
-    />
+        type="file" 
+        id="avatar" 
+        ref="avatar" 
+        @change="handleFileUpload"
+      />
       <span class="p-button p-component form-avatar__btn">
         {{ textBtn }}
       </span>
     </label>
 
+    <Message>
+      Картинка должна быть квадратная
+    </Message>
+    
     <Button 
       type="button" 
       @click.prevent="submitFile" 
@@ -20,7 +23,6 @@
       icon="pi pi-chevron-right" 
       iconPos="right"
       label="Отправить"
-      severity="info"
       :loading="loadingAvatar"
     ></Button>
   </form>
@@ -30,6 +32,7 @@
 import { ref, computed } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useResumeStore } from '@/stores/resume';
+import Message from '@/components/admin/Message.vue';
 
 const storeResume = useResumeStore();
 const { loadingAvatar } = storeToRefs(useResumeStore());
@@ -41,7 +44,7 @@ const textBtn = computed(() => {
   if (file.value) {
     const name = file.value.name;
 
-    return name.length >= 25 ? `${name.slice(0, 25)}...` : name;
+    return name.length >= 40 ? `${name.slice(0, 40)}...` : name;
   } else {
     return 'Выберите файл'
   }
@@ -76,6 +79,9 @@ const submitFile = () => {
     width: 0;
     height: 0;
   }
+  &__btn {
+    font-size: $fontMicro;
+  }
 }
 .p-button {
   margin-top: 10px;
@@ -88,6 +94,16 @@ const submitFile = () => {
   }
 }
 @media screen and (min-width: 768px) {
+  .p-button {
+    width: 310px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .p-button {
+    width: 210px;
+  }
+}
+@media screen and (min-width: 1440px) {
   .p-button {
     width: 310px;
   }
