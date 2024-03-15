@@ -5,8 +5,8 @@
     <div class="avatar-box__content">
       <div class="avatar-box__img-wrapper">
         <img 
-          v-if="avatar || newAvatar" 
-          :src="baseUrl + `${newAvatar ? newAvatar : avatar}`" 
+          v-if="avatar" 
+          :src="baseUrl + avatar" 
           alt="avatar" 
           crossorigin="anonymous"
           class="avatar-box__img"
@@ -18,14 +18,10 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia';
-import { useResumeStore } from '@/stores/resume';
 import Box from '@/components/shared/Box.vue';
 import FormAvatar from '@/components/admin/avatar/FormAvatar.vue';
 import SubTitle from '@/components/shared/SubTitle.vue';
 import {baseUrl} from '@/services/urls.js';
-
-const { newAvatar } = storeToRefs(useResumeStore());
 
 defineProps({
   avatar: {

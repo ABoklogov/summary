@@ -54,10 +54,14 @@ const handleFileUpload = () => {
   file.value = avatar.value.files[0];
 };
 
-const submitFile = () => {
+const submitFile = async () => {
   if (!file.value) return;
 
-  storeResume.changeAvatar(file.value);
+  const result = await storeResume.changeAvatar(file.value);
+
+  if (result) {
+    file.value = null;
+  }
 };
 </script>
 

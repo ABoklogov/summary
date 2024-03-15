@@ -1,6 +1,6 @@
 import axios from '@/utils/axios';
 
-// получить все данные
+// получает все данные
 async function fetchAllResume() {
   const { data } = await axios.get('/resume');
   return data;
@@ -14,9 +14,15 @@ async function changeAvatar(formData, id) {
   });
   return data;
 };
+// смена имени, профессии, ссылки на gitHub
+async function changeName(nameData, id) {
+  const { data } = await axios.patch(`/resume/about/${id}/name`, {name: nameData});
+  return data;
+};
 
 const API = {
   fetchAllResume,
   changeAvatar,
+  changeName,
 };
 export default API;

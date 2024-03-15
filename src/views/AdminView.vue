@@ -39,6 +39,9 @@ onBeforeMount(() => {
     height: 100%;
     margin-top: 20px;
   }
+  &:deep .p-tabview-panels {
+    padding: 20px 0;
+  }
 }
 .user-box {
   margin-left: auto;

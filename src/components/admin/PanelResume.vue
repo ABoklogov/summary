@@ -8,14 +8,9 @@
       aria-label="Custom ProgressSpinner"
     />
     <div v-else>
+      <NameBox class="panel-resume__name-box"/>
       <div class="panel-resume__box">
         <AvatarBox :avatar="dataResume.about?.avatar" class="panel-resume__sub-box"/>
-        <NameBox 
-          :name="dataResume.about?.name.ru.name" 
-          :profession="dataResume.about?.name.ru.profession" 
-          :link="dataResume.about?.name.ru.link" 
-          class="panel-resume__sub-box"
-        />
       </div>
     </div>
   </div>
@@ -44,7 +39,8 @@ onBeforeMount(() => {
     display: flex;
     flex-direction: column;
   }
-  &__sub-box {
+  &__sub-box,
+  &__name-box {
     width: 100%;
     margin-bottom: 15px;
   }

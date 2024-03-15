@@ -1,12 +1,62 @@
 <template>
   <CustomForm @submit.prevent="submit" ref="nameForm">
-    <CustomInput
-      name="nameRu"
-      id="nameRu"
-      type="text"
-      autocomplete="name"
-      v-model:value="nameData.ru.name"
-      :rules="nameRules"
+    <div class="form-name-box">
+      <label class="form-name-box__label">
+        RU
+        <CustomInput
+          name="имя"
+          id="имя"
+          type="text"
+          v-model:value="nameData.ru.name"
+          :rules="nameRules"
+        />
+        <CustomInput
+          name="должность"
+          id="должность"
+          type="text"
+          v-model:value="nameData.ru.profession"
+          :rules="professionRules"
+        />
+        <CustomInput
+          name="ссылка"
+          id="ссылка"
+          type="text"
+          v-model:value="nameData.ru.link"
+        />
+      </label>
+      <label class="form-name-box__label form-name-box__label--en">
+        EN
+        <CustomInput
+          name="mame"
+          id="name"
+          type="text"
+          v-model:value="nameData.en.name"
+          :rules="nameRules"
+        />
+        <CustomInput
+          name="profession"
+          id="profession"
+          type="text"
+          v-model:value="nameData.en.profession"
+          :rules="professionRules"
+        />
+        <CustomInput
+          name="link"
+          id="link"
+          type="text"
+          v-model:value="nameData.en.link"
+        />
+      </label>
+    </div>
+
+    <Button
+      type="submit"
+      label="Отправить"
+      aria-label="Отправить данные"
+      icon="pi pi-chevron-right" 
+      iconPos="right"
+      class="form-name-box__btn"
+      :loading="loadingName"
     />
   </CustomForm>
 </template>
@@ -17,25 +67,15 @@ import { useResumeStore } from '@/stores/resume';
 import { ref, computed, onMounted } from 'vue';
 import CustomForm from '@/components/shared/CustomForm.vue';
 import CustomInput from '@/components/shared/CustomInput.vue';
-const { dataResume } = storeToRefs(useResumeStore());
+
+const store = useResumeStore();
+const { dataResume, loadingName } = storeToRefs(useResumeStore());
 
 import {
   isRequired,
   charLimit,
   loginValidation,
 } from '@/utils/validationRules';
-
-defineProps({
-  name: {
-    type: String,
-  },
-  profession: {
-    type: String,
-  },
-  link: {
-    type: String,
-  },
-});
 
 const nameForm = ref(null);
 const nameData = ref({
@@ -58,19 +98,18 @@ onMounted(() => {
 const nameRules = computed(() => {
   return [isRequired, charLimit(15), loginValidation];
 });
+const professionRules = computed(() => {
+  return [isRequired, charLimit(40)];
+});
 
 const submit = async () => {
-  // const isVolidForm = authForm.value.validate();
+  const isVolidForm = nameForm.value.validate();
 
-  // if (!isVolidForm) {
-  //   return;
-  // }
+  if (!isVolidForm) {
+    return;
+  };
 
-  // await store.logIn(formData.value);
-
-  // if (!error.value) {
-  //   authForm.value.reset();
-  // }
+  await store.changeName(nameData.value);
 };
 </script>
 
@@ -78,5 +117,32 @@ const submit = async () => {
 @import '@/assets/scss/variables';
 .input-position {
   margin-top: 10px;
+}
+.form-name-box {
+  display: flex;
+  flex-direction: column;
+  &__label {
+    width: 100%;
+  }
+  &__label--en {
+    margin-top: 20px;
+  }
+  &__btn {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .form-name-box {
+    flex-direction: row;
+    &__label--en {
+      margin-top: 0;
+      margin-left: 20px;
+    }
+    &__btn {
+      width: auto;
+    }
+  }
 }
 </style>
