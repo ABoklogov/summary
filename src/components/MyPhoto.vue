@@ -1,12 +1,10 @@
 <template>
   <div class="photo">
     <img 
-      v-if="avatar" 
-      :src="baseUrl + avatar" 
+      :src="avatar ? baseUrl + avatar : require('@/assets/images/default-avatar.jpg')" 
       alt="avatar" 
       crossorigin="anonymous"
     />
-    <img v-else :src="require('@/assets/images/default-avatar.jpg')" />
   </div>
 </template>
 

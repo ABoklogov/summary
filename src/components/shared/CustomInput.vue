@@ -1,6 +1,6 @@
 <template>
   <div class="input" ref="input">
-    <label :for="$attrs.id">{{ $attrs.id }}</label>
+    <label :for="$attrs.label">{{ $attrs.label }}</label>
     <div class="input__wrapper">
       <InputText
         v-bind="$attrs"

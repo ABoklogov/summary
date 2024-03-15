@@ -4,9 +4,8 @@
 
     <div class="avatar-box__content">
       <div class="avatar-box__img-wrapper">
-        <img 
-          v-if="avatar" 
-          :src="baseUrl + avatar" 
+        <img  
+          :src="avatar ? baseUrl + avatar : require('@/assets/images/default-avatar.jpg')" 
           alt="avatar" 
           crossorigin="anonymous"
           class="avatar-box__img"

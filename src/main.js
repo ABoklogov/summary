@@ -19,7 +19,7 @@ import Card from 'primevue/card';
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
 import FileUpload from 'primevue/fileupload';
-// import InputGroup from 'primevue/inputgroup';
+import Textarea from 'primevue/textarea';
 
 const app = createApp(App);
 const pinia = createPinia();
@@ -38,6 +38,6 @@ app.component('Card', Card);
 app.component('TabView', TabView);
 app.component('TabPanel', TabPanel);
 app.component('FileUpload', FileUpload);
-// app.component('InputGroup', InputGroup);
+app.component('Textarea', Textarea);
 
 app.mount('#app');

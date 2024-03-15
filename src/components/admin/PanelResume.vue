@@ -11,6 +11,7 @@
       <NameBox class="panel-resume__name-box"/>
       <div class="panel-resume__box">
         <AvatarBox :avatar="dataResume.about?.avatar" class="panel-resume__sub-box"/>
+        <AboutBox class="panel-resume__sub-box"/>
       </div>
     </div>
   </div>
@@ -21,6 +22,7 @@ import { useResumeStore } from '@/stores/resume';
 import { storeToRefs } from 'pinia';
 import { onBeforeMount } from 'vue';
 import AvatarBox from '@/components/admin/avatar/AvatarBox.vue';
+import AboutBox from '@/components/admin/about/AboutBox.vue';
 import NameBox from '@/components/admin/name/NameBox.vue';
 
 const storeResume = useResumeStore();

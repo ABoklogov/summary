@@ -1,5 +1,5 @@
 <template>
-  <Box class="name-box">
+  <Box>
     <SubTitle :text="'Смена имени, профессии и ссылки'" :admin="true"/>
     <FormName />
   </Box>
@@ -10,6 +10,3 @@ import Box from '@/components/shared/Box.vue';
 import SubTitle from '@/components/shared/SubTitle.vue';
 import FormName from '@/components/admin/name/FormName.vue';
 </script>
-
-<style scoped lang="scss">
-</style>

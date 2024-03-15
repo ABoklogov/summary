@@ -4,22 +4,25 @@
       <label class="form-name-box__label">
         RU
         <CustomInput
-          name="имя"
-          id="имя"
+          name="ru-name"
+          id="ru-name"
+          label="имя"
           type="text"
           v-model:value="nameData.ru.name"
           :rules="nameRules"
         />
         <CustomInput
-          name="должность"
-          id="должность"
+          name="ru-profession"
+          id="ru-profession"
+          label="должность"
           type="text"
           v-model:value="nameData.ru.profession"
           :rules="professionRules"
         />
         <CustomInput
-          name="ссылка"
-          id="ссылка"
+          name="ru-link"
+          id="ru-link"
+          label="ссылка"
           type="text"
           v-model:value="nameData.ru.link"
         />
@@ -27,22 +30,25 @@
       <label class="form-name-box__label form-name-box__label--en">
         EN
         <CustomInput
-          name="mame"
-          id="name"
+          name="en-mame"
+          id="en-name"
+          label="name"
           type="text"
           v-model:value="nameData.en.name"
           :rules="nameRules"
         />
         <CustomInput
-          name="profession"
-          id="profession"
+          name="en-profession"
+          id="en-profession"
+          label="profession"
           type="text"
           v-model:value="nameData.en.profession"
           :rules="professionRules"
         />
         <CustomInput
-          name="link"
-          id="link"
+          name="en-link"
+          id="en-link"
+          label="link"
           type="text"
           v-model:value="nameData.en.link"
         />

@@ -4,6 +4,7 @@
       <CustomInput
         name="login"
         id="login"
+        label="логин"
         type="text"
         autocomplete="login"
         v-model:value="formData.login"
@@ -14,6 +15,7 @@
       <CustomInput
         name="password"
         id="password"
+        label="пароль"
         :type="showPassword ? 'text' : 'password'"
         autocomplete="current-password"
         :rules="passwordRules"
