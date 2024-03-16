@@ -1,25 +1,30 @@
 <template>
-  <div class="input" ref="input">
+  <div class="textarea" ref="textarea">
     <label :for="$attrs.label">{{ $attrs.label }}</label>
-    <div class="input__wrapper">
-      <InputText
+    <div class="textarea__wrapper">
+      <Textarea 
         v-bind="$attrs"
         :value="value"
         @input="$emit('update:value', $event.target.value)"
         :invalid="!isValid"
         @blur="blurHandler"
       />
-      <div class="input__btn">
-        <slot name="btn"></slot>
-      </div>
     </div>
 
-    <span v-if="!isValid" class="input__error">{{ error }}</span>
+    <span v-if="!isValid" class="textarea__error">{{ error }}</span>
   </div>
 </template>
 
 <script setup>
-import { ref, watch, defineProps, defineEmits, inject, onMounted, onBeforeUnmount } from 'vue';
+import { 
+  ref, 
+  watch, 
+  defineProps, 
+  defineEmits, 
+  inject, 
+  onMounted, 
+  onBeforeUnmount 
+} from 'vue';
 const props = defineProps({
   value: {
     type: String,
@@ -42,7 +47,7 @@ defineOptions({
 const emit = defineEmits(['update:value']);
 const { form, registerInput, unRegisterInput } = inject('form');
 
-const input = ref(null);
+const textarea = ref(null);
 const isFirstInput = ref(true);
 const isValid = ref(true);
 const error = ref('');
@@ -51,7 +56,7 @@ const error = ref('');
 onMounted(() => {
   if (!form.value) return;
   registerInput({
-    input: input.value,
+    input: textarea.value,
     isValid,
     validate,
     reset
@@ -60,7 +65,7 @@ onMounted(() => {
 //при размонтировании компонента удаляем инпут из компонента CustomForm
 onBeforeUnmount(() => {
   if (!form.value) return;
-  unRegisterInput(input.value);
+  unRegisterInput(textarea.value);
 });
 
 watch(
@@ -97,17 +102,17 @@ const reset = () => {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/variables';
-.input {
+.textarea {
   display: flex;
   flex-direction: column;
   width: 100%;
   position: relative;
-  
+
+  & textarea {
+    width: 100%;
+  }
   &__wrapper {
     position: relative;
-  }
-  & input {
-    width: 100%;
   }
   &__error {
     position: absolute;
@@ -115,12 +120,6 @@ const reset = () => {
     left: 0;
     font-size: $fontMicro;
     color: $red;
-  }
-  &__btn {
-    position: absolute;
-    top: 50%;
-    right: 6px;
-    transform: translate(0, -50%);
   }
 }
 </style>

@@ -11,21 +11,25 @@
           v-model:value="nameData.ru.name"
           :rules="nameRules"
         />
-        <CustomInput
-          name="ru-profession"
-          id="ru-profession"
-          label="должность"
-          type="text"
-          v-model:value="nameData.ru.profession"
-          :rules="professionRules"
-        />
-        <CustomInput
-          name="ru-link"
-          id="ru-link"
-          label="ссылка"
-          type="text"
-          v-model:value="nameData.ru.link"
-        />
+        <div class="form-name-box__input">
+          <CustomInput
+            name="ru-profession"
+            id="ru-profession"
+            label="должность"
+            type="text"
+            v-model:value="nameData.ru.profession"
+            :rules="professionRules"
+          />
+        </div>
+        <div class="form-name-box__input">
+          <CustomInput
+            name="ru-link"
+            id="ru-link"
+            label="ссылка"
+            type="text"
+            v-model:value="nameData.ru.link"
+          />
+        </div>
       </label>
       <label class="form-name-box__label form-name-box__label--en">
         EN
@@ -37,21 +41,25 @@
           v-model:value="nameData.en.name"
           :rules="nameRules"
         />
-        <CustomInput
-          name="en-profession"
-          id="en-profession"
-          label="profession"
-          type="text"
-          v-model:value="nameData.en.profession"
-          :rules="professionRules"
-        />
-        <CustomInput
-          name="en-link"
-          id="en-link"
-          label="link"
-          type="text"
-          v-model:value="nameData.en.link"
-        />
+        <div class="form-name-box__input">
+          <CustomInput
+            name="en-profession"
+            id="en-profession"
+            label="profession"
+            type="text"
+            v-model:value="nameData.en.profession"
+            :rules="professionRules"
+          />
+        </div>
+        <div class="form-name-box__input">
+          <CustomInput
+            name="en-link"
+            id="en-link"
+            label="link"
+            type="text"
+            v-model:value="nameData.en.link"
+          />
+        </div>
       </label>
     </div>
 
@@ -121,14 +129,15 @@ const submit = async () => {
 
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
-.input-position {
-  margin-top: 10px;
-}
 .form-name-box {
   display: flex;
   flex-direction: column;
+
   &__label {
     width: 100%;
+  }
+  &__input {
+    margin-top: 10px;
   }
   &__label--en {
     margin-top: 20px;

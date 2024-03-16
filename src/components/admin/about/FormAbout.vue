@@ -1,20 +1,27 @@
 <template>
-  <CustomForm @submit.prevent="submit" ref="aboutForm">
-    <Textarea 
-      v-model="aboutData.ru" 
-      rows="5" 
-      cols="30" 
+  <CustomForm @submit.prevent="submit" ref="aboutForm" class="form-about">
+    <CustomTextaria
       name="ru-about"
       id="ru-about"
+      label="RU"
+      type="text"
+      v-model:value="aboutData.ru"
+      :rules="aboutRules"
+      variant="filled"
+      rows="5"
     />
-    <Textarea 
-      v-model="aboutData.en" 
-      rows="5" 
-      cols="30" 
-      name="en-about"
-      id="en-about"
-    />
-
+    <div class="form-about__textaria">
+      <CustomTextaria
+        name="en-about"
+        id="en-about"
+        label="EN"
+        type="text"
+        v-model:value="aboutData.en"
+        :rules="aboutRules"
+        variant="filled"
+        rows="5"
+      />
+    </div>
     <Button
       type="submit"
       label="Отправить"
@@ -32,6 +39,7 @@ import { storeToRefs } from 'pinia';
 import { useResumeStore } from '@/stores/resume';
 import { ref, computed, onMounted } from 'vue';
 import CustomForm from '@/components/shared/CustomForm.vue';
+import CustomTextaria from '@/components/shared/CustomTextaria.vue';
 
 const store = useResumeStore();
 const { dataResume, loadingAbout } = storeToRefs(useResumeStore());
@@ -39,7 +47,6 @@ const { dataResume, loadingAbout } = storeToRefs(useResumeStore());
 import {
   isRequired,
   charLimit,
-  loginValidation,
 } from '@/utils/validationRules';
 
 const aboutForm = ref(null);
@@ -48,13 +55,32 @@ const aboutData = ref({
   en: ''
 });
 
-const submit = async () => {
-  // const isVolidForm = nameForm.value.validate();
+onMounted(() => {
+  aboutData.value = dataResume.value.about?.about;
+});
 
-  // if (!isVolidForm) {
-  //   return;
-  // };
+const aboutRules = computed(() => {
+  return [isRequired, charLimit(200)];
+});
+
+const submit = async () => {
+  const isVolidForm = aboutForm.value.validate();
+  if (!isVolidForm) {
+    return;
+  };
+  console.log(aboutData.value);
 
   // await store.changeName(nameData.value);
 };
 </script>
+
+<style lang="scss" scoped>
+.form-about {
+  &__textaria {
+    margin-top: 10px;
+  }
+  &__btn {
+    margin-top: 10px;
+  }
+}
+</style>

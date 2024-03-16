@@ -40,7 +40,7 @@ onBeforeMount(() => {
     margin-top: 20px;
   }
   &:deep .p-tabview-panels {
-    padding: 20px 0;
+    padding: 10px 0;
   }
 }
 .user-box {

@@ -111,6 +111,8 @@ export const useAuthStore = defineStore(
         setLoading(false);
         setError(error.message);
         toast.add({ severity: 'error', summary: 'Ошибка', detail: error.message, life: 5000 });
+        setUser('');
+        setToken('');
         router.push({ name: 'adminAuthPage' });
       }
     }
