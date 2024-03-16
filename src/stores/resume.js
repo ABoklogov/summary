@@ -12,12 +12,15 @@ export const useResumeStore = defineStore(
     const dataResume = ref(null);
     const loading = ref(false);
     const error = ref('');
-    // аватар
+    // avatar
     const loadingAvatar = ref(false);
     const errorAvatar = ref('');
-    // Имя, профессия, ссылка на gitHub
+    // name, profession, link
     const loadingName = ref(false);
     const errorName = ref('');
+    // about
+    const loadingAbout = ref(false);
+    const errorAbout = ref('');
 
     // общие данные 
     function setDataResume(data) {
@@ -29,19 +32,26 @@ export const useResumeStore = defineStore(
     function setError(payload) {
       error.value = payload;
     };
-    // аватар
+    // avatar
     function setLoadingAvatar(payload) {
       loadingAvatar.value = payload;
     };
     function setErrorAvatar(payload) {
       errorAvatar.value = payload;
     };
-    // Имя
+    // name
     function setLoadingName(payload) {
       loadingName.value = payload;
     };
     function setErrorName(payload) {
       errorName.value = payload;
+    };
+    // about
+    function setLoadingAbout(payload) {
+      loadingAbout.value = payload;
+    };
+    function setErrorAbout(payload) {
+      errorAbout.value = payload;
     };
 
     async function getDataResume() {
@@ -139,6 +149,42 @@ export const useResumeStore = defineStore(
       }
     };
 
+    async function changeAbout(aboutData) {
+      try {
+        setLoadingAbout(true);
+        const { _id } = dataResume.value.about;
+   
+        const { data } = await API.changeAbout(aboutData, _id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingAbout(false);
+          setErrorAbout('');
+
+          // меняем ключ about в стейте
+          const newData = {...dataResume.value}
+          newData.about.about = data.result.about;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно изменены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingAbout(false);
+        setErrorAbout(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataResume,
       loading,
@@ -148,6 +194,8 @@ export const useResumeStore = defineStore(
       changeAvatar,
       loadingName,
       changeName,
+      loadingAbout,
+      changeAbout,
     };
   }
 );

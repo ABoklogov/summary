@@ -29,8 +29,8 @@
       icon="pi pi-chevron-right" 
       iconPos="right"
       class="form-about__btn"
+      :loading="loadingAbout"
     />
-      <!-- :loading="loadingName" -->
   </CustomForm>
 </template>
 
@@ -68,9 +68,8 @@ const submit = async () => {
   if (!isVolidForm) {
     return;
   };
-  console.log(aboutData.value);
 
-  // await store.changeName(nameData.value);
+  await store.changeAbout(aboutData.value);
 };
 </script>
 
@@ -80,7 +79,7 @@ const submit = async () => {
     margin-top: 10px;
   }
   &__btn {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 }
 </style>

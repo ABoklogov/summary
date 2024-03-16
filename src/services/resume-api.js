@@ -19,10 +19,16 @@ async function changeName(nameData, id) {
   const { data } = await axios.patch(`/resume/about/${id}/name`, {name: nameData});
   return data;
 };
+// смена about
+async function changeAbout(aboutData, id) {
+  const { data } = await axios.patch(`/resume/about/${id}/about`, {about: aboutData});
+  return data;
+};
 
 const API = {
   fetchAllResume,
   changeAvatar,
   changeName,
+  changeAbout,
 };
 export default API;
