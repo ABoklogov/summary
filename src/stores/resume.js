@@ -21,6 +21,9 @@ export const useResumeStore = defineStore(
     // about
     const loadingAbout = ref(false);
     const errorAbout = ref('');
+    // city
+    const loadingCity = ref(false);
+    const errorCity = ref('');
 
     // общие данные 
     function setDataResume(data) {
@@ -52,6 +55,13 @@ export const useResumeStore = defineStore(
     };
     function setErrorAbout(payload) {
       errorAbout.value = payload;
+    };
+    // city
+    function setLoadingCity(payload) {
+      loadingCity.value = payload;
+    };
+    function setErrorCity(payload) {
+      errorCity.value = payload;
     };
 
     async function getDataResume() {
@@ -185,6 +195,42 @@ export const useResumeStore = defineStore(
       }
     };
 
+    async function changeCity(cityData) {
+      try {
+        setLoadingCity(true);
+        const { _id } = dataResume.value.contacts;
+   
+        const { data } = await API.changeCity(cityData, _id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingCity(false);
+          setErrorCity('');
+
+          // меняем ключ city в стейте
+          const newData = {...dataResume.value}
+          newData.contacts.city = data.result.city;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно изменены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingCity(false);
+        setErrorCity(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataResume,
       loading,
@@ -196,6 +242,8 @@ export const useResumeStore = defineStore(
       changeName,
       loadingAbout,
       changeAbout,
+      loadingCity,
+      changeCity,
     };
   }
 );

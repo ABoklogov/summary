@@ -33,7 +33,7 @@ onBeforeMount(() => {
 .admin-view {
   background-color: #fff;
   min-height: 500px;
-  padding: 20px $contentPaddingMobile;
+  // padding: 0 $contentPaddingMobile;
 
   &__content {
     height: 100%;
@@ -47,10 +47,16 @@ onBeforeMount(() => {
   margin-left: auto;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
   .admin-view {
     min-height: 700px;
-    padding: 50px $contentPaddingTablete;
+    padding: 0 $contentPaddingTablete;
   }
 }
+// @media screen and (min-width: 768px) {
+//   .admin-view {
+//     min-height: 700px;
+//     padding: 30px $contentPaddingTablete;
+//   }
+// }
 </style>

@@ -13,7 +13,7 @@
     </label>
 
     <Message>
-      Картинка должна быть квадратная
+      Картинка должна быть квадратная.<br/>Максимальный размер файла 1024 kB.
     </Message>
     
     <Button 
@@ -104,7 +104,7 @@ const submitFile = async () => {
 }
 @media screen and (min-width: 1024px) {
   .p-button {
-    width: 210px;
+    width: 100%;
   }
 }
 @media screen and (min-width: 1440px) {

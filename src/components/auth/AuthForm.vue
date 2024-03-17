@@ -22,7 +22,7 @@
         v-model:value="formData.password"
       >
         <template #btn>
-          <CustomButton @click="toggleShowPassword">
+          <CustomButton @click="toggleShowPassword" :style="{padding: '6px'}">
             <IconViewNotPassword v-if="!showPassword" />
             <IconViewPassword v-else />
           </CustomButton>

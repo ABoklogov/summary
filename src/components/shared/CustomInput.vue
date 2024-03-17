@@ -119,7 +119,7 @@ const reset = () => {
   &__btn {
     position: absolute;
     top: 50%;
-    right: 6px;
+    right: 0;
     transform: translate(0, -50%);
   }
 }

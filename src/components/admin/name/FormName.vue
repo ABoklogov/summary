@@ -110,10 +110,10 @@ onMounted(() => {
 });
 
 const nameRules = computed(() => {
-  return [isRequired, charLimit(15), loginValidation];
+  return [isRequired, charLimit(30), loginValidation];
 });
 const professionRules = computed(() => {
-  return [isRequired, charLimit(40)];
+  return [isRequired, charLimit(50)];
 });
 
 const submit = async () => {

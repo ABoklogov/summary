@@ -24,11 +24,17 @@ async function changeAbout(aboutData, id) {
   const { data } = await axios.patch(`/resume/about/${id}/about`, {about: aboutData});
   return data;
 };
+// смена city
+async function changeCity(cityData, id) {
+  const { data } = await axios.patch(`/resume/contacts/${id}/city`, {city: cityData});
+  return data;
+};
 
 const API = {
   fetchAllResume,
   changeAvatar,
   changeName,
   changeAbout,
+  changeCity,
 };
 export default API;

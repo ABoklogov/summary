@@ -10,8 +10,13 @@
     <div v-else>
       <NameBox class="panel-resume__name-box"/>
       <div class="panel-resume__box">
-        <AvatarBox :avatar="dataResume.about?.avatar" class="panel-resume__sub-box"/>
-        <AboutBox class="panel-resume__sub-box"/>
+        <AvatarBox class="panel-resume__two-box"/>
+        <AboutBox class="panel-resume__two-box"/>
+      </div>
+      <div class="panel-resume__box">
+        <ContactsBox class="panel-resume__three-box"/>
+        <SocialBox class="panel-resume__three-box"/>
+        <EducationBox class="panel-resume__three-box"/>
       </div>
     </div>
   </div>
@@ -24,9 +29,12 @@ import { onBeforeMount } from 'vue';
 import AvatarBox from '@/components/admin/avatar/AvatarBox.vue';
 import AboutBox from '@/components/admin/about/AboutBox.vue';
 import NameBox from '@/components/admin/name/NameBox.vue';
+import ContactsBox from '@/components/admin/contacts/ContactsBox.vue';
+import SocialBox from '@/components/admin/social/SocialBox.vue';
+import EducationBox from '@/components/admin/education/EducationBox.vue';
 
 const storeResume = useResumeStore();
-const { loading, dataResume } = storeToRefs(useResumeStore());
+const { loading } = storeToRefs(useResumeStore());
 
 // запрашиваем данные по резюме
 onBeforeMount(() => {
@@ -41,8 +49,9 @@ onBeforeMount(() => {
     display: flex;
     flex-direction: column;
   }
-  &__sub-box,
-  &__name-box {
+  &__two-box,
+  &__name-box,
+  &__three-box {
     width: 100%;
     margin-bottom: 15px;
   }
@@ -53,8 +62,12 @@ onBeforeMount(() => {
       flex-direction: row;
       margin: -15px;
     }
-    &__sub-box {
+    &__two-box {
       width: calc((100% - 4 * 15px) / 2);
+      margin: 15px;
+    }
+    &__three-box {
+      width: calc((100% - 6 * 15px) / 3);
       margin: 15px;
     }
   }

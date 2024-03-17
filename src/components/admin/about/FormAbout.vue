@@ -8,7 +8,7 @@
       v-model:value="aboutData.ru"
       :rules="aboutRules"
       variant="filled"
-      rows="5"
+      rows="3"
     />
     <div class="form-about__textaria">
       <CustomTextaria
@@ -19,7 +19,7 @@
         v-model:value="aboutData.en"
         :rules="aboutRules"
         variant="filled"
-        rows="5"
+        rows="3"
       />
     </div>
     <Button
