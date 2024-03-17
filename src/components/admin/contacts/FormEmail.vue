@@ -1,27 +1,27 @@
 <template>
   <CustomForm 
     @submit.prevent="submit" 
-    ref="cityForm"
-    class="city-form"
+    ref="emailForm"
+    class="email-form"
   >
-    <div class="city-form__sub-box">
-      <span class="city-form__title">город</span>
+    <div class="email-form__sub-box">
+      <span class="email-form__title">эл. почта</span>
       <CustomInput
-        name="ru-city"
-        id="ru-city"
-        label="RU"
+        name="link"
+        id="link"
+        label="адрес"
         type="text"
-        v-model:value="cityData.ru"
-        :rules="cityRules"
+        v-model:value="emailData.link"
+        :rules="emailRules"
       />
-      <div class="city-form__input">
+      <div class="email-form__input">
         <CustomInput
-          name="en-city"
-          id="en-city"
-          label="EN"
+          name="text"
+          id="text"
+          label="текст"
           type="text"
-          v-model:value="cityData.en"
-          :rules="cityRules"
+          v-model:value="emailData.text"
+          :rules="emailRules"
         />
       </div>
     </div>
@@ -31,8 +31,8 @@
       aria-label="Отправить данные"
       icon="pi pi-chevron-right" 
       iconPos="right"
-      class="city-form__btn"
-      :loading="loadingCity"
+      class="email-form__btn"
+      :loading="loadingEmail"
     />
   </CustomForm>
 </template>
@@ -45,41 +45,41 @@ import CustomForm from '@/components/shared/CustomForm.vue';
 import CustomInput from '@/components/shared/CustomInput.vue';
 
 const store = useResumeStore();
-const { dataResume, loadingCity } = storeToRefs(useResumeStore());
+const { dataResume, loadingEmail } = storeToRefs(useResumeStore());
 
 import {
   isRequired,
   charLimit,
 } from '@/utils/validationRules';
 
-const cityForm = ref(null);
-const cityData = ref({
-  ru: '',
-  en: ''
+const emailForm = ref(null);
+const emailData = ref({
+  link: '',
+  text: ''
 });
 
 onMounted(() => {
-  cityData.value = dataResume.value.contacts?.city;
+  emailData.value = dataResume.value.contacts?.email;
 });
 
-const cityRules = computed(() => {
-  return [isRequired, charLimit(30)];
+const emailRules = computed(() => {
+  return [isRequired, charLimit(40)];
 });
 
 const submit = async () => {
-  const isVolidForm = cityForm.value.validate();
+  const isVolidForm = emailForm.value.validate();
 
   if (!isVolidForm) {
     return;
   };
 
-  await store.changeCity(cityData.value);
+  await store.changeEmail(emailData.value);
 };
 </script>
 
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
-.city-form {
+.email-form {
   display: flex;
   justify-content: space-between;
 

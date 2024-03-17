@@ -24,6 +24,9 @@ export const useResumeStore = defineStore(
     // city
     const loadingCity = ref(false);
     const errorCity = ref('');
+    // email
+    const loadingEmail = ref(false);
+    const errorEmail = ref('');
 
     // общие данные 
     function setDataResume(data) {
@@ -62,6 +65,13 @@ export const useResumeStore = defineStore(
     };
     function setErrorCity(payload) {
       errorCity.value = payload;
+    };
+    // email
+    function setLoadingEmail(payload) {
+      loadingEmail.value = payload;
+    };
+    function setErrorEmail(payload) {
+      errorEmail.value = payload;
     };
 
     async function getDataResume() {
@@ -231,6 +241,43 @@ export const useResumeStore = defineStore(
       }
     };
 
+    async function changeEmail(emailData) {
+      try {
+        setLoadingEmail(true);
+        const { _id } = dataResume.value.contacts;
+   
+        const { data } = await API.changeEmail(emailData, _id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingEmail(false);
+          setErrorEmail('');
+
+          // меняем ключ email в стейте
+          const newData = {...dataResume.value}
+          newData.contacts.email = data.result.email;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно изменены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingEmail(false);
+        setErrorEmail(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+    
+
     return {
       dataResume,
       loading,
@@ -244,6 +291,8 @@ export const useResumeStore = defineStore(
       changeAbout,
       loadingCity,
       changeCity,
+      loadingEmail,
+      changeEmail,
     };
   }
 );
