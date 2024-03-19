@@ -34,6 +34,11 @@ async function changeEmail(emailData, id) {
   const { data } = await axios.patch(`/resume/contacts/${id}/email`, {email: emailData});
   return data;
 };
+// смена phone
+async function changePhone(phoneData, id) {
+  const { data } = await axios.patch(`/resume/contacts/${id}/phone`, {phone: phoneData});
+  return data;
+};
 
 const API = {
   fetchAllResume,
@@ -42,5 +47,6 @@ const API = {
   changeAbout,
   changeCity,
   changeEmail,
+  changePhone,
 };
 export default API;

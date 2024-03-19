@@ -1,27 +1,27 @@
 <template>
   <CustomForm 
     @submit.prevent="submit" 
-    ref="emailForm"
-    class="email-form"
+    ref="phoneForm"
+    class="phone-form"
   >
-    <div class="email-form__sub-box">
-      <span class="email-form__title">эл. почта</span>
+    <div class="phone-form__sub-box">
+      <span class="phone-form__title">телефон</span>
       <CustomInput
         name="link"
         id="link"
         label="адрес"
         type="text"
-        v-model:value="emailData.link"
-        :rules="emailRules"
+        v-model:value="phoneData.link"
+        :rules="phoneRules"
       />
-      <div class="email-form__input">
+      <div class="phone-form__input">
         <CustomInput
           name="text"
           id="text"
           label="текст"
           type="text"
-          v-model:value="emailData.text"
-          :rules="emailRules"
+          v-model:value="phoneData.text"
+          :rules="phoneRules"
         />
       </div>
     </div>
@@ -31,8 +31,8 @@
       aria-label="Отправить данные"
       icon="pi pi-chevron-right" 
       iconPos="right"
-      class="email-form__btn"
-      :loading="loadingEmail"
+      class="phone-form__btn"
+      :loading="loadingPhone"
     />
   </CustomForm>
 </template>
@@ -45,42 +45,42 @@ import CustomForm from '@/components/shared/CustomForm.vue';
 import CustomInput from '@/components/shared/CustomInput.vue';
 
 const store = useResumeStore();
-const { dataResume, loadingEmail } = storeToRefs(useResumeStore());
+const { dataResume, loadingPhone } = storeToRefs(useResumeStore());
 
 import {
   isRequired,
   charLimit,
-  emailValidation,
+  phoneValidation,
 } from '@/utils/validationRules';
 
-const emailForm = ref(null);
-const emailData = ref({
+const phoneForm = ref(null);
+const phoneData = ref({
   link: '',
   text: ''
 });
 
 onMounted(() => {
-  emailData.value = dataResume.value.contacts?.email;
+  phoneData.value = dataResume.value.contacts?.phone;
 });
 
-const emailRules = computed(() => {
-  return [isRequired, charLimit(40), emailValidation];
+const phoneRules = computed(() => {
+  return [isRequired, charLimit(18), phoneValidation];
 });
 
 const submit = async () => {
-  const isVolidForm = emailForm.value.validate();
+  const isVolidForm = phoneForm.value.validate();
 
   if (!isVolidForm) {
     return;
   };
 
-  await store.changeEmail(emailData.value);
+  await store.changePhone(phoneData.value);
 };
 </script>
 
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
-.email-form {
+.phone-form {
   display: flex;
   justify-content: space-between;
 

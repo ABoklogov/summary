@@ -28,6 +28,7 @@
             label="ссылка"
             type="text"
             v-model:value="nameData.ru.link"
+            :rules="urlRules"
           />
         </div>
       </label>
@@ -58,6 +59,7 @@
             label="link"
             type="text"
             v-model:value="nameData.en.link"
+            :rules="urlRules"
           />
         </div>
       </label>
@@ -89,6 +91,7 @@ import {
   isRequired,
   charLimit,
   loginValidation,
+  urlValidation,
 } from '@/utils/validationRules';
 
 const nameForm = ref(null);
@@ -114,6 +117,9 @@ const nameRules = computed(() => {
 });
 const professionRules = computed(() => {
   return [isRequired, charLimit(50)];
+});
+const urlRules = computed(() => {
+  return [isRequired, charLimit(50), urlValidation];
 });
 
 const submit = async () => {

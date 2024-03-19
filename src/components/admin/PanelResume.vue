@@ -9,14 +9,17 @@
     />
     <div v-else>
       <NameBox class="panel-resume__name-box"/>
+
       <div class="panel-resume__box">
         <AvatarBox class="panel-resume__two-box"/>
         <AboutBox class="panel-resume__two-box"/>
       </div>
+
+      <ContactsBox class="panel-resume__contacts-box"/>
+
       <div class="panel-resume__box">
-        <ContactsBox class="panel-resume__three-box"/>
-        <SocialBox class="panel-resume__three-box"/>
-        <EducationBox class="panel-resume__three-box"/>
+        <SocialBox class="panel-resume__two-box"/>
+        <EducationBox class="panel-resume__two-box"/>
       </div>
     </div>
   </div>
@@ -50,10 +53,12 @@ onBeforeMount(() => {
     flex-direction: column;
   }
   &__two-box,
-  &__name-box,
-  &__three-box {
+  &__name-box {
     width: 100%;
     margin-bottom: 15px;
+  }
+  &__contacts-box {
+    margin: 15px 0;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -66,10 +71,10 @@ onBeforeMount(() => {
       width: calc((100% - 4 * 15px) / 2);
       margin: 15px;
     }
-    &__three-box {
-      width: calc((100% - 6 * 15px) / 3);
-      margin: 15px;
-    }
+    // &__three-box {
+    //   width: calc((100% - 6 * 15px) / 3);
+    //   margin: 15px;
+    // }
   }
 }
 </style>
