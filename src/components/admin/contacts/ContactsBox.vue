@@ -8,7 +8,7 @@
       </div>
       <div class="contacts__sub-box contacts__sub-box--two">
         <FormPhone />
-        <FormPhone class="contacts__phone" />
+        <FormTelegram class="contacts__telegram" />
       </div>
     </div>
   </Box>
@@ -20,6 +20,7 @@ import SubTitle from '@/components/shared/SubTitle.vue';
 import FormCity from '@/components/admin/contacts/FormCity.vue';
 import FormEmail from '@/components/admin/contacts/FormEmail.vue';
 import FormPhone from '@/components/admin/contacts/FormPhone.vue';
+import FormTelegram from '@/components/admin/contacts/FormTelegram.vue';
 </script>
 
 <style scoped lang="scss">
@@ -31,7 +32,7 @@ import FormPhone from '@/components/admin/contacts/FormPhone.vue';
     width: 100%;
   }
   &__email,
-  &__phone,
+  &__telegram,
   &__sub-box--two {
     margin-top: 20px;
   }

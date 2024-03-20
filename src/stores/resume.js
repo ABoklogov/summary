@@ -30,6 +30,9 @@ export const useResumeStore = defineStore(
     // phone
     const loadingPhone = ref(false);
     const errorPhone = ref('');
+    // telegram
+    const loadingTelegram = ref(false);
+    const errorTelegram = ref('');
 
     // общие данные 
     function setDataResume(data) {
@@ -82,6 +85,13 @@ export const useResumeStore = defineStore(
     };
     function setErrorPhone(payload) {
       errorPhone.value = payload;
+    };
+    // telegram
+    function setLoadingTelegram(payload) {
+      loadingTelegram.value = payload;
+    };
+    function setErrorTelegram(payload) {
+      errorTelegram.value = payload;
     };
 
     async function getDataResume() {
@@ -323,6 +333,42 @@ export const useResumeStore = defineStore(
       }
     };
 
+    async function changeTelegram(telegramData) {
+      try {
+        setLoadingTelegram(true);
+        const { _id } = dataResume.value.contacts;
+   
+        const { data } = await API.changeTelegram(telegramData, _id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingTelegram(false);
+          setErrorTelegram('');
+
+          // меняем ключ telegram в стейте
+          const newData = {...dataResume.value}
+          newData.contacts.telegram = data.result.telegram;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно изменены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingTelegram(false);
+        setErrorTelegram(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataResume,
       loading,
@@ -340,6 +386,8 @@ export const useResumeStore = defineStore(
       changeEmail,
       loadingPhone,
       changePhone,
+      loadingTelegram,
+      changeTelegram,
     };
   }
 );

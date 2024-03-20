@@ -39,6 +39,11 @@ async function changePhone(phoneData, id) {
   const { data } = await axios.patch(`/resume/contacts/${id}/phone`, {phone: phoneData});
   return data;
 };
+// смена telegram
+async function changeTelegram(telegramData, id) {
+  const { data } = await axios.patch(`/resume/contacts/${id}/telegram`, {telegram: telegramData});
+  return data;
+};
 
 const API = {
   fetchAllResume,
@@ -48,5 +53,6 @@ const API = {
   changeCity,
   changeEmail,
   changePhone,
+  changeTelegram,
 };
 export default API;
