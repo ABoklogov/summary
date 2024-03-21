@@ -21,6 +21,16 @@ import TabPanel from 'primevue/tabpanel';
 import FileUpload from 'primevue/fileupload';
 import Textarea from 'primevue/textarea';
 
+import Column from 'primevue/column';
+import Toolbar from 'primevue/toolbar';
+import DataTable from 'primevue/datatable';
+import IconField from 'primevue/iconfield';
+import InputIcon from 'primevue/inputicon';
+import Dialog from 'primevue/dialog';
+import Dropdown from 'primevue/dropdown';
+import RadioButton from 'primevue/radiobutton';
+import InputNumber from 'primevue/inputnumber';
+
 const app = createApp(App);
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
@@ -39,5 +49,14 @@ app.component('TabView', TabView);
 app.component('TabPanel', TabPanel);
 app.component('FileUpload', FileUpload);
 app.component('Textarea', Textarea);
+app.component('Column', Column);
+app.component('Toolbar', Toolbar);
+app.component('DataTable', DataTable);
+app.component('IconField', IconField);
+app.component('InputIcon', InputIcon);
+app.component('Dialog', Dialog);
+app.component('Dropdown', Dropdown);
+app.component('RadioButton', RadioButton);
+app.component('InputNumber', InputNumber);
 
 app.mount('#app');

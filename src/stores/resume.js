@@ -33,6 +33,9 @@ export const useResumeStore = defineStore(
     // telegram
     const loadingTelegram = ref(false);
     const errorTelegram = ref('');
+    // social
+    const loadingSocial = ref(false);
+    const errorSocial = ref('');
 
     // общие данные 
     function setDataResume(data) {
@@ -92,6 +95,13 @@ export const useResumeStore = defineStore(
     };
     function setErrorTelegram(payload) {
       errorTelegram.value = payload;
+    };
+    // social
+    function setLoadingSocial(payload) {
+      loadingSocial.value = payload;
+    };
+    function setErrorSocial(payload) {
+      errorSocial.value = payload;
     };
 
     async function getDataResume() {
@@ -369,6 +379,52 @@ export const useResumeStore = defineStore(
       }
     };
 
+    async function changeSocial(socialData) {
+      try {
+        setLoadingSocial(true);
+        const { _id } = socialData;
+        delete socialData._id;
+
+        const { data } = await API.changeSocial(socialData, _id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingSocial(false);
+          setErrorSocial('');
+
+          // Находим нужный элемент в social и заменяем его
+          const newSocial = dataResume.value.social.reduce((acc, item) => {
+            if (item._id === data.result._id) {
+              acc.push(data.result);
+            } else {
+              acc.push(item);
+            }
+            return acc;
+          }, []);
+          
+          const newData = {...dataResume.value};
+          newData.social = newSocial;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно изменены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingSocial(false);
+        setErrorSocial(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataResume,
       loading,
@@ -388,6 +444,8 @@ export const useResumeStore = defineStore(
       changePhone,
       loadingTelegram,
       changeTelegram,
+      loadingSocial,
+      changeSocial,
     };
   }
 );

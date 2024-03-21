@@ -8,19 +8,16 @@
       aria-label="Custom ProgressSpinner"
     />
     <div v-else>
-      <NameBox class="panel-resume__name-box"/>
+      <NameBox class="panel-resume__one-box"/>
 
       <div class="panel-resume__box">
         <AvatarBox class="panel-resume__two-box"/>
         <AboutBox class="panel-resume__two-box"/>
       </div>
 
-      <ContactsBox class="panel-resume__contacts-box"/>
-
-      <div class="panel-resume__box">
-        <SocialBox class="panel-resume__two-box"/>
-        <EducationBox class="panel-resume__two-box"/>
-      </div>
+      <ContactsBox class="panel-resume__one-box panel-resume__one-box--contacts"/>
+      <SocialBox class="panel-resume__one-box"/>
+      <EducationBox class="panel-resume__one-box"/>
     </div>
   </div>
 </template>
@@ -53,11 +50,11 @@ onBeforeMount(() => {
     flex-direction: column;
   }
   &__two-box,
-  &__name-box {
+  &__one-box {
     width: 100%;
     margin-bottom: 15px;
   }
-  &__contacts-box {
+  &__one-box--contacts {
     margin: 15px 0;
   }
 }

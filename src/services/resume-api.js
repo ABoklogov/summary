@@ -44,6 +44,11 @@ async function changeTelegram(telegramData, id) {
   const { data } = await axios.patch(`/resume/contacts/${id}/telegram`, {telegram: telegramData});
   return data;
 };
+// смена social
+async function changeSocial(socialData, id) {
+  const { data } = await axios.put(`/resume/social/${id}`, socialData);
+  return data;
+};
 
 const API = {
   fetchAllResume,
@@ -54,5 +59,6 @@ const API = {
   changeEmail,
   changePhone,
   changeTelegram,
+  changeSocial
 };
 export default API;
