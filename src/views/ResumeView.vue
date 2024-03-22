@@ -25,7 +25,7 @@
         <TechSkillsBox class="tech-skills-box--position" />
       </div>
       <div class="resume__right">
-        <EducationBox class="education-box--position" />
+        <EducationBox :education="dataResume.education" class="education-box--position" />
         <AboutBox 
           :about="dataResume.about?.about"
           :contacts="dataResume.contacts"

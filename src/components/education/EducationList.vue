@@ -1,15 +1,34 @@
 <template>
   <ul class="education-list">
-    <li v-for="{ institution, speciality } in list" :key="institution" class="education-list__item">
-      <span>{{ institution }}</span> - <span>{{ speciality }}</span>
+    <li 
+      v-for="{ institution, speciality } in education" 
+      :key="institution.en" 
+      class="education-list__item"
+    >
+      <span>
+        {{ language === 'ru' ? institution.ru : institution.en }}
+        </span> - <span>
+        {{ language === 'en' ? speciality.en : speciality.en }}
+      </span>
     </li>
   </ul>
 </template>
 
 <script setup>
 defineProps({
-  list: {
+  education: {
     type: Array,
+    validator(arr) {
+      return arr.every(obj => {
+        return Object.values(obj).every(subObj => {
+          return Object.values(subObj).every(el => typeof el === 'string');
+        })
+      });
+    },
+    required: true
+  },
+  language: {
+    type: String,
     required: true
   }
 });

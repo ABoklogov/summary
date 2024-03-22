@@ -1,7 +1,7 @@
 <template>
   <div class="education-box">
     <SubTitle :text="language === 'ru' ? 'Образование' : 'Education'" />
-    <EducationList :list="language === 'ru' ? education.ru : education.en" />
+    <EducationList :education="education" :language="language" />
   </div>
 </template>
 
@@ -9,7 +9,20 @@
 import { storeToRefs } from 'pinia';
 import SubTitle from '@/components/shared/SubTitle.vue';
 import EducationList from '@/components/education/EducationList.vue';
-import { education } from '@/services/dataResume.js';
 import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
+
+defineProps({
+  education: {
+    type: Array,
+    validator(arr) {
+      return arr.every(obj => {
+        return Object.values(obj).every(subObj => {
+          return Object.values(subObj).every(el => typeof el === 'string');
+        })
+      });
+    },
+    required: true
+  },
+});
 </script>

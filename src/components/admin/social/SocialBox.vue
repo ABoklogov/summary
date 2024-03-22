@@ -44,7 +44,7 @@
       <Dialog 
         v-model:visible="deleteProductDialog" 
         :style="{width: '450px'}" 
-        header="Confirm" 
+        header="Удаление" 
         :modal="true"
       >
         <div class="social-content__delete-text">

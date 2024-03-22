@@ -59,6 +59,21 @@ async function removeSocial(id) {
   const { data } = await axios.delete(`/resume/social/${id}`);
   return data;
 };
+// изменение education
+async function changeEducation(educationData, id) {
+  const { data } = await axios.put(`/resume/education/${id}`, educationData);
+  return data;
+};
+// добавление education
+// async function addEducation(educationData) {
+//   const { data } = await axios.post('/resume/education', educationData);
+//   return data;
+// };
+// удаление education
+// async function removeEducation(id) {
+//   const { data } = await axios.delete(`/resume/education/${id}`);
+//   return data;
+// };
 
 const API = {
   fetchAllResume,
@@ -72,5 +87,8 @@ const API = {
   changeSocial,
   addSocial,
   removeSocial,
+  changeEducation,
+  // addEducation,
+  // removeEducation,
 };
 export default API;

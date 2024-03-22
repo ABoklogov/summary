@@ -36,6 +36,9 @@ export const useResumeStore = defineStore(
     // social
     const loadingSocial = ref(false);
     const errorSocial = ref('');
+    // education
+    const loadingEducation = ref(false);
+    const errorEducation = ref('');
 
     // общие данные 
     function setDataResume(data) {
@@ -102,6 +105,13 @@ export const useResumeStore = defineStore(
     };
     function setErrorSocial(payload) {
       errorSocial.value = payload;
+    };
+    // education
+    function setLoadingEducation(payload) {
+      loadingEducation.value = payload;
+    };
+    function setErrorEducation(payload) {
+      errorEducation.value = payload;
     };
 
     async function getDataResume() {
@@ -379,13 +389,12 @@ export const useResumeStore = defineStore(
       }
     };
 
-    async function changeSocial(socialData) {
+    async function changeSocial({ link, shortLink, text, _id }) {
+
       try {
         setLoadingSocial(true);
-        const { _id } = socialData;
-        delete socialData._id;
 
-        const { data } = await API.changeSocial(socialData, _id);
+        const { data } = await API.changeSocial({ link, shortLink, text }, _id);
 
         if (data === undefined) {
           throw new Error('Server Error!');
@@ -501,6 +510,50 @@ export const useResumeStore = defineStore(
       }
     };
 
+    async function changeEducation({ institution, speciality, _id }) {
+      try {
+        setLoadingEducation(true);
+
+        const { data } = await API.changeEducation({ institution, speciality }, _id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingEducation(false);
+          setErrorEducation('');
+
+          // Находим нужный элемент в education и заменяем его
+          const newEducation = dataResume.value.education.reduce((acc, item) => {
+            if (item._id === data.result._id) {
+              acc.push(data.result);
+            } else {
+              acc.push(item);
+            }
+            return acc;
+          }, []);
+          
+          const newData = {...dataResume.value};
+          newData.education = newEducation;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно изменены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingEducation(false);
+        setErrorEducation(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataResume,
       loading,
@@ -524,6 +577,10 @@ export const useResumeStore = defineStore(
       changeSocial,
       addSocial,
       removeSocial,
+      loadingEducation,
+      changeEducation,
+      // addEducation,
+      // removeEducation,
     };
   }
 );
