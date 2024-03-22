@@ -112,7 +112,16 @@ const deleteProductDialog = ref(false);
 const education = ref({});
 
 const openNew = () => {
-  education.value = {};
+  education.value = {
+    institution: {
+      ru: '',
+      en: ''
+    },
+    speciality: {
+      ru: '',
+      en: ''
+    },
+  };
   educationDialog.value = true;
 };
 const hideDialog = () => {
@@ -127,7 +136,7 @@ const confirmDeleteProduct = (prod) => {
   deleteProductDialog.value = true;
 };
 const deleteProduct = async () => {
-  // await removeEducation(education.value._id);
+  await removeEducation(education.value._id);
   deleteProductDialog.value = false;
 };
 </script>

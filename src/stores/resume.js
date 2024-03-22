@@ -554,6 +554,82 @@ export const useResumeStore = defineStore(
       }
     };
 
+    async function addEducation(educationData) {
+      try {
+        setLoadingEducation(true);
+
+        const { data } = await API.addEducation(educationData);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingEducation(false);
+          setErrorEducation('');
+
+          // Добавляем новый элемент в массив и подставляем в data
+          const newEducation = [...dataResume.value.education, data.result];
+          const newData = {...dataResume.value};
+          newData.education = newEducation;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно добавлены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingEducation(false);
+        setErrorEducation(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
+    async function removeEducation(id) {
+      try {
+        setLoadingEducation(true);
+
+        const { data } = await API.removeEducation(id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingEducation(false);
+          setErrorEducation('');
+
+          // Удаляем элемент из массива educations
+          const newEducation = [...dataResume.value.education];
+
+          const index = newEducation.findIndex(el => el._id === id);
+          if (index !== -1) newEducation.splice(index, 1);
+
+          const newData = {...dataResume.value};
+          newData.education = newEducation;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно удалены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingEducation(false);
+        setErrorEducation(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataResume,
       loading,
@@ -579,8 +655,8 @@ export const useResumeStore = defineStore(
       removeSocial,
       loadingEducation,
       changeEducation,
-      // addEducation,
-      // removeEducation,
+      addEducation,
+      removeEducation,
     };
   }
 );
