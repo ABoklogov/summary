@@ -22,7 +22,7 @@
           :contacts="dataResume.contacts"
           class="about-box--position about-box--mobile" />
         <SocialBox :social="dataResume.social" class="social-box--position" />
-        <TechSkillsBox class="tech-skills-box--position" />
+        <TechSkillsBox :techSkills="dataResume.tech_skills" class="tech-skills-box--position" />
       </div>
       <div class="resume__right">
         <EducationBox :education="dataResume.education" class="education-box--position" />

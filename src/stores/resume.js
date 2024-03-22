@@ -39,6 +39,9 @@ export const useResumeStore = defineStore(
     // education
     const loadingEducation = ref(false);
     const errorEducation = ref('');
+    // techSkills
+    const loadingTechSkills = ref(false);
+    const errorTechSkills = ref('');
 
     // общие данные 
     function setDataResume(data) {
@@ -112,6 +115,13 @@ export const useResumeStore = defineStore(
     };
     function setErrorEducation(payload) {
       errorEducation.value = payload;
+    };
+    // education
+    function setLoadingTechSkills(payload) {
+      loadingTechSkills.value = payload;
+    };
+    function setErrorTechSkills(payload) {
+      errorTechSkills.value = payload;
     };
 
     async function getDataResume() {
@@ -630,6 +640,126 @@ export const useResumeStore = defineStore(
       }
     };
 
+    async function changeTechSkills({ value, _id }) {
+      try {
+        setLoadingTechSkills(true);
+
+        const { data } = await API.changeTechSkills({ value }, _id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingTechSkills(false);
+          setErrorTechSkills('');
+
+          // Находим нужный элемент в tech_skills и заменяем его
+          const newTechSkills = dataResume.value.tech_skills.reduce((acc, item) => {
+            if (item._id === data.result._id) {
+              acc.push(data.result);
+            } else {
+              acc.push(item);
+            }
+            return acc;
+          }, []);
+          
+          const newData = {...dataResume.value};
+          newData.tech_skills = newTechSkills;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно изменены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingTechSkills(false);
+        setErrorTechSkills(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+    
+    async function addTechSkills(techSkillsData) {
+      try {
+        setLoadingTechSkills(true);
+
+        const { data } = await API.addTechSkills(techSkillsData);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingTechSkills(false);
+          setErrorTechSkills('');
+
+          // Добавляем новый элемент в массив и подставляем в tech_skills
+          const newTechSkills = [...dataResume.value.tech_skills, data.result];
+          const newData = {...dataResume.value};
+          newData.tech_skills = newTechSkills;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно добавлены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingTechSkills(false);
+        setErrorTechSkills(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
+    async function removeTechSkills(id) {
+      try {
+        setLoadingTechSkills(true);
+
+        const { data } = await API.removeTechSkills(id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingTechSkills(false);
+          setErrorTechSkills('');
+
+          // Удаляем элемент из массива tech_skills
+          const newTechSkills = [...dataResume.value.tech_skills];
+
+          const index = newTechSkills.findIndex(el => el._id === id);
+          if (index !== -1) newTechSkills.splice(index, 1);
+
+          const newData = {...dataResume.value};
+          newData.tech_skills = newTechSkills;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно удалены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingTechSkills(false);
+        setErrorTechSkills(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataResume,
       loading,
@@ -657,6 +787,10 @@ export const useResumeStore = defineStore(
       changeEducation,
       addEducation,
       removeEducation,
+      loadingTechSkills,
+      changeTechSkills,
+      addTechSkills,
+      removeTechSkills,
     };
   }
 );

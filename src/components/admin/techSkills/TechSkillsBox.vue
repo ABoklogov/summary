@@ -1,21 +1,19 @@
 <template>
   <Box>
-    <div class="social-content">
+    <div class="tech-skills-content">
       <DataTable 
-        :value="dataResume.social" 
+        :value="dataResume.tech_skills" 
         dataKey="id" 
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} socials"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} tech-skills"
       >
         <template #header>
-          <SubTitle :text="'Социальный сети'" :admin="true"/>
+          <SubTitle :text="'Технические навыки'" :admin="true"/>
         </template>
 
-        <Column field="shortLink" header="короткая ссылка" sortable style="width: 30%"></Column>
-        <Column field="link" header="ссылка" style="width: 30%"></Column>
-        <Column field="text" header="текст" style="width: 30%"></Column>
+        <Column field="value" header="название" sortable style="width: 100%"></Column>
         <Column :exportable="false" style="min-width:8rem">
           <template #body="slotProps">
-            <div class="social-content__table-btns">
+            <div class="tech-skills-content__table-btns">
               <Button icon="pi pi-pencil" outlined rounded class="mr-2" @click="editProduct(slotProps.data)" />
               <Button icon="pi pi-trash" outlined rounded severity="danger" @click="confirmDeleteProduct(slotProps.data)" />
             </div>
@@ -27,36 +25,36 @@
         label="Добавить"
         aria-label="Добавить новый пункт"
         icon="pi pi-plus" 
-        class="mr-2 social-content__add-btn"
+        class="mr-2 tech-skills-content__add-btn"
         @click="openNew"
       />
 
       <Dialog 
-        v-model:visible="socialDialog" 
+        v-model:visible="techSkillsDialog" 
         :style="{width: '450px'}"
-        header="Детали социальной сети" 
+        header="Технический навык" 
         :modal="true"
         class="p-fluid"
       >
-        <FormSocial :social="social" :hideDialog="hideDialog"/>
+        <FormTechSkills :techSkills="techSkills" :hideDialog="hideDialog"/>
       </Dialog>
     
       <Dialog 
-        v-model:visible="deleteProductDialog" 
+        v-model:visible="deleteDialog" 
         :style="{width: '450px'}" 
         header="Удаление" 
         :modal="true"
       >
-        <div class="social-content__delete-text">
+        <div class="tech-skills-content__delete-text">
           <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-          <span v-if="social">Вы действительно хотите удалить <b>{{social.shortLink}}</b>?</span>
+          <span v-if="techSkills">Вы действительно хотите удалить <b>{{techSkills.value}}</b>?</span>
         </div>
         <template #footer>
           <Button 
             label="Нет" 
             icon="pi pi-times" 
             text 
-            @click="deleteProductDialog = false" 
+            @click="deleteDialog = false" 
             iconPos="right" 
           />
           <Button 
@@ -64,7 +62,7 @@
             icon="pi pi-check" 
             @click="deleteProduct" 
             iconPos="right" 
-            :loading="loadingSocial"
+            :loading="loadingTechSkills"
           />
         </template>
       </Dialog>
@@ -80,39 +78,39 @@ import { FilterMatchMode } from 'primevue/api';
 import { useToast } from 'primevue/usetoast';
 import SubTitle from '@/components/shared/SubTitle.vue';
 import Box from '@/components/shared/Box.vue';
-import FormSocial from '@/components/admin/social/FormSocial.vue';
+import FormTechSkills from '@/components/admin/techSkills/FormTechSkills.vue';
 
-const { removeSocial } = useResumeStore();
-const { dataResume, loadingSocial } = storeToRefs(useResumeStore());
+const { removeTechSkills } = useResumeStore();
+const { dataResume, loadingTechSkills } = storeToRefs(useResumeStore());
 
 const toast = useToast();
-const socialDialog = ref(false);
-const deleteProductDialog = ref(false);
-const social = ref({});
+const techSkillsDialog = ref(false);
+const deleteDialog = ref(false);
+const techSkills = ref({});
 
 const openNew = () => {
-  social.value = {};
-  socialDialog.value = true;
+  techSkills.value = {};
+  techSkillsDialog.value = true;
 };
 const hideDialog = () => {
-  socialDialog.value = false;
+  techSkillsDialog.value = false;
 };
 const editProduct = (prod) => {
-  social.value = { ...prod };
-  socialDialog.value = true;
+  techSkills.value = { ...prod };
+  techSkillsDialog.value = true;
 };
 const confirmDeleteProduct = (prod) => {
-  social.value = prod;
-  deleteProductDialog.value = true;
+  techSkills.value = prod;
+  deleteDialog.value = true;
 };
 const deleteProduct = async () => {
-  await removeSocial(social.value._id);
-  deleteProductDialog.value = false;
+  await removeTechSkills(techSkills.value._id);
+  deleteDialog.value = false;
 };
 </script>
 
 <style scoped lang="scss">
-.social-content {
+.tech-skills-content {
   &__add-btn {
     margin-top: 20px;
   }

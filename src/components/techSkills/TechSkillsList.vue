@@ -1,7 +1,7 @@
 <template>
   <ul class="tech-skills-list">
-    <li v-for="item in list" :key="item" class="tech-skills-list__item">
-      <span>{{ item }}</span>
+    <li v-for="{ value } in list" :key="value" class="tech-skills-list__item">
+      <span>{{ value }}</span>
     </li>
   </ul>
 </template>

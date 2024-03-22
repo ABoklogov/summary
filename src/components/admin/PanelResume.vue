@@ -18,6 +18,7 @@
       <ContactsBox class="panel-resume__one-box panel-resume__one-box--contacts"/>
       <SocialBox class="panel-resume__one-box"/>
       <EducationBox class="panel-resume__one-box"/>
+      <TechSkillsBox class="panel-resume__one-box"/>
     </div>
   </div>
 </template>
@@ -32,6 +33,7 @@ import NameBox from '@/components/admin/name/NameBox.vue';
 import ContactsBox from '@/components/admin/contacts/ContactsBox.vue';
 import SocialBox from '@/components/admin/social/SocialBox.vue';
 import EducationBox from '@/components/admin/education/EducationBox.vue';
+import TechSkillsBox from '@/components/admin/techSkills/TechSkillsBox.vue';
 
 const storeResume = useResumeStore();
 const { loading } = storeToRefs(useResumeStore());

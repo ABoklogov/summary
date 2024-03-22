@@ -13,7 +13,7 @@
         <Column 
           field="institution" 
           header="Институт" 
-          style="min-width:15rem"
+          style="width: 50%"
         >
           <template #body="slotProps">
             <div class="education-content__table-item">
@@ -25,7 +25,7 @@
         <Column 
           field="speciality" 
           header="Специальность" 
-          style="min-width:15rem"
+          style="width: 50%"
         >
           <template #body="slotProps">
             <div class="education-content__table-item">
