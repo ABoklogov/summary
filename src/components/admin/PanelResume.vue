@@ -19,6 +19,7 @@
       <SocialBox class="panel-resume__one-box"/>
       <EducationBox class="panel-resume__one-box"/>
       <TechSkillsBox class="panel-resume__one-box"/>
+      <ExperienceBox class="panel-resume__one-box"/>
     </div>
   </div>
 </template>
@@ -34,6 +35,7 @@ import ContactsBox from '@/components/admin/contacts/ContactsBox.vue';
 import SocialBox from '@/components/admin/social/SocialBox.vue';
 import EducationBox from '@/components/admin/education/EducationBox.vue';
 import TechSkillsBox from '@/components/admin/techSkills/TechSkillsBox.vue';
+import ExperienceBox from '@/components/admin/experience/ExperienceBox.vue';
 
 const storeResume = useResumeStore();
 const { loading } = storeToRefs(useResumeStore());
