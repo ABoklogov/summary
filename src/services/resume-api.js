@@ -44,9 +44,19 @@ async function changeTelegram(telegramData, id) {
   const { data } = await axios.patch(`/resume/contacts/${id}/telegram`, {telegram: telegramData});
   return data;
 };
-// смена social
+// изменение social
 async function changeSocial(socialData, id) {
   const { data } = await axios.put(`/resume/social/${id}`, socialData);
+  return data;
+};
+// добавление social
+async function addSocial(socialData) {
+  const { data } = await axios.post('/resume/social', socialData);
+  return data;
+};
+// удаление social
+async function removeSocial(id) {
+  const { data } = await axios.delete(`/resume/social/${id}`);
   return data;
 };
 
@@ -59,6 +69,8 @@ const API = {
   changeEmail,
   changePhone,
   changeTelegram,
-  changeSocial
+  changeSocial,
+  addSocial,
+  removeSocial,
 };
 export default API;

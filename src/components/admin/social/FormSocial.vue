@@ -35,6 +35,7 @@
       <Button 
         label="Отмена" 
         icon="pi pi-times" 
+        iconPos="right" 
         text 
         @click="props.hideDialog" 
       />
@@ -42,8 +43,8 @@
         type="submit"
         label="Отправить" 
         aria-label="Отправить данные"
-        icon="pi pi-check"  
-        text 
+        icon="pi pi-check" 
+        iconPos="right"  
         :loading="loadingSocial"
       />
     </div>
@@ -57,7 +58,7 @@ import { ref, computed, onMounted } from 'vue';
 import CustomForm from '@/components/shared/CustomForm.vue';
 import CustomInput from '@/components/shared/CustomInput.vue';
 
-const store = useResumeStore();
+const { changeSocial, addSocial } = useResumeStore();
 const { loadingSocial } = storeToRefs(useResumeStore());
 
 import {
@@ -104,10 +105,12 @@ const submit = async () => {
   };
   
   if (socialData.value._id) {
-    await store.changeSocial(socialData.value);
+    await changeSocial(socialData.value);
   } else {
-    // await store.createSocial(socialData.value);
+    await addSocial(socialData.value);
   };
+
+  props.hideDialog();
 };
 </script>
 
@@ -132,7 +135,9 @@ const submit = async () => {
 
 @media screen and (min-width: 768px) {
   .form-social-box {
-
+    &__footer button:first-child {
+      margin-right: 20px;
+    }
   }
 }
 </style>

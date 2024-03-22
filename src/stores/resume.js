@@ -425,6 +425,82 @@ export const useResumeStore = defineStore(
       }
     };
 
+    async function addSocial(socialData) {
+      try {
+        setLoadingSocial(true);
+
+        const { data } = await API.addSocial(socialData);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingSocial(false);
+          setErrorSocial('');
+
+          // Добавляем новый элемент в массив и подставляем в data
+          const newSocial = [...dataResume.value.social, data.result];
+          const newData = {...dataResume.value};
+          newData.social = newSocial;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно добавлены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingSocial(false);
+        setErrorSocial(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
+    async function removeSocial(id) {
+      try {
+        setLoadingSocial(true);
+
+        const { data } = await API.removeSocial(id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingSocial(false);
+          setErrorSocial('');
+
+          // Удаляем элемент из массива socials
+          const newSocial = [...dataResume.value.social];
+
+          const index = newSocial.findIndex(el => el._id === id);
+          if (index !== -1) newSocial.splice(index, 1);
+
+          const newData = {...dataResume.value};
+          newData.social = newSocial;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно удалены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingSocial(false);
+        setErrorSocial(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataResume,
       loading,
@@ -446,6 +522,8 @@ export const useResumeStore = defineStore(
       changeTelegram,
       loadingSocial,
       changeSocial,
+      addSocial,
+      removeSocial,
     };
   }
 );
