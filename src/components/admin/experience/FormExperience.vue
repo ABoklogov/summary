@@ -1,47 +1,121 @@
 <template>
-  <CustomForm @submit.prevent="submit" ref="educationForm">
-    <div class="form-education-box">
+  <CustomForm @submit.prevent="submit" ref="experienceForm">
+    <div class="form-experience-box">
       <CustomInput
-        name="ru-institution"
-        id="ru-institution"
-        label="институт"
+        name="ru-position"
+        id="ru-position"
+        label="позиция"
         type="text"
-        v-model:value="educationData.institution.ru"
+        v-model:value="experienceData.position.ru"
         :rules="textRules"
       />
-      <div class="form-education-box__input">
+      <div class="form-experience-box__input">
         <CustomInput
-          name="en-institution"
-          id="en-institution"
-          label="institution"
+          name="en-position"
+          id="en-position"
+          label="position"
           type="text"
-          v-model:value="educationData.institution.en"
+          v-model:value="experienceData.position.en"
           :rules="textRules"
         />
       </div>
-      <div class="form-education-box__input">
+      <div class="form-experience-box__input">
         <CustomInput
-          name="ru-speciality"
-          id="ru-speciality"
-          label="специальность"
+          name="ru-company"
+          id="ru-company"
+          label="компания"
           type="text"
-          v-model:value="educationData.speciality.ru"
+          v-model:value="experienceData.company.ru"
           :rules="textRules"
         />
       </div>
-      <div class="form-education-box__input">
+      <div class="form-experience-box__input">
         <CustomInput
-          name="en-speciality"
-          id="en-speciality"
-          label="speciality"
+          name="en-company"
+          id="en-company"
+          label="company"
           type="text"
-          v-model:value="educationData.speciality.en"
+          v-model:value="experienceData.company.en"
           :rules="textRules"
+        />
+      </div>
+      <div class="form-experience-box__input">
+        <CustomTextaria
+          name="ru-responsibility"
+          id="ru-responsibility"
+          label="обязанности"
+          type="text"
+          v-model:value="experienceData.responsibility.ru"
+          :rules="responsibilityRules"
+          variant="filled"
+          rows="8"
+        />
+      </div>
+      <div class="form-experience-box__input">
+        <CustomTextaria
+          name="en-responsibility"
+          id="en-responsibility"
+          label="responsibility"
+          type="text"
+          v-model:value="experienceData.responsibility.en"
+          :rules="responsibilityRules"
+          variant="filled"
+          rows="8"
+        />
+      </div>
+      <div class="form-experience-box__input">
+        <CustomInput
+          name="ru-start"
+          id="ru-start"
+          label="начало"
+          type="text"
+          v-model:value="experienceData.start.ru"
+          :rules="textRules"
+        />
+      </div>
+      <div class="form-experience-box__input">
+        <CustomInput
+          name="en-start"
+          id="en-start"
+          label="start"
+          type="text"
+          v-model:value="experienceData.start.en"
+          :rules="textRules"
+        />
+      </div>
+      <div class="form-experience-box__input">
+        <CustomInput
+          name="ru-finish"
+          id="ru-finish"
+          label="окончание"
+          type="text"
+          v-model:value="experienceData.finish.ru"
+          :rules="textRules"
+        />
+      </div>
+      <div class="form-experience-box__input">
+        <CustomInput
+          name="en-finish"
+          id="en-finish"
+          label="finish"
+          type="text"
+          v-model:value="experienceData.finish.en"
+          :rules="textRules"
+        />
+      </div>
+      <div class="form-experience-box__input">
+        <CustomInput
+          name="webSite"
+          id="webSite"
+          label="сайт"
+          type="text"
+          v-model:value="experienceData.webSite"
+          :rules="urlRules"
         />
       </div>
     </div>
 
-    <div class="form-education-box__footer">
+    <div class="form-experience-box__footer">
       <Button 
         label="Отмена" 
         icon="pi pi-times" 
@@ -55,7 +129,7 @@
         aria-label="Отправить данные"
         icon="pi pi-check" 
         iconPos="right"  
-        :loading="loadingEducation"
+        :loading="loadingExperience"
       />
     </div>
   </CustomForm>
@@ -67,30 +141,45 @@ import { useResumeStore } from '@/stores/resume';
 import { ref, computed, onMounted } from 'vue';
 import CustomForm from '@/components/shared/CustomForm.vue';
 import CustomInput from '@/components/shared/CustomInput.vue';
+import CustomTextaria from '@/components/shared/CustomTextaria.vue';
 
-const { changeEducation, addEducation } = useResumeStore();
-const { loadingEducation } = storeToRefs(useResumeStore());
+const { changeExperience, addExperience } = useResumeStore();
+const { loadingExperience } = storeToRefs(useResumeStore());
 
 import {
   isRequired,
   charLimit,
   loginValidation,
+  urlValidation
 } from '@/utils/validationRules';
 
-const educationForm = ref(null);
-const educationData = ref({
-  institution: {
+const experienceForm = ref(null);
+const experienceData = ref({
+  position: {
     ru: '',
     en: ''
   },
-  speciality: {
+  company: {
     ru: '',
     en: ''
   },
+  responsibility: {
+    ru: '',
+    en: ''
+  },
+  start: {
+    ru: '',
+    en: ''
+  },
+  finish: {
+    ru: '',
+    en: ''
+  },
+  webSite: ''
 });
 
 const props = defineProps({
-  education: {
+  experience: {
     type: Object,
     required: true
   },
@@ -100,24 +189,30 @@ const props = defineProps({
 });
 
 onMounted(() => {
-  educationData.value = props.education;
+  experienceData.value = props.experience;
 });
 
 const textRules = computed(() => {
   return [isRequired, charLimit(50), loginValidation];
 });
+const responsibilityRules = computed(() => {
+  return [isRequired, charLimit(300), loginValidation];
+});
+const urlRules = computed(() => {
+  return [isRequired, charLimit(50), urlValidation];
+});
 
 const submit = async () => {
-  const isVolidForm = educationForm.value.validate();
+  const isVolidForm = experienceForm.value.validate();
 
   if (!isVolidForm) {
     return;
   };
   
-  if (educationData.value._id) {
-    await changeEducation(educationData.value);
+  if (experienceData.value._id) {
+    await changeExperience(experienceData.value);
   } else {
-    await addEducation(educationData.value);
+    await addExperience(experienceData.value);
   };
 
   props.hideDialog();
@@ -126,7 +221,7 @@ const submit = async () => {
 
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
-.form-education-box {
+.form-experience-box {
   display: flex;
   flex-direction: column;
 
@@ -144,7 +239,7 @@ const submit = async () => {
 }
 
 @media screen and (min-width: 768px) {
-  .form-education-box {
+  .form-experience-box {
     &__footer button:first-child {
       margin-right: 20px;
     }

@@ -30,7 +30,7 @@
           :about="dataResume.about?.about"
           :contacts="dataResume.contacts"
           class="about-box--position about-box--desktop" />
-        <ExperienceBox class="experience-box--position" />
+        <ExperienceBox :experience="dataResume.experience" class="experience-box--position" />
         <CertificateBox class="certificate-box--position" />
       </div>
     </template>

@@ -42,6 +42,9 @@ export const useResumeStore = defineStore(
     // techSkills
     const loadingTechSkills = ref(false);
     const errorTechSkills = ref('');
+    // experience
+    const loadingExperience = ref(false);
+    const errorExperience = ref('');
 
     // общие данные 
     function setDataResume(data) {
@@ -122,6 +125,13 @@ export const useResumeStore = defineStore(
     };
     function setErrorTechSkills(payload) {
       errorTechSkills.value = payload;
+    };
+    // experience
+    function setLoadingExperience(payload) {
+      loadingExperience.value = payload;
+    };
+    function setErrorExperience(payload) {
+      errorExperience.value = payload;
     };
 
     async function getDataResume() {
@@ -760,6 +770,134 @@ export const useResumeStore = defineStore(
       }
     };
 
+    async function changeExperience({ 
+      position, 
+      company, 
+      responsibility, 
+      start, 
+      finish, 
+      webSite, 
+      _id 
+    }) {
+      try {
+        setLoadingExperience(true);
+
+        const { data } = await API.changeExperience({ position, company, responsibility, start, finish, webSite }, _id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingExperience(false);
+          setErrorExperience('');
+
+          // Находим нужный элемент в experience и заменяем его
+          const newExperience = dataResume.value.experience.reduce((acc, item) => {
+            if (item._id === data.result._id) {
+              acc.push(data.result);
+            } else {
+              acc.push(item);
+            }
+            return acc;
+          }, []);
+          
+          const newData = {...dataResume.value};
+          newData.experience = newExperience;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно изменены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingExperience(false);
+        setErrorExperience(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
+    async function addExperience(experienceData) {
+      try {
+        setLoadingExperience(true);
+
+        const { data } = await API.addExperience(experienceData);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingExperience(false);
+          setErrorExperience('');
+
+          // Добавляем новый элемент в массив и подставляем в experience
+          const newExperience = [...dataResume.value.experience, data.result];
+          const newData = {...dataResume.value};
+          newData.experience = newExperience;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно добавлены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingExperience(false);
+        setErrorExperience(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
+    async function removeExperience(id) {
+      try {
+        setLoadingExperience(true);
+
+        const { data } = await API.removeExperience(id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingExperience(false);
+          setErrorExperience('');
+
+          // Удаляем элемент из массива experience
+          const newExperience = [...dataResume.value.experience];
+
+          const index = newExperience.findIndex(el => el._id === id);
+          if (index !== -1) newExperience.splice(index, 1);
+
+          const newData = {...dataResume.value};
+          newData.experience = newExperience;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно удалены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingExperience(false);
+        setErrorExperience(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataResume,
       loading,
@@ -791,6 +929,10 @@ export const useResumeStore = defineStore(
       changeTechSkills,
       addTechSkills,
       removeTechSkills,
+      loadingExperience,
+      changeExperience,
+      addExperience,
+      removeExperience,
     };
   }
 );

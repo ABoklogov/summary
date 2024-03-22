@@ -13,7 +13,7 @@
         <Column 
           field="position" 
           header="позиция" 
-          style="width: 20%"
+          style="min-width:14rem"
           sortable
         >
           <template #body="slotProps">
@@ -26,7 +26,7 @@
         <Column 
           field="company" 
           header="компания" 
-          style="width: 20%"
+          style="min-width:14rem"
           sortable
         >
           <template #body="slotProps">
@@ -39,7 +39,7 @@
         <Column 
           field="responsibility" 
           header="обязанности" 
-          style="width: 30%"
+          style="min-width:25rem"
         >
           <template #body="slotProps">
             <div class="experience-content__table-item">
@@ -51,7 +51,7 @@
         <Column 
           field="start" 
           header="начало" 
-          style="width: 10%"
+          style="min-width:12rem"
         >
           <template #body="slotProps">
             <div class="experience-content__table-item">
@@ -63,7 +63,7 @@
         <Column 
           field="finish" 
           header="окончание" 
-          style="width: 10%"
+          style="min-width:12rem"
         >
           <template #body="slotProps">
             <div class="experience-content__table-item">
@@ -75,8 +75,14 @@
         <Column 
           field="webSite" 
           header="сайт" 
-          style="width: 20%"
-        ></Column>
+          style="min-width:15rem"
+        >
+          <template #body="slotProps">
+            <span class="experience-content__table-item">
+              {{slotProps.data.webSite}}
+            </span>
+          </template>
+        </Column>
         <Column :exportable="false" style="min-width:8rem">
           <template #body="slotProps">
             <div class="experience-content__table-btns">
@@ -102,7 +108,7 @@
         :modal="true"
         class="p-fluid"
       >
-        <!-- <FormExperience :experience="experience" :hideDialog="hideDialog"/> -->
+        <FormExperience :experience="experience" :hideDialog="hideDialog"/>
       </Dialog>
     
       <Dialog 
@@ -192,12 +198,13 @@ const confirmDeleteProduct = (prod) => {
   deleteDialog.value = true;
 };
 const deleteProduct = async () => {
-  // await removeExperience(experience.value._id);
+  await removeExperience(experience.value._id);
   deleteDialog.value = false;
 };
 </script>
 
 <style scoped lang="scss">
+@import '@/assets/scss/variables';  
 .experience-content {
   &__add-btn {
     margin-top: 20px;
@@ -213,6 +220,7 @@ const deleteProduct = async () => {
   &__table-item {
     display: flex;
     flex-direction: column;
+    font-size: $fontMini;
   }
 }
 </style>

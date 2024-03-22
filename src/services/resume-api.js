@@ -89,6 +89,21 @@ async function removeTechSkills(id) {
   const { data } = await axios.delete(`/resume/tech_skills/${id}`);
   return data;
 };
+// изменение Experience
+async function changeExperience(experienceData, id) {
+  const { data } = await axios.put(`/resume/experience/${id}`, experienceData);
+  return data;
+};
+// добавление Experience
+async function addExperience(experienceData) {
+  const { data } = await axios.post('/resume/experience', experienceData);
+  return data;
+};
+// удаление Experience
+async function removeExperience(id) {
+  const { data } = await axios.delete(`/resume/experience/${id}`);
+  return data;
+};
 
 const API = {
   fetchAllResume,
@@ -108,5 +123,8 @@ const API = {
   changeTechSkills,
   addTechSkills,
   removeTechSkills,
+  changeExperience,
+  addExperience,
+  removeExperience,
 };
 export default API;
