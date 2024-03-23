@@ -145,9 +145,7 @@
 <script setup>
 import { storeToRefs } from 'pinia';
 import { useResumeStore } from '@/stores/resume';
-import { ref, onMounted } from 'vue';
-import { FilterMatchMode } from 'primevue/api';
-import { useToast } from 'primevue/usetoast';
+import { ref } from 'vue';
 import SubTitle from '@/components/shared/SubTitle.vue';
 import Box from '@/components/shared/Box.vue';
 import FormExperience from '@/components/admin/experience/FormExperience.vue';
@@ -155,7 +153,6 @@ import FormExperience from '@/components/admin/experience/FormExperience.vue';
 const { removeExperience } = useResumeStore();
 const { dataResume, loadingExperience } = storeToRefs(useResumeStore());
 
-const toast = useToast();
 const experienceDialog = ref(false);
 const deleteDialog = ref(false);
 const experience = ref({});

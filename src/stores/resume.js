@@ -959,6 +959,126 @@ export const useResumeStore = defineStore(
       }
     };
 
+    async function addCertificate(certificateData) {
+      try {
+        setLoadingCertificate(true);
+
+        const { data } = await API.addCertificate(certificateData);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingCertificate(false);
+          setErrorCertificate('');
+
+          // Добавляем новый элемент в массив и подставляем в certificate
+          const newCertificate = [...dataResume.value.certificate, data.result];
+          const newData = {...dataResume.value};
+          newData.certificate = newCertificate;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно добавлены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingCertificate(false);
+        setErrorCertificate(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
+    async function removeCertificate(id) {
+      try {
+        setLoadingCertificate(true);
+
+        const { data } = await API.removeCertificate(id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingCertificate(false);
+          setErrorCertificate('');
+
+          // Удаляем элемент из массива certificate
+          const newCertificate = [...dataResume.value.certificate];
+
+          const index = newCertificate.findIndex(el => el._id === id);
+          if (index !== -1) newCertificate.splice(index, 1);
+
+          const newData = {...dataResume.value};
+          newData.certificate = newCertificate;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно удалены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingCertificate(false);
+        setErrorCertificate(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
+    async function exportCertificate(file, id) {
+      console.log('file',file);
+      try {
+        setLoadingCertificate(true);
+
+        let formData = new FormData();
+        formData.append('path', file);
+
+        const { data } = await API.exportCertificate(formData, id);
+
+        console.log('data', data);
+        
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingCertificate(false);
+          setErrorCertificate('');
+
+          // меняем path в certificate в стейте
+          const newData = {...dataResume.value}
+          newData.certificate.path = data.path;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Успешно загрузили файл',
+            life: 5000
+          });
+
+          return data
+        }
+      } catch ({ message }) {
+        setLoadingCertificate(false);
+        setErrorCertificate(message);
+
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataResume,
       loading,
@@ -996,8 +1116,9 @@ export const useResumeStore = defineStore(
       removeExperience,
       loadingCertificate,
       changeCertificate,
-      // addCertificate,
-      // removeCertificate,
+      addCertificate,
+      removeCertificate,
+      exportCertificate,
     };
   }
 );

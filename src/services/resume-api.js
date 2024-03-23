@@ -119,6 +119,16 @@ async function removeCertificate(id) {
   const { data } = await axios.delete(`/resume/certificate/${id}`);
   return data;
 };
+// Загрузка сертификата
+async function exportCertificate(formData, id) {
+  console.log('123', formData, id);
+  const { data } = await axios.patch(`/resume/certificate/${id}/path`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+  return data;
+};
 
 const API = {
   fetchAllResume,
@@ -144,5 +154,6 @@ const API = {
   changeCertificate,
   addCertificate,
   removeCertificate,
+  exportCertificate,
 };
 export default API;

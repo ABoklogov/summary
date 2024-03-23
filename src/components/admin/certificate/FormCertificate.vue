@@ -117,7 +117,6 @@ import { useResumeStore } from '@/stores/resume';
 import { ref, computed, onMounted } from 'vue';
 import CustomForm from '@/components/shared/CustomForm.vue';
 import CustomInput from '@/components/shared/CustomInput.vue';
-import CustomTextaria from '@/components/shared/CustomTextaria.vue';
 
 const { changeCertificate, addCertificate } = useResumeStore();
 const { loadingCertificate } = storeToRefs(useResumeStore());
@@ -167,9 +166,6 @@ onMounted(() => {
 const textRules = computed(() => {
   return [isRequired, charLimit(50), loginValidation];
 });
-const responsibilityRules = computed(() => {
-  return [isRequired, charLimit(300), loginValidation];
-});
 const urlRules = computed(() => {
   return [charLimit(50), urlValidation];
 });
@@ -184,7 +180,7 @@ const submit = async () => {
   if (certificateData.value._id) {
     await changeCertificate(certificateData.value);
   } else {
-    // await addCertificate(certificateData.value);
+    await addCertificate(certificateData.value);
   };
 
   props.hideDialog();
@@ -192,7 +188,6 @@ const submit = async () => {
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/scss/variables';
 .form-certificate-box {
   display: flex;
   flex-direction: column;

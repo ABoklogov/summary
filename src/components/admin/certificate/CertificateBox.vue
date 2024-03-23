@@ -118,7 +118,7 @@
         :modal="true"
         class="p-fluid"
       >
-        <FormExportCertificate :hideDialog="hideExportDialog" :certificate="certificate" />
+        <FormExportCertificate :hideDialog="hideExportDialog" :id="certificate._id" />
       </Dialog>
     
       <Dialog 
@@ -155,9 +155,7 @@
 <script setup>
 import { storeToRefs } from 'pinia';
 import { useResumeStore } from '@/stores/resume';
-import { ref, onMounted } from 'vue';
-import { FilterMatchMode } from 'primevue/api';
-import { useToast } from 'primevue/usetoast';
+import { ref } from 'vue';
 import SubTitle from '@/components/shared/SubTitle.vue';
 import Box from '@/components/shared/Box.vue';
 import FormCertificate from '@/components/admin/certificate/FormCertificate.vue';
@@ -166,7 +164,6 @@ import FormExportCertificate from '@/components/admin/certificate/FormExportCert
 const { removeCertificate } = useResumeStore();
 const { dataResume, loadingCertificate } = storeToRefs(useResumeStore());
 
-const toast = useToast();
 const certificateDialog = ref(false);
 const exportCertificateDialog = ref(false);
 const deleteDialog = ref(false);
@@ -194,9 +191,6 @@ const openNew = () => {
   };
   certificateDialog.value = true;
 };
-const openNewExport = () => {
-  exportCertificateDialog.value = true;
-};
 const hideDialog = () => {
   certificateDialog.value = false;
 };
@@ -216,7 +210,7 @@ const confirmDeleteProduct = (prod) => {
   deleteDialog.value = true;
 };
 const deleteProduct = async () => {
-  // await removeCertificate(certificate.value._id);
+  await removeCertificate(certificate.value._id);
   deleteDialog.value = false;
 };
 </script>
