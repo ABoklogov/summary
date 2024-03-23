@@ -45,6 +45,9 @@ export const useResumeStore = defineStore(
     // experience
     const loadingExperience = ref(false);
     const errorExperience = ref('');
+    // certificate
+    const loadingCertificate = ref(false);
+    const errorCertificate  = ref('');
 
     // общие данные 
     function setDataResume(data) {
@@ -132,6 +135,13 @@ export const useResumeStore = defineStore(
     };
     function setErrorExperience(payload) {
       errorExperience.value = payload;
+    };
+    // certificate
+    function setLoadingCertificate(payload) {
+      loadingCertificate.value = payload;
+    };
+    function setErrorCertificate(payload) {
+      errorCertificate.value = payload;
     };
 
     async function getDataResume() {
@@ -898,6 +908,57 @@ export const useResumeStore = defineStore(
       }
     };
 
+    async function changeCertificate({ 
+      position, 
+      company, 
+      start, 
+      finish, 
+      webSite, 
+      _id 
+    }) {
+      try {
+        setLoadingCertificate(true);
+
+        const { data } = await API.changeCertificate({ position, company, start, finish, webSite }, _id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingCertificate(false);
+          setErrorCertificate('');
+
+          // Находим нужный элемент в certificate и заменяем его
+          const newCertificate = dataResume.value.certificate.reduce((acc, item) => {
+            if (item._id === data.result._id) {
+              acc.push(data.result);
+            } else {
+              acc.push(item);
+            }
+            return acc;
+          }, []);
+          
+          const newData = {...dataResume.value};
+          newData.certificate = newCertificate;
+          setDataResume(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно изменены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingCertificate(false);
+        setErrorCertificate(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataResume,
       loading,
@@ -933,6 +994,10 @@ export const useResumeStore = defineStore(
       changeExperience,
       addExperience,
       removeExperience,
+      loadingCertificate,
+      changeCertificate,
+      // addCertificate,
+      // removeCertificate,
     };
   }
 );

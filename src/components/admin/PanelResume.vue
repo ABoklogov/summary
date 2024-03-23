@@ -20,6 +20,7 @@
       <EducationBox class="panel-resume__one-box"/>
       <TechSkillsBox class="panel-resume__one-box"/>
       <ExperienceBox class="panel-resume__one-box"/>
+      <CertificateBox class="panel-resume__one-box"/>
     </div>
   </div>
 </template>
@@ -36,6 +37,7 @@ import SocialBox from '@/components/admin/social/SocialBox.vue';
 import EducationBox from '@/components/admin/education/EducationBox.vue';
 import TechSkillsBox from '@/components/admin/techSkills/TechSkillsBox.vue';
 import ExperienceBox from '@/components/admin/experience/ExperienceBox.vue';
+import CertificateBox from '@/components/admin/certificate/CertificateBox.vue';
 
 const storeResume = useResumeStore();
 const { loading } = storeToRefs(useResumeStore());
@@ -72,10 +74,6 @@ onBeforeMount(() => {
       width: calc((100% - 4 * 15px) / 2);
       margin: 15px;
     }
-    // &__three-box {
-    //   width: calc((100% - 6 * 15px) / 3);
-    //   margin: 15px;
-    // }
   }
 }
 </style>

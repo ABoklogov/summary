@@ -104,6 +104,21 @@ async function removeExperience(id) {
   const { data } = await axios.delete(`/resume/experience/${id}`);
   return data;
 };
+// изменение Certificate
+async function changeCertificate(certificateData, id) {
+  const { data } = await axios.put(`/resume/certificate/${id}`, certificateData);
+  return data;
+};
+// добавление Certificate
+async function addCertificate(certificateData) {
+  const { data } = await axios.post('/resume/certificate', certificateData);
+  return data;
+};
+// удаление Certificate
+async function removeCertificate(id) {
+  const { data } = await axios.delete(`/resume/certificate/${id}`);
+  return data;
+};
 
 const API = {
   fetchAllResume,
@@ -126,5 +141,8 @@ const API = {
   changeExperience,
   addExperience,
   removeExperience,
+  changeCertificate,
+  addCertificate,
+  removeCertificate,
 };
 export default API;

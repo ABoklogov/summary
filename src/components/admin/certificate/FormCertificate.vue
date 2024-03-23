@@ -1,121 +1,97 @@
 <template>
-  <CustomForm @submit.prevent="submit" ref="experienceForm">
-    <div class="form-experience-box">
+  <CustomForm @submit.prevent="submit" ref="certificateForm">
+    <div class="form-certificate-box">
       <CustomInput
         name="ru-position"
         id="ru-position"
         label="позиция"
         type="text"
-        v-model:value="experienceData.position.ru"
+        v-model:value="certificateData.position.ru"
         :rules="textRules"
       />
-      <div class="form-experience-box__input">
+      <div class="form-certificate-box__input">
         <CustomInput
           name="en-position"
           id="en-position"
           label="position"
           type="text"
-          v-model:value="experienceData.position.en"
+          v-model:value="certificateData.position.en"
           :rules="textRules"
         />
       </div>
-      <div class="form-experience-box__input">
+      <div class="form-certificate-box__input">
         <CustomInput
           name="ru-company"
           id="ru-company"
           label="компания"
           type="text"
-          v-model:value="experienceData.company.ru"
+          v-model:value="certificateData.company.ru"
           :rules="textRules"
         />
       </div>
-      <div class="form-experience-box__input">
+      <div class="form-certificate-box__input">
         <CustomInput
           name="en-company"
           id="en-company"
           label="company"
           type="text"
-          v-model:value="experienceData.company.en"
+          v-model:value="certificateData.company.en"
           :rules="textRules"
         />
       </div>
-      <div class="form-experience-box__input">
-        <CustomTextaria
-          name="ru-responsibility"
-          id="ru-responsibility"
-          label="обязанности"
-          type="text"
-          v-model:value="experienceData.responsibility.ru"
-          :rules="responsibilityRules"
-          variant="filled"
-          rows="8"
-        />
-      </div>
-      <div class="form-experience-box__input">
-        <CustomTextaria
-          name="en-responsibility"
-          id="en-responsibility"
-          label="responsibility"
-          type="text"
-          v-model:value="experienceData.responsibility.en"
-          :rules="responsibilityRules"
-          variant="filled"
-          rows="8"
-        />
-      </div>
-      <div class="form-experience-box__input">
+      <div class="form-certificate-box__input">
         <CustomInput
           name="ru-start"
           id="ru-start"
           label="начало"
           type="text"
-          v-model:value="experienceData.start.ru"
+          v-model:value="certificateData.start.ru"
           :rules="textRules"
         />
       </div>
-      <div class="form-experience-box__input">
+      <div class="form-certificate-box__input">
         <CustomInput
           name="en-start"
           id="en-start"
           label="start"
           type="text"
-          v-model:value="experienceData.start.en"
+          v-model:value="certificateData.start.en"
           :rules="textRules"
         />
       </div>
-      <div class="form-experience-box__input">
+      <div class="form-certificate-box__input">
         <CustomInput
           name="ru-finish"
           id="ru-finish"
           label="окончание"
           type="text"
-          v-model:value="experienceData.finish.ru"
+          v-model:value="certificateData.finish.ru"
           :rules="textRules"
         />
       </div>
-      <div class="form-experience-box__input">
+      <div class="form-certificate-box__input">
         <CustomInput
           name="en-finish"
           id="en-finish"
           label="finish"
           type="text"
-          v-model:value="experienceData.finish.en"
+          v-model:value="certificateData.finish.en"
           :rules="textRules"
         />
       </div>
-      <div class="form-experience-box__input">
+      <div class="form-certificate-box__input">
         <CustomInput
           name="webSite"
           id="webSite"
           label="сайт"
           type="text"
-          v-model:value="experienceData.webSite"
-          :rules="experienceData.webSite ? urlRules : []"
+          v-model:value="certificateData.webSite"
+          :rules="certificateData.webSite ? urlRules : []"
         />
       </div>
     </div>
 
-    <div class="form-experience-box__footer">
+    <div class="form-certificate-box__footer">
       <Button 
         label="Отмена" 
         icon="pi pi-times" 
@@ -129,7 +105,7 @@
         aria-label="Отправить данные"
         icon="pi pi-check" 
         iconPos="right"  
-        :loading="loadingExperience"
+        :loading="loadingCertificate"
       />
     </div>
   </CustomForm>
@@ -143,8 +119,8 @@ import CustomForm from '@/components/shared/CustomForm.vue';
 import CustomInput from '@/components/shared/CustomInput.vue';
 import CustomTextaria from '@/components/shared/CustomTextaria.vue';
 
-const { changeExperience, addExperience } = useResumeStore();
-const { loadingExperience } = storeToRefs(useResumeStore());
+const { changeCertificate, addCertificate } = useResumeStore();
+const { loadingCertificate } = storeToRefs(useResumeStore());
 
 import {
   isRequired,
@@ -153,33 +129,29 @@ import {
   urlValidation
 } from '@/utils/validationRules';
 
-const experienceForm = ref(null);
-const experienceData = ref({
-  position: {
-    ru: '',
-    en: ''
-  },
-  company: {
-    ru: '',
-    en: ''
-  },
-  responsibility: {
-    ru: '',
-    en: ''
-  },
-  start: {
-    ru: '',
-    en: ''
-  },
-  finish: {
-    ru: '',
-    en: ''
-  },
-  webSite: ''
+const certificateForm = ref(null);
+const certificateData = ref({
+   position: {
+      ru: '',
+      en: ''
+    },
+    company: {
+      ru: '',
+      en: ''
+    },
+    start: {
+      ru: '',
+      en: ''
+    },
+    finish: {
+      ru: '',
+      en: ''
+    },
+    webSite: '',
 });
 
 const props = defineProps({
-  experience: {
+  certificate: {
     type: Object,
     required: true
   },
@@ -189,7 +161,7 @@ const props = defineProps({
 });
 
 onMounted(() => {
-  experienceData.value = props.experience;
+  certificateData.value = props.certificate;
 });
 
 const textRules = computed(() => {
@@ -199,20 +171,20 @@ const responsibilityRules = computed(() => {
   return [isRequired, charLimit(300), loginValidation];
 });
 const urlRules = computed(() => {
-  return [isRequired, charLimit(50), urlValidation];
+  return [charLimit(50), urlValidation];
 });
 
 const submit = async () => {
-  const isVolidForm = experienceForm.value.validate();
+  const isVolidForm = certificateForm.value.validate();
 
   if (!isVolidForm) {
     return;
   };
   
-  if (experienceData.value._id) {
-    await changeExperience(experienceData.value);
+  if (certificateData.value._id) {
+    await changeCertificate(certificateData.value);
   } else {
-    await addExperience(experienceData.value);
+    // await addCertificate(certificateData.value);
   };
 
   props.hideDialog();
@@ -221,7 +193,7 @@ const submit = async () => {
 
 <style scoped lang="scss">
 @import '@/assets/scss/variables';
-.form-experience-box {
+.form-certificate-box {
   display: flex;
   flex-direction: column;
 
@@ -239,7 +211,7 @@ const submit = async () => {
 }
 
 @media screen and (min-width: 768px) {
-  .form-experience-box {
+  .form-certificate-box {
     &__footer button:first-child {
       margin-right: 20px;
     }

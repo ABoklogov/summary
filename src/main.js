@@ -18,7 +18,6 @@ import InputText from 'primevue/inputtext';
 import Card from 'primevue/card';
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
-import FileUpload from 'primevue/fileupload';
 import Textarea from 'primevue/textarea';
 
 import Column from 'primevue/column';
@@ -41,7 +40,6 @@ app.component('Toast', Toast);
 app.component('Card', Card);
 app.component('TabView', TabView);
 app.component('TabPanel', TabPanel);
-app.component('FileUpload', FileUpload);
 app.component('Textarea', Textarea);
 app.component('Column', Column);
 app.component('DataTable', DataTable);

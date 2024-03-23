@@ -6,11 +6,11 @@
       class="certificate-list__item"
     >
       <ActivityBox
-        :position="position"
-        :company="company"
+        :position="language === 'ru' ? position.ru : position.en"
+        :company="language === 'ru' ? company.ru : company.en"
+        :start="language === 'ru' ? start.ru : start.en"
+        :finish="language === 'ru' ? finish.ru : finish.en"
         :webSite="webSite"
-        :start="start"
-        :finish="finish"
         :language="language"
       />
       <a :href="path" download class="btn-download">
