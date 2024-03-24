@@ -1036,7 +1036,6 @@ export const useResumeStore = defineStore(
     };
 
     async function exportCertificate(file, id) {
-      console.log('file',file);
       try {
         setLoadingCertificate(true);
 
@@ -1044,8 +1043,6 @@ export const useResumeStore = defineStore(
         formData.append('path', file);
 
         const { data } = await API.exportCertificate(formData, id);
-
-        console.log('data', data);
         
         if (data === undefined) {
           throw new Error('Server Error!');

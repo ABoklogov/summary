@@ -13,7 +13,7 @@
     </label>
 
     <Message>
-      Максимальный размер файла 1024 kB.<br>
+      Максимальный размер файла 20 mB.<br>
       Возможные форматы файла: 'jpg', 'png', 'jpeg', 'raw', 'tiff', 'psd', 'bmp', 'jp2', 'pdf'.
     </Message>
     
@@ -69,7 +69,7 @@ const submitFile = async () => {
   if (!file.value) return;
 
   const result = await exportCertificate(file.value, props.id);
-console.log('result', result);
+
   if (result) {
     file.value = null;
   };
@@ -96,7 +96,4 @@ console.log('result', result);
     height: 0;
   }
 }
-// .p-button {
-//   margin-top: 10px;
-// }
 </style>

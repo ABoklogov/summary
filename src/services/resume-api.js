@@ -121,7 +121,6 @@ async function removeCertificate(id) {
 };
 // Загрузка сертификата
 async function exportCertificate(formData, id) {
-  console.log('123', formData, id);
   const { data } = await axios.patch(`/resume/certificate/${id}/path`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
