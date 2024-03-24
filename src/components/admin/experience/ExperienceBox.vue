@@ -7,7 +7,7 @@
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} experiences"
       >
         <template #header>
-          <SubTitle :text="'Образование'" :admin="true"/>
+          <SubTitle :text="'Опыт'" :admin="true"/>
         </template>
 
         <Column 
