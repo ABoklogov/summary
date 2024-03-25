@@ -18,6 +18,9 @@ export const usePortfolioStore = defineStore(
      // linkClient
      const loadingLinkClient = ref(false);
      const errorLinkClient = ref('');
+     // aboutText
+     const loadingAboutText = ref(false);
+     const errorAboutText = ref('');
 
     // общие данные 
     function setDataPortfolio(data) {
@@ -42,6 +45,13 @@ export const usePortfolioStore = defineStore(
     };
     function setErrorLinkClient(payload) {
       errorLinkClient.value = payload;
+    };
+    // aboutText
+    function setLoadingAboutText(payload) {
+      loadingAboutText.value = payload;
+    };
+    function setErrorAboutText(payload) {
+      errorAboutText.value = payload;
     };
 
     async function getDataPortfolio() {
@@ -137,6 +147,43 @@ export const usePortfolioStore = defineStore(
       }
     };
 
+    async function changeAboutText(aboutText) {
+      try {
+        setLoadingAboutText(true);
+        const { _id } = dataPortfolio.value.texts;
+   
+        const { data } = await API.changeAboutText(aboutText, _id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingAboutText(false);
+          setErrorAboutText('');
+
+          // меняем ключ aboutText в стейте
+          const newData = {...dataPortfolio.value}
+          newData.texts.aboutText = data.result.aboutText;
+          setDataPortfolio(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно изменены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingAboutText(false);
+        setErrorAboutText(error.message);
+
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataPortfolio,
       loading,
@@ -145,6 +192,8 @@ export const usePortfolioStore = defineStore(
       changeLinkServer,
       loadingLinkClient,
       changeLinkClient,
+      loadingAboutText,
+      changeAboutText,
     };
   }
 );

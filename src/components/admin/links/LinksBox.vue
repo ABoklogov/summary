@@ -15,7 +15,7 @@ import FormLinkServer from '@/components/admin/links/FormLinkServer.vue';
 import FormLinkClient from '@/components/admin/links/FormLinkClient.vue';
 </script>
 
-<style>
+<style scoped lang="scss">
 .form-link-box {
   margin-top: 10px;
 }

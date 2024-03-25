@@ -8,7 +8,8 @@
       aria-label="Custom ProgressSpinner"
     />
     <div v-else>
-      <LinksBox class="panel-portfolioe__one-box"/>
+      <LinksBox/>
+      <TextsBox class="panel-portfolio__one-box"/>
     </div>
   </div>
 </template>
@@ -18,6 +19,7 @@ import { usePortfolioStore } from '@/stores/portfolio';
 import { storeToRefs } from 'pinia';
 import { onBeforeMount } from 'vue';
 import LinksBox from '@/components/admin/links/LinksBox.vue';
+import TextsBox from '@/components/admin/texts/TextsBox.vue';
 
 const storePortfolio = usePortfolioStore();
 const { loading } = storeToRefs(usePortfolioStore());
@@ -37,7 +39,7 @@ onBeforeMount(() => {
   }
   &__one-box {
     width: 100%;
-    margin-bottom: 15px;
+    margin-top: 15px;
   }
 }
 @media screen and (min-width: 1024px) {
