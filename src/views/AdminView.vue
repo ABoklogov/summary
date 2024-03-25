@@ -1,7 +1,6 @@
 <template>
   <div class="admin-view">
     <UserBlock class="user-box" />
-
     <TabView class="admin-view__content">
       <TabPanel header="Resume">
         <PanelResume/>
@@ -15,7 +14,6 @@
 
 <script setup>
 import { useAuthStore } from '@/stores/auth';
-import { storeToRefs } from 'pinia';
 import { onBeforeMount } from 'vue';
 import UserBlock from '@/components/auth/UserBlock.vue';
 import PanelResume from '@/components/admin/PanelResume.vue';
