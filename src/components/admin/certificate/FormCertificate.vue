@@ -19,7 +19,7 @@
           :rules="textRules"
         />
       </div>
-      <div class="form-certificate-box__input">
+      <div class="form-certificate-box__input form-certificate-box__input--interval">
         <CustomInput
           name="ru-company"
           id="ru-company"
@@ -39,7 +39,7 @@
           :rules="textRules"
         />
       </div>
-      <div class="form-certificate-box__input">
+      <div class="form-certificate-box__input form-certificate-box__input--interval">
         <CustomInput
           name="ru-start"
           id="ru-start"
@@ -59,7 +59,7 @@
           :rules="textRules"
         />
       </div>
-      <div class="form-certificate-box__input">
+      <div class="form-certificate-box__input form-certificate-box__input--interval">
         <CustomInput
           name="ru-finish"
           id="ru-finish"
@@ -79,7 +79,7 @@
           :rules="textRules"
         />
       </div>
-      <div class="form-certificate-box__input">
+      <div class="form-certificate-box__input form-certificate-box__input--interval">
         <CustomInput
           name="webSite"
           id="webSite"
@@ -197,6 +197,9 @@ const submit = async () => {
   }
   &__input {
     margin-top: 10px;
+  }
+  &__input--interval {
+    margin-top: 20px;
   }
   &__footer {
     display: flex;

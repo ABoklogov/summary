@@ -3,8 +3,7 @@
     <div class="education-content">
       <DataTable 
         :value="dataResume.education"
-        dataKey="id" 
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} educations"
+        dataKey="_id"
       >
         <template #header>
           <SubTitle :text="'Образование'" :admin="true"/>
@@ -54,7 +53,7 @@
 
       <Dialog 
         v-model:visible="educationDialog" 
-        :style="{width: '450px'}"
+        :style="{width: '800px'}"
         header="Детали образования" 
         :modal="true"
         class="p-fluid"

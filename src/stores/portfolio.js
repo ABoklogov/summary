@@ -24,6 +24,9 @@ export const usePortfolioStore = defineStore(
      // footerText
      const loadingFooterText = ref(false);
      const errorFooterText = ref('');
+     // project
+     const loadingProject = ref(false);
+     const errorProject = ref('');
 
     // общие данные 
     function setDataPortfolio(data) {
@@ -62,6 +65,13 @@ export const usePortfolioStore = defineStore(
     };
     function setErrorFooterText(payload) {
       errorFooterText.value = payload;
+    };
+    // project
+    function setLoadingProject(payload) {
+      loadingProject.value = payload;
+    };
+    function setErrorProject(payload) {
+      errorProject.value = payload;
     };
 
     async function getDataPortfolio() {
@@ -231,6 +241,69 @@ export const usePortfolioStore = defineStore(
       }
     };
 
+    async function changeProject({ 
+      name, 
+      description, 
+      link, 
+      linkFiles, 
+      preText, 
+      tehnology, 
+      backgroundColor,
+      picture,
+      _id 
+    }) {
+      try {
+        setLoadingProject(true);
+
+        const { data } = await API.changeProject({ 
+          name, 
+          description, 
+          link, 
+          linkFiles, 
+          preText, 
+          tehnology, 
+          backgroundColor,
+          picture 
+        }, _id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingProject(false);
+          setErrorProject('');
+
+          // Находим нужный элемент в project и заменяем его
+          const newProject = dataPortfolio.value.projects.reduce((acc, item) => {
+            if (item._id === data.result._id) {
+              acc.push(data.result);
+            } else {
+              acc.push(item);
+            }
+            return acc;
+          }, []);
+          
+          const newData = {...dataPortfolio.value};
+          newData.projects = newProject;
+          setDataPortfolio(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно изменены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingProject(false);
+        setErrorProject(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataPortfolio,
       loading,
@@ -243,7 +316,8 @@ export const usePortfolioStore = defineStore(
       changeAboutText,
       loadingFooterText,
       changeFooterText,
-
+      loadingProject,
+      changeProject,
     };
   }
 );

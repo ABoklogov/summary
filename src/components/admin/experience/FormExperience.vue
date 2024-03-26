@@ -19,7 +19,7 @@
           :rules="textRules"
         />
       </div>
-      <div class="form-experience-box__input">
+      <div class="form-experience-box__input form-experience-box__input--interval">
         <CustomInput
           name="ru-company"
           id="ru-company"
@@ -39,7 +39,7 @@
           :rules="textRules"
         />
       </div>
-      <div class="form-experience-box__input">
+      <div class="form-experience-box__input form-experience-box__input--interval">
         <CustomTextaria
           name="ru-responsibility"
           id="ru-responsibility"
@@ -63,7 +63,7 @@
           rows="8"
         />
       </div>
-      <div class="form-experience-box__input">
+      <div class="form-experience-box__input form-experience-box__input--interval">
         <CustomInput
           name="ru-start"
           id="ru-start"
@@ -83,7 +83,7 @@
           :rules="textRules"
         />
       </div>
-      <div class="form-experience-box__input">
+      <div class="form-experience-box__input form-experience-box__input--interval">
         <CustomInput
           name="ru-finish"
           id="ru-finish"
@@ -103,7 +103,7 @@
           :rules="textRules"
         />
       </div>
-      <div class="form-experience-box__input">
+      <div class="form-experience-box__input form-experience-box__input--interval">
         <CustomInput
           name="webSite"
           id="webSite"
@@ -230,6 +230,9 @@ const submit = async () => {
   }
   &__input {
     margin-top: 10px;
+  }
+  &__input--interval {
+    margin-top: 20px;
   }
   &__footer {
     display: flex;

@@ -3,8 +3,7 @@
     <div class="certificate-content">
       <DataTable 
         :value="dataResume.certificate"
-        dataKey="id" 
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} certificates"
+        dataKey="_id"
       >
         <template #header>
           <SubTitle :text="'Сертификаты'" :admin="true"/>
@@ -103,7 +102,7 @@
 
       <Dialog 
         v-model:visible="certificateDialog" 
-        :style="{width: '450px'}"
+        :style="{width: '800px'}"
         header="Детали сертификата" 
         :modal="true"
         class="p-fluid"

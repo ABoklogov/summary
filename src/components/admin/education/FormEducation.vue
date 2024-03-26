@@ -19,7 +19,7 @@
           :rules="textRules"
         />
       </div>
-      <div class="form-education-box__input">
+      <div class="form-education-box__input form-education-box__input--interval">
         <CustomInput
           name="ru-speciality"
           id="ru-speciality"
@@ -135,6 +135,9 @@ const submit = async () => {
   }
   &__input {
     margin-top: 10px;
+  }
+  &__input--interval {
+    margin-top: 20px;
   }
   &__footer {
     display: flex;

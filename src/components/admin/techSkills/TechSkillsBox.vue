@@ -3,8 +3,7 @@
     <div class="tech-skills-content">
       <DataTable 
         :value="dataResume.tech_skills" 
-        dataKey="id" 
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} tech-skills"
+        dataKey="_id"
       >
         <template #header>
           <SubTitle :text="'Технические навыки'" :admin="true"/>

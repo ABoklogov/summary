@@ -3,8 +3,7 @@
     <div class="social-content">
       <DataTable 
         :value="dataResume.social" 
-        dataKey="id" 
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} socials"
+        dataKey="_id" 
       >
         <template #header>
           <SubTitle :text="'Социальный сети'" :admin="true"/>

@@ -3,8 +3,7 @@
     <div class="experience-content">
       <DataTable 
         :value="dataResume.experience"
-        dataKey="id" 
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} experiences"
+        dataKey="_id"
       >
         <template #header>
           <SubTitle :text="'Опыт'" :admin="true"/>
@@ -103,7 +102,7 @@
 
       <Dialog 
         v-model:visible="experienceDialog" 
-        :style="{width: '450px'}"
+        :style="{width: '800px'}"
         header="Детали образования" 
         :modal="true"
         class="p-fluid"

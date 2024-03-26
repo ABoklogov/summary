@@ -25,6 +25,11 @@ async function changeFooterText(footerText, id) {
   const { data } = await axios.patch(`/portfolio/text/${id}/footer`, { footerText });
   return data;
 };
+// footer text
+async function changeProject(projectData, id) {
+  const { data } = await axios.put(`/portfolio/projects/${id}`, projectData);
+  return data;
+};
 
 
 const API = {
@@ -33,5 +38,6 @@ const API = {
   changeLinkClient,
   changeAboutText,
   changeFooterText,
+  changeProject,
 };
 export default API;

@@ -10,6 +10,7 @@
     <div v-else>
       <LinksBox/>
       <TextBox class="panel-portfolio__one-box"/>
+      <ProjectBox class="panel-portfolio__one-box"/>
     </div>
   </div>
 </template>
@@ -20,6 +21,7 @@ import { storeToRefs } from 'pinia';
 import { onBeforeMount } from 'vue';
 import LinksBox from '@/components/admin/links/LinksBox.vue';
 import TextBox from '@/components/admin/texts/TextBox.vue';
+import ProjectBox from '@/components/admin/project/ProjectBox.vue';
 
 const storePortfolio = usePortfolioStore();
 const { loading } = storeToRefs(usePortfolioStore());

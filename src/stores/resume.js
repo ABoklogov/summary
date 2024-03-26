@@ -420,7 +420,6 @@ export const useResumeStore = defineStore(
     };
 
     async function changeSocial({ link, shortLink, text, _id }) {
-
       try {
         setLoadingSocial(true);
 
