@@ -20,6 +20,11 @@ async function changeAboutText(aboutText, id) {
   const { data } = await axios.patch(`/portfolio/text/${id}/about`, { aboutText });
   return data;
 };
+// footer text
+async function changeFooterText(footerText, id) {
+  const { data } = await axios.patch(`/portfolio/text/${id}/footer`, { footerText });
+  return data;
+};
 
 
 const API = {
@@ -27,5 +32,6 @@ const API = {
   changeLinkServer,
   changeLinkClient,
   changeAboutText,
+  changeFooterText,
 };
 export default API;

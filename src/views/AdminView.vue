@@ -37,7 +37,7 @@ onBeforeMount(() => {
     height: 100%;
     margin-top: 20px;
   }
-  &:deep .p-tabview-panels {
+  &:deep(.p-tabview-panels) {
     padding: 10px 0;
   }
 }

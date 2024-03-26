@@ -119,10 +119,10 @@ const submitUser = async () => {
     color: $red;
   }
 }
-.auth-form__input:deep .p-password-input {
+.auth-form__input:deep(.p-password-input) {
   width: 100%;
 }
-.auth-form__input:deep svg {
+.auth-form__input:deep(svg) {
   cursor: pointer;
 }
 

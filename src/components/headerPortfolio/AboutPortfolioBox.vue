@@ -4,7 +4,7 @@
       {{ language === 'ru' ? 'Кто я такой?' : 'Who am i?' }}
     </span>
     <span class="about-portfolio-box__text about-portfolio-box__text--position">
-      {{ language === 'ru' ? aboutText.ru : aboutText.en }}
+      {{ language === 'ru' ? dataPortfolio.texts?.aboutText.ru : dataPortfolio.texts?.aboutText.en }}
       <RouterLink to="/" class="about-portfolio-box__link"> CV <IconArrow /> </RouterLink>
     </span>
   </div>
@@ -12,11 +12,14 @@
 
 <script setup>
 import IconArrow from '@/components/icons/IconArrow.vue';
-import { aboutText } from '@/services/dataPortfolio.js';
 
 defineProps({
   language: {
     type: String
+  },
+  dataPortfolio: {
+    type: Object,
+    required: true
   }
 });
 </script>

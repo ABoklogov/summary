@@ -12,6 +12,8 @@
         type="text"
         v-model:value="aboutText.ru"
         :rules="aboutText ? textRules : []"
+        variant="filled"
+        rows="8"
       />
       <div class="form-text-about__input">
         <CustomTextaria
@@ -21,6 +23,8 @@
           type="text"
           v-model:value="aboutText.en"
           :rules="aboutText ? textRules : []"
+          variant="filled"
+          rows="8"
         />
       </div>
     </div>
@@ -63,7 +67,7 @@ onMounted(() => {
 });
 
 const textRules = computed(() => {
-  return [isRequired, charLimit(300)];
+  return [isRequired, charLimit(500)];
 });
 
 const submit = async () => {

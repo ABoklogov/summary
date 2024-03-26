@@ -1,27 +1,54 @@
 <template>
   <div class="text-box">
     <span class="text-box__text">
-      {{ language === 'ru' ? footerText.ru : footerText.en }}
-      <a :href="linkThisProject"> {{ language === 'ru' ? 'ссылке' : 'link' }} </a>.
+      {{ footerText }}
+      <a :href="props.dataPortfolio?.links.linkClient" target="_blank"> 
+        {{ props.language === 'ru' ? 'клиент' : 'client' }} 
+      </a>
+      / 
+      <a :href="props.dataPortfolio?.links.linkServer" target="_blank"> 
+        {{ props.language === 'ru' ? 'сервер' : 'server' }} 
+      </a>.
     </span>
 
     <span class="text-box__text text-box__text--name">
       {{ language === 'ru' ? 'Разработал' : 'Developed by' }}
-      <a :href="nameDeveloper.link">{{ nameDeveloper.name }}</a>
+      <a 
+        :href="nameDeveloper.link"
+        target="_blank"
+      >
+        {{ nameDeveloper.name }}
+      </a>
     </span>
   </div>
 </template>
 
 <script setup>
 import { computed } from 'vue';
-import { footerText, linkThisProject } from '@/services/dataPortfolio.js';
-import { myName } from '@/services/dataResume.js';
-import { storeToRefs } from 'pinia';
-import { useViewStore } from '@/stores/view';
-const { language } = storeToRefs(useViewStore());
+
+const props = defineProps({
+  dataPortfolio: {
+    type: Object,
+    required: true
+  },
+  dataResume: {
+    type: Object,
+    required: true
+  },
+  language: {
+    type: String,
+    required: true
+  }
+});
 
 const nameDeveloper = computed(() => {
-  return language.value === 'ru' ? myName.ru : myName.en;
+  const dataName = props.dataResume?.about.name;
+  return props.language === 'ru' ? dataName.ru : dataName.en;
+});
+
+const footerText = computed(() => {
+  const { footerText } = props.dataPortfolio?.texts;
+  return props.language === 'ru' ? footerText.ru : footerText.en;
 });
 </script>
 

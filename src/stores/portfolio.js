@@ -21,6 +21,9 @@ export const usePortfolioStore = defineStore(
      // aboutText
      const loadingAboutText = ref(false);
      const errorAboutText = ref('');
+     // footerText
+     const loadingFooterText = ref(false);
+     const errorFooterText = ref('');
 
     // общие данные 
     function setDataPortfolio(data) {
@@ -52,6 +55,13 @@ export const usePortfolioStore = defineStore(
     };
     function setErrorAboutText(payload) {
       errorAboutText.value = payload;
+    };
+    // footerText
+    function setLoadingFooterText(payload) {
+      loadingFooterText.value = payload;
+    };
+    function setErrorFooterText(payload) {
+      errorFooterText.value = payload;
     };
 
     async function getDataPortfolio() {
@@ -184,6 +194,43 @@ export const usePortfolioStore = defineStore(
       }
     };
 
+    async function changeFooterText(footerText) {
+      try {
+        setLoadingFooterText(true);
+        const { _id } = dataPortfolio.value.texts;
+   
+        const { data } = await API.changeFooterText(footerText, _id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingFooterText(false);
+          setErrorFooterText('');
+
+          // меняем ключ footerText в стейте
+          const newData = {...dataPortfolio.value}
+          newData.texts.footerText = data.result.footerText;
+          setDataPortfolio(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно изменены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingFooterText(false);
+        setErrorFooterText(error.message);
+
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataPortfolio,
       loading,
@@ -194,6 +241,9 @@ export const usePortfolioStore = defineStore(
       changeLinkClient,
       loadingAboutText,
       changeAboutText,
+      loadingFooterText,
+      changeFooterText,
+
     };
   }
 );

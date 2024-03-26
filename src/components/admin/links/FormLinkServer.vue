@@ -65,8 +65,7 @@ const submit = async () => {
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/scss/variables';
-.form-link-server:deep input {
+.form-link-server:deep(input) {
   padding-right: 60px;
 }
 </style>

@@ -9,7 +9,7 @@
     />
     <div v-else>
       <LinksBox/>
-      <TextsBox class="panel-portfolio__one-box"/>
+      <TextBox class="panel-portfolio__one-box"/>
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@ import { usePortfolioStore } from '@/stores/portfolio';
 import { storeToRefs } from 'pinia';
 import { onBeforeMount } from 'vue';
 import LinksBox from '@/components/admin/links/LinksBox.vue';
-import TextsBox from '@/components/admin/texts/TextsBox.vue';
+import TextBox from '@/components/admin/texts/TextBox.vue';
 
 const storePortfolio = usePortfolioStore();
 const { loading } = storeToRefs(usePortfolioStore());
