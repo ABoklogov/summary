@@ -241,6 +241,42 @@ export const usePortfolioStore = defineStore(
       }
     };
 
+    async function addProject(projectData) {
+      try {
+        setLoadingProject(true);
+
+        const { data } = await API.addProject(projectData);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingProject(false);
+          setErrorProject('');
+
+          // Добавляем новый элемент в массив и подставляем в project
+          const newProject = [...dataPortfolio.value.projects, data.result];
+          const newData = {...dataPortfolio.value};
+          newData.projects = newProject;
+          setDataPortfolio(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно добавлены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingProject(false);
+        setErrorProject(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     async function changeProject({ 
       name, 
       description, 
@@ -318,6 +354,7 @@ export const usePortfolioStore = defineStore(
       changeFooterText,
       loadingProject,
       changeProject,
+      addProject,
     };
   }
 );

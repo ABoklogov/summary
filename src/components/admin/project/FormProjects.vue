@@ -123,9 +123,11 @@
       </div>
       <div class="form-project-box__input form-project-box__input--interval">
         <div>цвет фона</div>
-        <div class="form-project-box__color-box">
-          <div class="form-project-box__color">
-            <span class="form-project-box__color-label">цвет</span>
+        <div class="color-picker-box">
+          <div class="color-picker-box__color">
+            <span class="color-picker-box__color-label">
+              цвет
+            </span>
             <div class="color-picker">
               <ColorPicker 
                 inputId="background-color"
@@ -134,8 +136,10 @@
               />
             </div>
           </div>
-          <div class="form-project-box__color-opacity">
-            <span class="form-project-box__color-label">прозрачность</span>
+          <div class="color-picker-box__color-opacity">
+            <span class="color-picker-box__color-label">
+              прозрачность
+            </span>
             <InputNumber 
               v-model="formatOpacity" 
               inputId="opacity" 
@@ -153,8 +157,10 @@
               </template>
             </InputNumber>
           </div>
-          <div class="form-project-box__color-total">
-            <span class="form-project-box__color-label">итоговый цвет</span>
+          <div class="color-picker-box__color-total">
+            <span class="color-picker-box__color-label">
+              итоговый цвет
+            </span>
             <div :style="{
                 backgroundColor: projectData.backgroundColor, 
                 width: '100px',
@@ -162,6 +168,9 @@
               }"
             ></div>
           </div>
+          <span v-if="!isVolidColor" class="color-picker-box__error">
+            задайте цвет заливки проекта
+          </span>
         </div>
       </div>
     </div>
@@ -189,7 +198,7 @@
 <script setup>
 import { storeToRefs } from 'pinia';
 import { usePortfolioStore } from '@/stores/portfolio';
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import CustomForm from '@/components/shared/CustomForm.vue';
 import CustomInput from '@/components/shared/CustomInput.vue';
 import CustomTextaria from '@/components/shared/CustomTextaria.vue';
@@ -207,6 +216,7 @@ import {
 } from '@/utils/validationRules';
 
 const projectForm = ref(null);
+const isVolidColor = ref(true);
 const projectData = ref({
     name: {
       ru: '',
@@ -249,6 +259,11 @@ const props = defineProps({
 onMounted(() => {
   projectData.value = props.project;
 });
+watch(
+  () => projectData.value.backgroundColor, 
+  (value) => {
+  value ? isVolidColor.value = true : isVolidColor.value = false;
+});
 
 const textRules = computed(() => {
   return [isRequired, charLimit(50), loginValidation];
@@ -259,7 +274,6 @@ const responsibilityRules = computed(() => {
 const urlRules = computed(() => {
   return [isRequired, charLimit(50), urlValidation];
 });
-
 const formatColor = computed({
   get() {
     const str = projectData.value.backgroundColor;
@@ -303,11 +317,17 @@ const formatOpacity = computed({
     projectData.value.backgroundColor = arr.join(" ");
   }
 });
+const validateColor = () => {
+  if (!projectData.value.backgroundColor) {
+    isVolidColor.value = false;
+  }
+};
 
 const submit = async () => {
   const isVolidForm = projectForm.value.validate();
+  validateColor();
 
-  if (!isVolidForm) {
+  if (!isVolidForm || !isVolidColor.value) {
     toast.add({ 
       severity: 'error', 
       summary: 'Ошибка', 
@@ -316,11 +336,11 @@ const submit = async () => {
     });
     return;
   };
-  console.log(projectData.value);
+ 
   if (projectData.value._id) {
     await changeProject(projectData.value);
   } else {
-    // await addProject(projectData.value);
+    await addProject(projectData.value);
   };
 
   props.hideDialog();
@@ -347,12 +367,14 @@ const submit = async () => {
     flex-direction: row;
     margin-top: 20px;
   }
-  &__color-box {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  &__color-box .color-picker {
+}
+.color-picker-box {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  & .color-picker {
     width: 32px;
     height: 32px;
   }
@@ -370,8 +392,14 @@ const submit = async () => {
   &__color-label {
     display: block;
   }
+  &__error {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    font-size: $fontMicro;
+    color: $red;
+  }
 }
-
 @media screen and (min-width: 768px) {
   .form-project-box {
     &__footer button:first-child {
