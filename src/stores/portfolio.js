@@ -340,6 +340,46 @@ export const usePortfolioStore = defineStore(
       }
     };
 
+    async function removeProject(id) {
+      try {
+        setLoadingProject(true);
+
+        const { data } = await API.removeProject(id);
+
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingProject(false);
+          setErrorProject('');
+
+          // Удаляем элемент из массива projects
+          const newProjects = [...dataPortfolio.value.projects];
+
+          const index = newProjects.findIndex(el => el._id === id);
+          if (index !== -1) newProjects.splice(index, 1);
+
+          const newData = {...dataPortfolio.value};
+          newData.projects = newProjects;
+          setDataPortfolio(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Данные успешно удалены',
+            life: 5000
+          });
+        }
+      } catch (error) {
+        setLoadingProject(false);
+        setErrorProject(error.message);
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: error.message, 
+          life: 5000 
+        });
+      }
+    };
+
     async function exportImageProject(file, id) {
       try {
         setLoadingProject(true);
@@ -401,6 +441,7 @@ export const usePortfolioStore = defineStore(
       loadingProject,
       changeProject,
       addProject,
+      removeProject,
       exportImageProject,
     };
   }

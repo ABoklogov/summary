@@ -35,7 +35,12 @@ async function addProject(projectData) {
   const { data } = await axios.post('/portfolio/projects', projectData);
   return data;
 };
-// добавление project
+// удаление project
+async function removeProject(id) {
+  const { data } = await axios.delete(`/portfolio/projects/${id}`);
+  return data;
+};
+// добавление картинки в project
 async function exportImageProject(formData, id) {
   const { data } = await axios.patch(`/portfolio/projects/${id}/picture`, formData, {
     headers: {
@@ -54,6 +59,7 @@ const API = {
   changeFooterText,
   changeProject,
   addProject,
+  removeProject,
   exportImageProject,
 };
 export default API;

@@ -92,7 +92,6 @@
         >
         <template #body="slotProps">
           <div class="projects-content__table-item">
-              <!-- {{ console.log(slotProps.data.picture) }} -->
               <img 
                 :src="slotProps.data.picture ? 
                 baseUrl + slotProps.data.picture : 
@@ -199,7 +198,7 @@ import FormProjects from '@/components/admin/project/FormProjects.vue';
 import FormExportImageProject from '@/components/admin/project/FormExportImageProject.vue';
 import {baseUrl} from '@/services/urls.js';
 
-const { removeProjects } = usePortfolioStore();
+const { removeProject } = usePortfolioStore();
 const { dataPortfolio, loadingProjects } = storeToRefs(usePortfolioStore());
 
 const projectsDialog = ref(false);
@@ -243,7 +242,6 @@ const hideDialog = () => {
 };
 const hideExportDialog = () => {
   exportImageProjectDialog.value = false;
-
 };
 const edit = (prod) => {
   project.value = { ...prod };
@@ -258,7 +256,8 @@ const confirmDeleteProduct = (prod) => {
   deleteDialog.value = true;
 };
 const deleteProduct = async () => {
-  // await removeProjects(project.value._id);
+  // console.log(project.value);
+  await removeProject(project.value._id);
   deleteDialog.value = false;
 };
 </script>
