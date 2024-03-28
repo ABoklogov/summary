@@ -1051,7 +1051,12 @@ export const useResumeStore = defineStore(
 
           // меняем path в certificate в стейте
           const newData = {...dataResume.value}
-          newData.certificate.path = data.path;
+          newData.certificate.forEach(el => {
+            if (el._id === id) {
+              el.path = data.path;
+              return
+            }
+          });
           setDataResume(newData);
 
           toast.add({

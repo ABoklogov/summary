@@ -340,6 +340,52 @@ export const usePortfolioStore = defineStore(
       }
     };
 
+    async function exportImageProject(file, id) {
+      try {
+        setLoadingProject(true);
+
+        let formData = new FormData();
+        formData.append('picture', file);
+
+        const { data } = await API.exportImageProject(formData, id);
+        
+        if (data === undefined) {
+          throw new Error('Server Error!');
+        } else {
+          setLoadingProject(false);
+          setErrorProject('');
+
+          // меняем picture в projects в стейте
+          const newData = {...dataPortfolio.value}
+          newData.projects.forEach(el => {
+            if (el._id === id) {
+              el.picture = data.picture;
+              return
+            }
+          });
+          setDataPortfolio(newData);
+
+          toast.add({
+            severity: 'success',
+            summary: 'Успешно загрузили файл',
+            life: 5000
+          });
+
+          return data
+        }
+      } catch ({ message }) {
+        setLoadingProject(false);
+        setErrorProject(message);
+
+        toast.add({ 
+          severity: 'error', 
+          summary: 'Ошибка', 
+          detail: message, 
+          life: 5000 
+        });
+      }
+    };
+
     return {
       dataPortfolio,
       loading,
@@ -355,6 +401,7 @@ export const usePortfolioStore = defineStore(
       loadingProject,
       changeProject,
       addProject,
+      exportImageProject,
     };
   }
 );

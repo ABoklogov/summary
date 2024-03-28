@@ -109,7 +109,6 @@
       >
         <FormCertificate :certificate="certificate" :hideDialog="hideDialog"/>
       </Dialog>
-
       <Dialog 
         v-model:visible="exportCertificateDialog" 
         :style="{width: '450px'}"

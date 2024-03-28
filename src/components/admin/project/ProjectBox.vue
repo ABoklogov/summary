@@ -90,8 +90,9 @@
           header="картинка" 
           style="min-width:12rem"
         >
-          <template #body="slotProps">
-            <div class="projects-content__table-item">
+        <template #body="slotProps">
+          <div class="projects-content__table-item">
+              <!-- {{ console.log(slotProps.data.picture) }} -->
               <img 
                 :src="slotProps.data.picture ? 
                 baseUrl + slotProps.data.picture : 
@@ -122,6 +123,7 @@
         <Column :exportable="false" style="min-width:8rem">
           <template #body="slotProps">
             <div class="projects-content__table-btns">
+              <Button icon="pi pi-upload" outlined rounded class="mr-2" severity="help" @click="editExport(slotProps.data)" />
               <Button icon="pi pi-pencil" outlined rounded class="mr-2" @click="edit(slotProps.data)" />
               <Button icon="pi pi-trash" outlined rounded severity="danger" @click="confirmDeleteProduct(slotProps.data)" />
             </div>
@@ -146,7 +148,16 @@
       >
         <FormProjects :project="project" :hideDialog="hideDialog"/>
       </Dialog>
-    
+      <Dialog 
+        v-model:visible="exportImageProjectDialog" 
+        :style="{width: '450px'}"
+        header="Загрузка картинки проекта" 
+        :modal="true"
+        class="p-fluid"
+      >
+        <FormExportImageProject :hideDialog="hideExportDialog" :id="project._id" />
+      </Dialog>
+
       <Dialog 
         v-model:visible="deleteDialog" 
         :style="{width: '450px'}" 
@@ -185,12 +196,14 @@ import { ref } from 'vue';
 import SubTitle from '@/components/shared/SubTitle.vue';
 import Box from '@/components/shared/Box.vue';
 import FormProjects from '@/components/admin/project/FormProjects.vue';
+import FormExportImageProject from '@/components/admin/project/FormExportImageProject.vue';
 import {baseUrl} from '@/services/urls.js';
 
 const { removeProjects } = usePortfolioStore();
 const { dataPortfolio, loadingProjects } = storeToRefs(usePortfolioStore());
 
 const projectsDialog = ref(false);
+const exportImageProjectDialog = ref(false);
 const deleteDialog = ref(false);
 const project = ref({});
 
@@ -228,9 +241,17 @@ const openNew = () => {
 const hideDialog = () => {
   projectsDialog.value = false;
 };
+const hideExportDialog = () => {
+  exportImageProjectDialog.value = false;
+
+};
 const edit = (prod) => {
   project.value = { ...prod };
   projectsDialog.value = true;
+};
+const editExport = (prod) => {
+  project.value = { ...prod };
+  exportImageProjectDialog.value = true;
 };
 const confirmDeleteProduct = (prod) => {
   project.value = prod;

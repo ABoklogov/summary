@@ -35,6 +35,15 @@ async function addProject(projectData) {
   const { data } = await axios.post('/portfolio/projects', projectData);
   return data;
 };
+// добавление project
+async function exportImageProject(formData, id) {
+  const { data } = await axios.patch(`/portfolio/projects/${id}/picture`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+  return data;
+};
 
 
 const API = {
@@ -45,5 +54,6 @@ const API = {
   changeFooterText,
   changeProject,
   addProject,
+  exportImageProject,
 };
 export default API;
