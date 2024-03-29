@@ -256,7 +256,6 @@ const confirmDeleteProduct = (prod) => {
   deleteDialog.value = true;
 };
 const deleteProduct = async () => {
-  // console.log(project.value);
   await removeProject(project.value._id);
   deleteDialog.value = false;
 };

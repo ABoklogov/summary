@@ -269,7 +269,7 @@ const textRules = computed(() => {
   return [isRequired, charLimit(50), loginValidation];
 });
 const responsibilityRules = computed(() => {
-  return [isRequired, charLimit(300), loginValidation];
+  return [isRequired, charLimit(500), loginValidation];
 });
 const urlRules = computed(() => {
   return [isRequired, charLimit(50), urlValidation];

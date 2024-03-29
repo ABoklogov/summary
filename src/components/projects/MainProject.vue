@@ -1,25 +1,31 @@
 <template>
   <div calss="main">
-    <a :href="link.url" class="main__link">{{ link.text }}</a>
-    <span class="main__name">{{ name }}</span>
-    <span class="main__text main__text--position">{{ preText }}</span>
+    <a :href="link.url" class="main__link" target="_blank">
+      {{ language === 'ru' ? link.text.ru : link.text.en }}
+    </a>
+    <span class="main__name">
+      {{ language === 'ru' ? name.ru : name.en }}
+    </span>
+    <span class="main__text main__text--position">
+      {{ language === 'ru' ? preText.ru : preText.en }}
+    </span>
 
     <div class="main__tehnology">
       <span class="main__text main__text--bold">
         {{ language === 'ru' ? 'Технологии' : 'Technologies' }}:
       </span>
       <ul class="main__list-tehnology">
-        <li v-for="(item, idx) in tehnology" :key="`item-${idx}`" class="main__item-tehnology">
+        <li v-for="(item, idx) in tehnology" :key="`item-${item + idx}`" class="main__item-tehnology">
           {{ item }}
         </li>
       </ul>
     </div>
 
-    <div v-if="linkFiles" class="main__source">
+    <div v-if="linkFiles.url" class="main__source">
       <span class="main__text main__text--bold">
         {{ language === 'ru' ? 'Исходные файлы' : 'Source files' }}:
       </span>
-      <a :href="linkFiles.url" class="main__text main__text--link">
+      <a :href="linkFiles.url" class="main__text main__text--link" target="_blank">
         {{ linkFiles.text }}
       </a>
     </div>
@@ -29,19 +35,50 @@
 <script setup>
 defineProps({
   tehnology: {
-    type: Array
+    type: Array,
+    validator(arr) {
+      return arr.every(el => typeof el === 'string');
+    },
   },
   linkFiles: {
-    type: Object
+    type: Object,
+    validator(obj) {
+      let result;
+      for (var key in obj) {
+        result = typeof obj[key] === 'string';
+      }
+      return result;
+    },
   },
   link: {
-    type: Object
+    type: Object,
+    validator(obj) {
+      let result;
+      for (var key in obj) {
+        result = typeof obj[key] === 'string';
+      }
+      return result;
+    },
   },
   name: {
-    type: String
+    type: Object,
+    validator(obj) {
+      let result;
+      for (var key in obj) {
+        result = typeof obj[key] === 'string';
+      }
+      return result;
+    },
   },
   preText: {
-    type: String
+    type: Object,
+    validator(obj) {
+      let result;
+      for (var key in obj) {
+        result = typeof obj[key] === 'string';
+      }
+      return result;
+    },
   },
   language: {
     type: String

@@ -12,7 +12,7 @@
       <HeaderPortfolio :language="language" :dataPortfolio="dataPortfolio"/>
   
       <div class="portfolio__content" id="projects">
-        <ProjectList :projects="language === 'ru' ? projects.ru : projects.en" :language="language" />
+        <ProjectList :dataPortfolio="dataPortfolio" :language="language" />
       </div>
   
       <Footer :dataResume="dataResume" :dataPortfolio="dataPortfolio"/>
@@ -29,7 +29,6 @@ import { useViewStore } from '@/stores/view';
 import HeaderPortfolio from '@/components/headerPortfolio/HeaderPortfolio.vue';
 import ProjectList from '@/components/projects/ProjectList.vue';
 import Footer from '@/components/footer/Footer.vue';
-import { projects } from '@/services/dataPortfolio.js';
 
 const { language } = storeToRefs(useViewStore());
 const storeResume = useResumeStore();
