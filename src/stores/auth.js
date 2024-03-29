@@ -61,7 +61,7 @@ export const useAuthStore = defineStore(
             detail: `Добро пожаловать ${user.login}`,
             life: 5000
           });
-          
+
           router.push({ name: 'adminPage' });
         }
       } catch (error) {

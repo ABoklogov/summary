@@ -32,19 +32,13 @@
     </div>
 
     <div class="form-social-box__footer">
-      <Button 
-        label="Отмена" 
-        icon="pi pi-times" 
-        iconPos="right" 
-        text 
-        @click="props.hideDialog" 
-      />
-      <Button 
+      <Button label="Отмена" icon="pi pi-times" iconPos="right" text @click="props.hideDialog" />
+      <Button
         type="submit"
-        label="Отправить" 
+        label="Отправить"
         aria-label="Отправить данные"
-        icon="pi pi-check" 
-        iconPos="right"  
+        icon="pi pi-check"
+        iconPos="right"
         :loading="loadingSocial"
       />
     </div>
@@ -61,19 +55,14 @@ import CustomInput from '@/components/shared/CustomInput.vue';
 const { changeSocial, addSocial } = useResumeStore();
 const { loadingSocial } = storeToRefs(useResumeStore());
 
-import {
-  isRequired,
-  charLimit,
-  loginValidation,
-  urlValidation,
-} from '@/utils/validationRules';
+import { isRequired, charLimit, loginValidation, urlValidation } from '@/utils/validationRules';
 
 const socialForm = ref(null);
 
 const socialData = ref({
   shortLink: '',
   link: '',
-  text: '',
+  text: ''
 });
 
 const props = defineProps({
@@ -102,13 +91,13 @@ const submit = async () => {
 
   if (!isVolidForm) {
     return;
-  };
-  
+  }
+
   if (socialData.value._id) {
     await changeSocial(socialData.value);
   } else {
     await addSocial(socialData.value);
-  };
+  }
 
   props.hideDialog();
 };

@@ -1,15 +1,10 @@
 <template>
   <Box class="avatar-box">
-    <SubTitle :text="'Смена аватара'" :admin="true"/>
+    <SubTitle :text="'Смена аватара'" :admin="true" />
 
     <div class="avatar-box__content">
       <div class="avatar-box__img-wrapper">
-        <img  
-          :src="avatar" 
-          alt="avatar" 
-          crossorigin="anonymous"
-          class="avatar-box__img"
-        />
+        <img :src="avatar" alt="avatar" crossorigin="anonymous" class="avatar-box__img" />
       </div>
       <FormAvatar />
     </div>
@@ -23,7 +18,7 @@ import { storeToRefs } from 'pinia';
 import Box from '@/components/shared/Box.vue';
 import FormAvatar from '@/components/admin/avatar/FormAvatar.vue';
 import SubTitle from '@/components/shared/SubTitle.vue';
-import {baseUrl} from '@/services/urls.js';
+import { baseUrl } from '@/services/urls.js';
 
 const { dataResume } = storeToRefs(useResumeStore());
 

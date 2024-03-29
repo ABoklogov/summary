@@ -1,10 +1,7 @@
 <template>
   <footer class="footer">
     <div class="footer__top">
-      <FooterLinksBox
-        :title="language === 'ru' ? 'Контакты' : 'Contact'"
-        :list="contactsList"
-      />
+      <FooterLinksBox :title="language === 'ru' ? 'Контакты' : 'Contact'" :list="contactsList" />
 
       <FooterLinksBox
         class="footer__social"
@@ -14,9 +11,9 @@
       />
     </div>
 
-    <FooterTextBox 
+    <FooterTextBox
       class="text-box--position"
-      :language="language" 
+      :language="language"
       :dataPortfolio="dataPortfolio"
       :dataResume="dataResume"
     />
@@ -40,12 +37,12 @@ const props = defineProps({
   dataResume: {
     type: Object,
     required: true
-  },
+  }
 });
 
 const contactsList = computed(() => {
   const { email, phone, telegram } = props.dataResume?.contacts;
-  return [email, phone, telegram]
+  return [email, phone, telegram];
 });
 </script>
 

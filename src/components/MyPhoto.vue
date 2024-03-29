@@ -1,20 +1,20 @@
 <template>
   <div class="photo">
-    <img 
-      :src="avatar ? baseUrl + avatar : require('@/assets/images/default-avatar.jpg')" 
-      alt="avatar" 
+    <img
+      :src="avatar ? baseUrl + avatar : require('@/assets/images/default-avatar.jpg')"
+      alt="avatar"
       crossorigin="anonymous"
     />
   </div>
 </template>
 
 <script setup>
-import {baseUrl} from '@/services/urls.js';
+import { baseUrl } from '@/services/urls.js';
 
 defineProps({
   avatar: {
-    type: String,
-  },
+    type: String
+  }
 });
 </script>
 

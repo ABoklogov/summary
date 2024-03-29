@@ -1,27 +1,22 @@
 <template>
   <form class="form-certificate">
     <label class="form-certificate__label">
-      <input 
-        type="file" 
-        id="certificate" 
-        ref="certificateInput" 
-        @change="handleFileUpload"
-      />
+      <input type="file" id="certificate" ref="certificateInput" @change="handleFileUpload" />
       <span class="p-button p-component form-certificate__btn">
         {{ textBtn }}
       </span>
     </label>
 
     <Message>
-      Максимальный размер файла 20 mB.<br>
+      Максимальный размер файла 20 mB.<br />
       Возможные форматы файла: 'jpg', 'png', 'jpeg', 'raw', 'tiff', 'psd', 'bmp', 'jp2', 'pdf'.
     </Message>
-    
-    <Button 
-      type="button" 
-      @click.prevent="submitFile" 
+
+    <Button
+      type="button"
+      @click.prevent="submitFile"
       :disabled="!file"
-      icon="pi pi-chevron-right" 
+      icon="pi pi-chevron-right"
       iconPos="right"
       label="Отправить"
       :loading="loadingCertificate"
@@ -57,7 +52,7 @@ const textBtn = computed(() => {
 
     return name.length >= 40 ? `${name.slice(0, 40)}...` : name;
   } else {
-    return 'Выберите файл'
+    return 'Выберите файл';
   }
 });
 
@@ -72,7 +67,7 @@ const submitFile = async () => {
 
   if (result) {
     file.value = null;
-  };
+  }
   props.hideDialog();
 };
 </script>
@@ -87,7 +82,7 @@ const submitFile = async () => {
     display: flex;
     flex-direction: column;
   }
-  & input[type=file] {
+  & input[type='file'] {
     position: absolute;
     z-index: -1;
     opacity: 0;

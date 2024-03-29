@@ -116,19 +116,13 @@
     </div>
 
     <div class="form-experience-box__footer">
-      <Button 
-        label="Отмена" 
-        icon="pi pi-times" 
-        iconPos="right" 
-        text 
-        @click="props.hideDialog" 
-      />
-      <Button 
+      <Button label="Отмена" icon="pi pi-times" iconPos="right" text @click="props.hideDialog" />
+      <Button
         type="submit"
-        label="Отправить" 
+        label="Отправить"
         aria-label="Отправить данные"
-        icon="pi pi-check" 
-        iconPos="right"  
+        icon="pi pi-check"
+        iconPos="right"
         :loading="loadingExperience"
       />
     </div>
@@ -146,12 +140,7 @@ import CustomTextaria from '@/components/shared/CustomTextaria.vue';
 const { changeExperience, addExperience } = useResumeStore();
 const { loadingExperience } = storeToRefs(useResumeStore());
 
-import {
-  isRequired,
-  charLimit,
-  loginValidation,
-  urlValidation
-} from '@/utils/validationRules';
+import { isRequired, charLimit, loginValidation, urlValidation } from '@/utils/validationRules';
 
 const experienceForm = ref(null);
 const experienceData = ref({
@@ -207,13 +196,13 @@ const submit = async () => {
 
   if (!isVolidForm) {
     return;
-  };
-  
+  }
+
   if (experienceData.value._id) {
     await changeExperience(experienceData.value);
   } else {
     await addExperience(experienceData.value);
-  };
+  }
 
   props.hideDialog();
 };

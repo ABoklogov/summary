@@ -8,19 +8,19 @@
       aria-label="Custom ProgressSpinner"
     />
     <div v-else>
-      <NameBox class="panel-resume__one-box"/>
+      <NameBox class="panel-resume__one-box" />
 
       <div class="panel-resume__box">
-        <AvatarBox class="panel-resume__two-box"/>
-        <AboutBox class="panel-resume__two-box"/>
+        <AvatarBox class="panel-resume__two-box" />
+        <AboutBox class="panel-resume__two-box" />
       </div>
 
-      <ContactsBox class="panel-resume__one-box panel-resume__one-box--contacts"/>
-      <SocialBox class="panel-resume__one-box"/>
-      <EducationBox class="panel-resume__one-box"/>
-      <TechSkillsBox class="panel-resume__one-box"/>
-      <ExperienceBox class="panel-resume__one-box"/>
-      <CertificateBox class="panel-resume__one-box"/>
+      <ContactsBox class="panel-resume__one-box panel-resume__one-box--contacts" />
+      <SocialBox class="panel-resume__one-box" />
+      <EducationBox class="panel-resume__one-box" />
+      <TechSkillsBox class="panel-resume__one-box" />
+      <ExperienceBox class="panel-resume__one-box" />
+      <CertificateBox class="panel-resume__one-box" />
     </div>
   </div>
 </template>

@@ -4,7 +4,9 @@
       {{ language === 'ru' ? 'Кто я такой?' : 'Who am i?' }}
     </span>
     <span class="about-portfolio-box__text about-portfolio-box__text--position">
-      {{ language === 'ru' ? dataPortfolio.texts?.aboutText.ru : dataPortfolio.texts?.aboutText.en }}
+      {{
+        language === 'ru' ? dataPortfolio.texts?.aboutText.ru : dataPortfolio.texts?.aboutText.en
+      }}
       <RouterLink to="/" class="about-portfolio-box__link"> CV <IconArrow /> </RouterLink>
     </span>
   </div>

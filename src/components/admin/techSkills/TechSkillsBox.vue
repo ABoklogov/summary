@@ -1,20 +1,29 @@
 <template>
   <Box>
     <div class="tech-skills-content">
-      <DataTable 
-        :value="dataResume.tech_skills" 
-        dataKey="_id"
-      >
+      <DataTable :value="dataResume.tech_skills" dataKey="_id">
         <template #header>
-          <SubTitle :text="'Технические навыки'" :admin="true"/>
+          <SubTitle :text="'Технические навыки'" :admin="true" />
         </template>
 
         <Column field="value" header="название" sortable style="width: 100%"></Column>
-        <Column :exportable="false" style="min-width:8rem">
+        <Column :exportable="false" style="min-width: 8rem">
           <template #body="slotProps">
             <div class="tech-skills-content__table-btns">
-              <Button icon="pi pi-pencil" outlined rounded class="mr-2" @click="editProduct(slotProps.data)" />
-              <Button icon="pi pi-trash" outlined rounded severity="danger" @click="confirmDeleteProduct(slotProps.data)" />
+              <Button
+                icon="pi pi-pencil"
+                outlined
+                rounded
+                class="mr-2"
+                @click="editProduct(slotProps.data)"
+              />
+              <Button
+                icon="pi pi-trash"
+                outlined
+                rounded
+                severity="danger"
+                @click="confirmDeleteProduct(slotProps.data)"
+              />
             </div>
           </template>
         </Column>
@@ -23,44 +32,47 @@
       <Button
         label="Добавить"
         aria-label="Добавить новый пункт"
-        icon="pi pi-plus" 
+        icon="pi pi-plus"
         class="mr-2 tech-skills-content__add-btn"
         @click="openNew"
       />
 
-      <Dialog 
-        v-model:visible="techSkillsDialog" 
-        :style="{width: '450px'}"
-        header="Технический навык" 
+      <Dialog
+        v-model:visible="techSkillsDialog"
+        :style="{ width: '450px' }"
+        header="Технический навык"
         :modal="true"
         class="p-fluid"
       >
-        <FormTechSkills :techSkills="techSkills" :hideDialog="hideDialog"/>
+        <FormTechSkills :techSkills="techSkills" :hideDialog="hideDialog" />
       </Dialog>
-    
-      <Dialog 
-        v-model:visible="deleteDialog" 
-        :style="{width: '450px'}" 
-        header="Удаление" 
+
+      <Dialog
+        v-model:visible="deleteDialog"
+        :style="{ width: '450px' }"
+        header="Удаление"
         :modal="true"
       >
         <div class="tech-skills-content__delete-text">
           <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-          <span v-if="techSkills">Вы действительно хотите удалить <b>{{techSkills.value}}</b>?</span>
+          <span v-if="techSkills"
+            >Вы действительно хотите удалить <b>{{ techSkills.value }}</b
+            >?</span
+          >
         </div>
         <template #footer>
-          <Button 
-            label="Нет" 
-            icon="pi pi-times" 
-            text 
-            @click="deleteDialog = false" 
-            iconPos="right" 
+          <Button
+            label="Нет"
+            icon="pi pi-times"
+            text
+            @click="deleteDialog = false"
+            iconPos="right"
           />
-          <Button 
-            label="Да" 
-            icon="pi pi-check" 
-            @click="deleteProduct" 
-            iconPos="right" 
+          <Button
+            label="Да"
+            icon="pi pi-check"
+            @click="deleteProduct"
+            iconPos="right"
             :loading="loadingTechSkills"
           />
         </template>

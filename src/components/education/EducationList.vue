@@ -1,13 +1,15 @@
 <template>
   <ul class="education-list">
-    <li 
-      v-for="{ institution, speciality } in education" 
-      :key="institution.en" 
+    <li
+      v-for="{ institution, speciality } in education"
+      :key="institution.en"
       class="education-list__item"
     >
       <span>
         {{ language === 'ru' ? institution.ru : institution.en }}
-        </span> - <span>
+      </span>
+      -
+      <span>
         {{ language === 'en' ? speciality.en : speciality.en }}
       </span>
     </li>
@@ -19,10 +21,10 @@ defineProps({
   education: {
     type: Array,
     validator(arr) {
-      return arr.every(obj => {
-        return Object.values(obj).every(subObj => {
-          return Object.values(subObj).every(el => typeof el === 'string');
-        })
+      return arr.every((obj) => {
+        return Object.values(obj).every((subObj) => {
+          return Object.values(subObj).every((el) => typeof el === 'string');
+        });
       });
     },
     required: true

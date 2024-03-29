@@ -42,19 +42,13 @@
     </div>
 
     <div class="form-education-box__footer">
-      <Button 
-        label="Отмена" 
-        icon="pi pi-times" 
-        iconPos="right" 
-        text 
-        @click="props.hideDialog" 
-      />
-      <Button 
+      <Button label="Отмена" icon="pi pi-times" iconPos="right" text @click="props.hideDialog" />
+      <Button
         type="submit"
-        label="Отправить" 
+        label="Отправить"
         aria-label="Отправить данные"
-        icon="pi pi-check" 
-        iconPos="right"  
+        icon="pi pi-check"
+        iconPos="right"
         :loading="loadingEducation"
       />
     </div>
@@ -71,11 +65,7 @@ import CustomInput from '@/components/shared/CustomInput.vue';
 const { changeEducation, addEducation } = useResumeStore();
 const { loadingEducation } = storeToRefs(useResumeStore());
 
-import {
-  isRequired,
-  charLimit,
-  loginValidation,
-} from '@/utils/validationRules';
+import { isRequired, charLimit, loginValidation } from '@/utils/validationRules';
 
 const educationForm = ref(null);
 const educationData = ref({
@@ -86,7 +76,7 @@ const educationData = ref({
   speciality: {
     ru: '',
     en: ''
-  },
+  }
 });
 
 const props = defineProps({
@@ -112,13 +102,13 @@ const submit = async () => {
 
   if (!isVolidForm) {
     return;
-  };
-  
+  }
+
   if (educationData.value._id) {
     await changeEducation(educationData.value);
   } else {
     await addEducation(educationData.value);
-  };
+  }
 
   props.hideDialog();
 };

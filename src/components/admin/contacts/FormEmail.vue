@@ -1,9 +1,5 @@
 <template>
-  <CustomForm 
-    @submit.prevent="submit" 
-    ref="emailForm"
-    class="email-form"
-  >
+  <CustomForm @submit.prevent="submit" ref="emailForm" class="email-form">
     <div class="email-form__sub-box">
       <span class="email-form__title">эл. почта</span>
       <CustomInput
@@ -29,7 +25,7 @@
     <Button
       type="submit"
       aria-label="Отправить данные"
-      icon="pi pi-chevron-right" 
+      icon="pi pi-chevron-right"
       iconPos="right"
       class="email-form__btn"
       :loading="loadingEmail"
@@ -47,11 +43,7 @@ import CustomInput from '@/components/shared/CustomInput.vue';
 const store = useResumeStore();
 const { dataResume, loadingEmail } = storeToRefs(useResumeStore());
 
-import {
-  isRequired,
-  charLimit,
-  emailValidation,
-} from '@/utils/validationRules';
+import { isRequired, charLimit, emailValidation } from '@/utils/validationRules';
 
 const emailForm = ref(null);
 const emailData = ref({
@@ -72,7 +64,7 @@ const submit = async () => {
 
   if (!isVolidForm) {
     return;
-  };
+  }
 
   await store.changeEmail(emailData.value);
 };

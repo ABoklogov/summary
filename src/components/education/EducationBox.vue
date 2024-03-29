@@ -16,13 +16,13 @@ defineProps({
   education: {
     type: Array,
     validator(arr) {
-      return arr.every(obj => {
-        return Object.values(obj).every(subObj => {
-          return Object.values(subObj).every(el => typeof el === 'string');
-        })
+      return arr.every((obj) => {
+        return Object.values(obj).every((subObj) => {
+          return Object.values(subObj).every((el) => typeof el === 'string');
+        });
       });
     },
     required: true
-  },
+  }
 });
 </script>

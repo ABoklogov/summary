@@ -1,26 +1,19 @@
 <template>
   <form class="form-avatar">
     <label class="form-avatar__label">
-      <input 
-        type="file" 
-        id="avatar" 
-        ref="avatar" 
-        @change="handleFileUpload"
-      />
+      <input type="file" id="avatar" ref="avatar" @change="handleFileUpload" />
       <span class="p-button p-component form-avatar__btn">
         {{ textBtn }}
       </span>
     </label>
 
-    <Message>
-      Картинка должна быть квадратная.<br/>Максимальный размер файла 1024 kB.
-    </Message>
-    
-    <Button 
-      type="button" 
-      @click.prevent="submitFile" 
+    <Message> Картинка должна быть квадратная.<br />Максимальный размер файла 1024 kB. </Message>
+
+    <Button
+      type="button"
+      @click.prevent="submitFile"
       :disabled="!file"
-      icon="pi pi-chevron-right" 
+      icon="pi pi-chevron-right"
       iconPos="right"
       label="Отправить"
       :loading="loadingAvatar"
@@ -46,7 +39,7 @@ const textBtn = computed(() => {
 
     return name.length >= 40 ? `${name.slice(0, 40)}...` : name;
   } else {
-    return 'Выберите файл'
+    return 'Выберите файл';
   }
 });
 
@@ -75,7 +68,7 @@ const submitFile = async () => {
     display: flex;
     flex-direction: column;
   }
-  & input[type=file] {
+  & input[type='file'] {
     position: absolute;
     z-index: -1;
     opacity: 0;

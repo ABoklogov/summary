@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {baseUrl} from '@/services/urls.js';
+import { baseUrl } from '@/services/urls.js';
 
 const axiosInstans = axios.create({
   baseURL: `${baseUrl}/api/v1`

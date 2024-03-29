@@ -2,14 +2,10 @@
   <div class="links-box">
     <span class="links-box__title">{{ title }}</span>
     <ul :class="{ 'links-box__list--social': social }">
-      <li 
-        v-for="item in list" 
-        :key="item.link" 
-        :class="{ 'links-box__item--social': social }"
-      >
-        <a 
-          class="links-box__link" 
-          :class="{ 'links-box__link--social': social }" 
+      <li v-for="item in list" :key="item.link" :class="{ 'links-box__item--social': social }">
+        <a
+          class="links-box__link"
+          :class="{ 'links-box__link--social': social }"
           :href="item.link"
           target="_blank"
         >

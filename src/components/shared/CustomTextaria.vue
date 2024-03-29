@@ -2,7 +2,7 @@
   <div class="textarea" ref="textarea">
     <label :for="$attrs.label">{{ $attrs.label }}</label>
     <div class="textarea__wrapper">
-      <Textarea 
+      <Textarea
         v-bind="$attrs"
         :value="value"
         @input="$emit('update:value', $event.target.value)"
@@ -16,15 +16,7 @@
 </template>
 
 <script setup>
-import { 
-  ref, 
-  watch, 
-  defineProps, 
-  defineEmits, 
-  inject, 
-  onMounted, 
-  onBeforeUnmount 
-} from 'vue';
+import { ref, watch, defineProps, defineEmits, inject, onMounted, onBeforeUnmount } from 'vue';
 const props = defineProps({
   value: {
     type: String,

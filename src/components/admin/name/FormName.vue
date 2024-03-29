@@ -69,7 +69,7 @@
       type="submit"
       label="Отправить"
       aria-label="Отправить данные"
-      icon="pi pi-chevron-right" 
+      icon="pi pi-chevron-right"
       iconPos="right"
       class="form-name-box__btn"
       :loading="loadingName"
@@ -87,24 +87,19 @@ import CustomInput from '@/components/shared/CustomInput.vue';
 const store = useResumeStore();
 const { dataResume, loadingName } = storeToRefs(useResumeStore());
 
-import {
-  isRequired,
-  charLimit,
-  loginValidation,
-  urlValidation,
-} from '@/utils/validationRules';
+import { isRequired, charLimit, loginValidation, urlValidation } from '@/utils/validationRules';
 
 const nameForm = ref(null);
 const nameData = ref({
   ru: {
     name: '',
     profession: '',
-    link: '',
+    link: ''
   },
   en: {
     name: '',
     profession: '',
-    link: '',
+    link: ''
   }
 });
 
@@ -127,7 +122,7 @@ const submit = async () => {
 
   if (!isVolidForm) {
     return;
-  };
+  }
 
   await store.changeName(nameData.value);
 };

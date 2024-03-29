@@ -9,13 +9,13 @@
     />
 
     <template v-else>
-      <HeaderPortfolio :language="language" :dataPortfolio="dataPortfolio"/>
-  
+      <HeaderPortfolio :language="language" :dataPortfolio="dataPortfolio" />
+
       <div class="portfolio__content" id="projects">
         <ProjectList :dataPortfolio="dataPortfolio" :language="language" />
       </div>
-  
-      <Footer :dataResume="dataResume" :dataPortfolio="dataPortfolio"/>
+
+      <Footer :dataResume="dataResume" :dataPortfolio="dataPortfolio" />
     </template>
   </div>
 </template>

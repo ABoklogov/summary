@@ -9,8 +9,8 @@ const { language } = storeToRefs(useViewStore());
 
 defineProps({
   about: {
-    type: Object,
-  },
+    type: Object
+  }
 });
 </script>
 

@@ -13,13 +13,7 @@
         :webSite="webSite"
         :language="language"
       />
-      <a
-        v-if="path"
-        :href="baseUrl + path" 
-        download 
-        class="btn-download"
-        target="_blank"
-      >
+      <a v-if="path" :href="baseUrl + path" download class="btn-download" target="_blank">
         <IconDownload />
       </a>
     </li>
@@ -29,7 +23,7 @@
 <script setup>
 import ActivityBox from '@/components/shared/ActivityBox.vue';
 import IconDownload from '@/components/icons/IconDownload.vue';
-import {baseUrl} from '@/services/urls.js';
+import { baseUrl } from '@/services/urls.js';
 
 defineProps({
   list: {

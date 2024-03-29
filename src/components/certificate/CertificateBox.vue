@@ -1,10 +1,7 @@
 <template>
   <div class="certificate-box">
     <SubTitle :text="language === 'ru' ? 'Сертификаты' : 'Certificate'" />
-    <CertificateList
-      :list="certificate"
-      :language="language"
-    />
+    <CertificateList :list="certificate" :language="language" />
   </div>
 </template>
 
@@ -19,6 +16,6 @@ defineProps({
   certificate: {
     type: Array,
     required: true
-  },
+  }
 });
 </script>

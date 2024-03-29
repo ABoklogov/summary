@@ -1,10 +1,10 @@
 <template>
   <Box class="contacts">
-    <SubTitle :text="'Контакты'" :admin="true"/>
+    <SubTitle :text="'Контакты'" :admin="true" />
     <div class="contacts__box">
       <div class="contacts__sub-box">
         <FormCity />
-        <FormEmail class="contacts__email"/>
+        <FormEmail class="contacts__email" />
       </div>
       <div class="contacts__sub-box contacts__sub-box--two">
         <FormPhone />
@@ -47,6 +47,6 @@ import FormTelegram from '@/components/admin/contacts/FormTelegram.vue';
       margin-top: 0;
       margin-left: 30px;
     }
-  } 
+  }
 }
 </style>

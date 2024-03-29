@@ -20,11 +20,11 @@
         @click="toggleDescription"
       />
     </div>
-    <img 
-      :src="picture ? baseUrl + picture : require('@/assets/images/default-image.jpg')" 
+    <img
+      :src="picture ? baseUrl + picture : require('@/assets/images/default-image.jpg')"
       alt="project picture"
       crossorigin="anonymous"
-      class="project-item__image" 
+      class="project-item__image"
     />
   </div>
 </template>
@@ -33,7 +33,7 @@
 import { ref, computed } from 'vue';
 import MainProject from './MainProject.vue';
 import ButtonDescription from './ButtonDescription.vue';
-import {baseUrl} from '@/services/urls.js';
+import { baseUrl } from '@/services/urls.js';
 
 const props = defineProps({
   name: {
@@ -91,7 +91,7 @@ const props = defineProps({
         result = typeof obj[key] === 'string';
       }
       return result;
-    },
+    }
   },
   tehnology: {
     type: Array,

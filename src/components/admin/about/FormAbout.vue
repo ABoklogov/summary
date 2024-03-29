@@ -26,7 +26,7 @@
       type="submit"
       label="Отправить"
       aria-label="Отправить данные"
-      icon="pi pi-chevron-right" 
+      icon="pi pi-chevron-right"
       iconPos="right"
       class="form-about__btn"
       :loading="loadingAbout"
@@ -44,10 +44,7 @@ import CustomTextaria from '@/components/shared/CustomTextaria.vue';
 const store = useResumeStore();
 const { dataResume, loadingAbout } = storeToRefs(useResumeStore());
 
-import {
-  isRequired,
-  charLimit,
-} from '@/utils/validationRules';
+import { isRequired, charLimit } from '@/utils/validationRules';
 
 const aboutForm = ref(null);
 const aboutData = ref({
@@ -67,7 +64,7 @@ const submit = async () => {
   const isVolidForm = aboutForm.value.validate();
   if (!isVolidForm) {
     return;
-  };
+  }
 
   await store.changeAbout(aboutData.value);
 };

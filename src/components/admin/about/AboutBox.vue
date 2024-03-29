@@ -1,6 +1,6 @@
 <template>
   <Box>
-    <SubTitle :text="'Обо мне'" :admin="true"/>
+    <SubTitle :text="'Обо мне'" :admin="true" />
     <FormAbout />
   </Box>
 </template>

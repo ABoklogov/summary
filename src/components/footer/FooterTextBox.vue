@@ -2,21 +2,18 @@
   <div class="text-box">
     <span class="text-box__text">
       {{ footerText }}
-      <a :href="props.dataPortfolio?.links.linkClient" target="_blank"> 
-        {{ props.language === 'ru' ? 'клиент' : 'client' }} 
+      <a :href="props.dataPortfolio?.links.linkClient" target="_blank">
+        {{ props.language === 'ru' ? 'клиент' : 'client' }}
       </a>
-      / 
-      <a :href="props.dataPortfolio?.links.linkServer" target="_blank"> 
-        {{ props.language === 'ru' ? 'сервер' : 'server' }} 
-      </a>.
+      /
+      <a :href="props.dataPortfolio?.links.linkServer" target="_blank">
+        {{ props.language === 'ru' ? 'сервер' : 'server' }} </a
+      >.
     </span>
 
     <span class="text-box__text text-box__text--name">
       {{ language === 'ru' ? 'Разработал' : 'Developed by' }}
-      <a 
-        :href="nameDeveloper.link"
-        target="_blank"
-      >
+      <a :href="nameDeveloper.link" target="_blank">
         {{ nameDeveloper.name }}
       </a>
     </span>

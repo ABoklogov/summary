@@ -9,19 +9,13 @@
     />
 
     <div class="form-tech-skills__footer">
-      <Button 
-        label="Отмена" 
-        icon="pi pi-times" 
-        iconPos="right" 
-        text 
-        @click="props.hideDialog" 
-      />
-      <Button 
+      <Button label="Отмена" icon="pi pi-times" iconPos="right" text @click="props.hideDialog" />
+      <Button
         type="submit"
-        label="Отправить" 
+        label="Отправить"
         aria-label="Отправить данные"
-        icon="pi pi-check" 
-        iconPos="right"  
+        icon="pi pi-check"
+        iconPos="right"
         :loading="loadingTechSkills"
       />
     </div>
@@ -38,17 +32,12 @@ import CustomInput from '@/components/shared/CustomInput.vue';
 const { changeTechSkills, addTechSkills } = useResumeStore();
 const { loadingTechSkills } = storeToRefs(useResumeStore());
 
-import {
-  isRequired,
-  charLimit,
-  loginValidation,
-  urlValidation,
-} from '@/utils/validationRules';
+import { isRequired, charLimit, loginValidation, urlValidation } from '@/utils/validationRules';
 
 const techSkillsForm = ref(null);
 
 const techSkillsData = ref({
-  value: '',
+  value: ''
 });
 
 const props = defineProps({
@@ -77,13 +66,13 @@ const submit = async () => {
 
   if (!isVolidForm) {
     return;
-  };
-  
+  }
+
   if (techSkillsData.value._id) {
     await changeTechSkills(techSkillsData.value);
   } else {
     await addTechSkills(techSkillsData.value);
-  };
+  }
 
   props.hideDialog();
 };
@@ -98,7 +87,7 @@ const submit = async () => {
 }
 
 @media screen and (min-width: 768px) {
-.form-tech-skills__footer button:first-child {
+  .form-tech-skills__footer button:first-child {
     margin-right: 20px;
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <Box>
-    <SubTitle :text="'Ссылки'" :admin="true"/>
+    <SubTitle :text="'Ссылки'" :admin="true" />
     <FormLinkClient />
     <div class="form-link-box">
       <FormLinkServer />

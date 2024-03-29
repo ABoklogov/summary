@@ -21,6 +21,6 @@ defineProps({
       });
     },
     required: true
-  },
+  }
 });
 </script>

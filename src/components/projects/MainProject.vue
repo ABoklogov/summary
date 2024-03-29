@@ -15,7 +15,11 @@
         {{ language === 'ru' ? 'Технологии' : 'Technologies' }}:
       </span>
       <ul class="main__list-tehnology">
-        <li v-for="(item, idx) in tehnology" :key="`item-${item + idx}`" class="main__item-tehnology">
+        <li
+          v-for="(item, idx) in tehnology"
+          :key="`item-${item + idx}`"
+          class="main__item-tehnology"
+        >
           {{ item }}
         </li>
       </ul>
@@ -37,8 +41,8 @@ defineProps({
   tehnology: {
     type: Array,
     validator(arr) {
-      return arr.every(el => typeof el === 'string');
-    },
+      return arr.every((el) => typeof el === 'string');
+    }
   },
   linkFiles: {
     type: Object,
@@ -48,7 +52,7 @@ defineProps({
         result = typeof obj[key] === 'string';
       }
       return result;
-    },
+    }
   },
   link: {
     type: Object,
@@ -58,7 +62,7 @@ defineProps({
         result = typeof obj[key] === 'string';
       }
       return result;
-    },
+    }
   },
   name: {
     type: Object,
@@ -68,7 +72,7 @@ defineProps({
         result = typeof obj[key] === 'string';
       }
       return result;
-    },
+    }
   },
   preText: {
     type: Object,
@@ -78,7 +82,7 @@ defineProps({
         result = typeof obj[key] === 'string';
       }
       return result;
-    },
+    }
   },
   language: {
     type: String

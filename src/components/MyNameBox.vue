@@ -16,8 +16,8 @@ const { language } = storeToRefs(useViewStore());
 
 defineProps({
   name: {
-    type: Object,
-  },
+    type: Object
+  }
 });
 </script>
 

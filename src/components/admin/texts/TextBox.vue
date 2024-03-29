@@ -1,6 +1,6 @@
 <template>
   <Box>
-    <SubTitle :text="'Тексты'" :admin="true"/>
+    <SubTitle :text="'Тексты'" :admin="true" />
     <div class="form-text-box">
       <FormTextAbout />
       <div class="form-text-box__footer-text">

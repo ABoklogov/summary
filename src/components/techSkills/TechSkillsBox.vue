@@ -16,11 +16,11 @@ defineProps({
   techSkills: {
     type: Array,
     validator(arr) {
-      return arr.every(obj => {
-        return Object.values(obj).every(el => typeof el === 'string');
+      return arr.every((obj) => {
+        return Object.values(obj).every((el) => typeof el === 'string');
       });
     },
     required: true
-  },
+  }
 });
 </script>

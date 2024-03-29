@@ -1,82 +1,53 @@
 <template>
   <Box>
     <div class="projects-content">
-      <DataTable 
-        :value="dataPortfolio.projects"
-        dataKey="_id" 
-      >
+      <DataTable :value="dataPortfolio.projects" dataKey="_id">
         <template #header>
-          <SubTitle :text="'Опыт'" :admin="true"/>
+          <SubTitle :text="'Опыт'" :admin="true" />
         </template>
 
-        <Column 
-          field="name" 
-          header="название" 
-          style="min-width:14rem"
-          sortable
-        >
+        <Column field="name" header="название" style="min-width: 14rem">
           <template #body="slotProps">
             <div class="projects-content__table-item">
-              <span>{{`RU: ${slotProps.data.name.ru}`}}</span>
-              <span>{{`EN: ${slotProps.data.name.en}`}}</span>
+              <span>{{ `RU: ${slotProps.data.name.ru}` }}</span>
+              <span>{{ `EN: ${slotProps.data.name.en}` }}</span>
             </div>
           </template>
         </Column>
-        <Column 
-          field="link" 
-          header="ссылка" 
-          style="min-width:14rem"
-          sortable
-        >
+        <Column field="link" header="ссылка" style="min-width: 14rem">
           <template #body="slotProps">
             <div class="projects-content__table-item">
-              <span>{{`RU: ${slotProps.data.link.text.ru}`}}</span>
-              <span>{{`EN: ${slotProps.data.link.text.en}`}}</span>
-              <span>{{`URL: ${slotProps.data.link.url}`}}</span>
+              <span>{{ `RU: ${slotProps.data.link.text.ru}` }}</span>
+              <span>{{ `EN: ${slotProps.data.link.text.en}` }}</span>
+              <span>{{ `URL: ${slotProps.data.link.url}` }}</span>
             </div>
           </template>
         </Column>
-        <Column 
-          field="linkFiles" 
-          header="ссылка на исходники" 
-          style="min-width:25rem"
-        >
+        <Column field="linkFiles" header="ссылка на исходники" style="min-width: 25rem">
           <template #body="slotProps">
             <div class="projects-content__table-item">
-              <span>{{`TEXT: ${slotProps.data.linkFiles.text}`}}</span>
-              <span>{{`URL: ${slotProps.data.linkFiles.url}`}}</span>
+              <span>{{ `TEXT: ${slotProps.data.linkFiles.text}` }}</span>
+              <span>{{ `URL: ${slotProps.data.linkFiles.url}` }}</span>
             </div>
           </template>
         </Column>
-        <Column 
-          field="preText" 
-          header="короткий текст" 
-          style="min-width:25rem"
-        >
+        <Column field="preText" header="короткий текст" style="min-width: 25rem">
           <template #body="slotProps">
             <div class="projects-content__table-item">
-              <span>{{`RU: ${slotProps.data.preText.ru}`}}</span>
-              <span>{{`EN: ${slotProps.data.preText.en}`}}</span>
+              <span>{{ `RU: ${slotProps.data.preText.ru}` }}</span>
+              <span>{{ `EN: ${slotProps.data.preText.en}` }}</span>
             </div>
           </template>
         </Column>
-        <Column 
-          field="description" 
-          header="полное описание" 
-          style="min-width:25rem"
-        >
+        <Column field="description" header="полное описание" style="min-width: 25rem">
           <template #body="slotProps">
             <div class="projects-content__table-item">
-              <span>{{`RU: ${slotProps.data.description.ru}`}}</span>
-              <span>{{`EN: ${slotProps.data.description.en}`}}</span>
+              <span>{{ `RU: ${slotProps.data.description.ru}` }}</span>
+              <span>{{ `EN: ${slotProps.data.description.en}` }}</span>
             </div>
           </template>
         </Column>
-        <Column 
-          field="tehnology" 
-          header="технологии" 
-          style="min-width:12rem"
-        >
+        <Column field="tehnology" header="технологии" style="min-width: 12rem">
           <template #body="slotProps">
             <div class="projects-content__table-item">
               <ul v-for="item in slotProps.data.tehnology" :key="item">
@@ -85,46 +56,59 @@
             </div>
           </template>
         </Column>
-        <Column 
-          field="picture" 
-          header="картинка" 
-          style="min-width:12rem"
-        >
-        <template #body="slotProps">
-          <div class="projects-content__table-item">
-              <img 
-                :src="slotProps.data.picture ? 
-                baseUrl + slotProps.data.picture : 
-                require('@/assets/images/default-image.jpg')" 
-                alt="image-project" 
-                :style="{width: '300px'}"
+        <Column field="picture" header="картинка" style="min-width: 12rem">
+          <template #body="slotProps">
+            <div class="projects-content__table-item">
+              <img
+                :src="
+                  slotProps.data.picture
+                    ? baseUrl + slotProps.data.picture
+                    : require('@/assets/images/default-image.jpg')
+                "
+                alt="image-project"
+                :style="{ width: '300px' }"
                 crossorigin="anonymous"
               />
             </div>
           </template>
         </Column>
-        <Column 
-          field="backgroundColor" 
-          header="цвет фона" 
-          style="min-width:15rem"
-        >
+        <Column field="backgroundColor" header="цвет фона" style="min-width: 15rem">
           <template #body="slotProps">
-            <div 
-              class="projects-content__table-item" 
+            <div
+              class="projects-content__table-item"
               :style="{
-                  backgroundColor: slotProps.data.backgroundColor, 
-                  width: '100px',
-                  height: '100px'
-                }"
+                backgroundColor: slotProps.data.backgroundColor,
+                width: '100px',
+                height: '100px'
+              }"
             ></div>
           </template>
         </Column>
-        <Column :exportable="false" style="min-width:8rem">
+        <Column :exportable="false" style="min-width: 8rem">
           <template #body="slotProps">
             <div class="projects-content__table-btns">
-              <Button icon="pi pi-upload" outlined rounded class="mr-2" severity="help" @click="editExport(slotProps.data)" />
-              <Button icon="pi pi-pencil" outlined rounded class="mr-2" @click="edit(slotProps.data)" />
-              <Button icon="pi pi-trash" outlined rounded severity="danger" @click="confirmDeleteProduct(slotProps.data)" />
+              <Button
+                icon="pi pi-upload"
+                outlined
+                rounded
+                class="mr-2"
+                severity="help"
+                @click="editExport(slotProps.data)"
+              />
+              <Button
+                icon="pi pi-pencil"
+                outlined
+                rounded
+                class="mr-2"
+                @click="edit(slotProps.data)"
+              />
+              <Button
+                icon="pi pi-trash"
+                outlined
+                rounded
+                severity="danger"
+                @click="confirmDeleteProduct(slotProps.data)"
+              />
             </div>
           </template>
         </Column>
@@ -133,53 +117,56 @@
       <Button
         label="Добавить"
         aria-label="Добавить новый пункт"
-        icon="pi pi-plus" 
+        icon="pi pi-plus"
         class="mr-2 projects-content__add-btn"
         @click="openNew"
       />
 
-      <Dialog 
-        v-model:visible="projectsDialog" 
-        :style="{width: '800px'}"
-        header="Детали образования" 
+      <Dialog
+        v-model:visible="projectsDialog"
+        :style="{ width: '800px' }"
+        header="Детали образования"
         :modal="true"
         class="p-fluid"
       >
-        <FormProjects :project="project" :hideDialog="hideDialog"/>
+        <FormProjects :project="project" :hideDialog="hideDialog" />
       </Dialog>
-      <Dialog 
-        v-model:visible="exportImageProjectDialog" 
-        :style="{width: '450px'}"
-        header="Загрузка картинки проекта" 
+      <Dialog
+        v-model:visible="exportImageProjectDialog"
+        :style="{ width: '450px' }"
+        header="Загрузка картинки проекта"
         :modal="true"
         class="p-fluid"
       >
         <FormExportImageProject :hideDialog="hideExportDialog" :id="project._id" />
       </Dialog>
 
-      <Dialog 
-        v-model:visible="deleteDialog" 
-        :style="{width: '450px'}" 
-        header="Удаление" 
+      <Dialog
+        v-model:visible="deleteDialog"
+        :style="{ width: '450px' }"
+        header="Удаление"
         :modal="true"
       >
         <div class="projects-content__delete-text">
           <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-          <span v-if="project">Вы действительно хотите удалить проект <b>{{project.name.ru}}</b>?</span>
+          <span v-if="project"
+            >Вы действительно хотите удалить проект <b>{{ project.name.ru }}</b
+            >?</span
+          >
         </div>
         <template #footer>
-          <Button 
-            label="Нет" 
-            icon="pi pi-times" 
-            text 
-            @click="deleteDialog = false" 
-            iconPos="right" 
+          <Button
+            label="Нет"
+            icon="pi pi-times"
+            text
+            @click="deleteDialog = false"
+            iconPos="right"
           />
-          <Button 
-            label="Да" 
-            icon="pi pi-check" 
-            @click="deleteProduct" 
-            iconPos="right" 
+          <Button
+            label="Да"
+            icon="pi pi-check"
+            @click="deleteProduct"
+            iconPos="right"
             :loading="loadingProjects"
           />
         </template>
@@ -196,7 +183,7 @@ import SubTitle from '@/components/shared/SubTitle.vue';
 import Box from '@/components/shared/Box.vue';
 import FormProjects from '@/components/admin/project/FormProjects.vue';
 import FormExportImageProject from '@/components/admin/project/FormExportImageProject.vue';
-import {baseUrl} from '@/services/urls.js';
+import { baseUrl } from '@/services/urls.js';
 
 const { removeProject } = usePortfolioStore();
 const { dataPortfolio, loadingProjects } = storeToRefs(usePortfolioStore());
@@ -262,7 +249,7 @@ const deleteProduct = async () => {
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/scss/variables';  
+@import '@/assets/scss/variables';
 .projects-content {
   &__add-btn {
     margin-top: 20px;

@@ -1,9 +1,5 @@
 <template>
-  <CustomForm 
-    @submit.prevent="submit" 
-    ref="serverForm"
-    class="form-link-server"
-  >
+  <CustomForm @submit.prevent="submit" ref="serverForm" class="form-link-server">
     <CustomInput
       name="server"
       id="server"
@@ -14,13 +10,13 @@
     >
       <template #btn>
         <Button
-        type="submit"
-        :disabled="linkServer ? false : true"
-        aria-label="Отправить данные"
-        icon="pi pi-chevron-right" 
-        iconPos="right"
-        class="form-server-box__btn"
-        :loading="loadingLinkServer"
+          type="submit"
+          :disabled="linkServer ? false : true"
+          aria-label="Отправить данные"
+          icon="pi pi-chevron-right"
+          iconPos="right"
+          class="form-server-box__btn"
+          :loading="loadingLinkServer"
         />
       </template>
     </CustomInput>
@@ -37,10 +33,7 @@ import CustomInput from '@/components/shared/CustomInput.vue';
 const { changeLinkServer } = usePortfolioStore();
 const { dataPortfolio, loadingLinkServer } = storeToRefs(usePortfolioStore());
 
-import {
-  charLimit,
-  urlValidation,
-} from '@/utils/validationRules';
+import { charLimit, urlValidation } from '@/utils/validationRules';
 
 const serverForm = ref(null);
 const linkServer = ref('');
@@ -58,7 +51,7 @@ const submit = async () => {
 
   if (!isVolidForm) {
     return;
-  };
+  }
 
   await changeLinkServer(linkServer.value);
 };

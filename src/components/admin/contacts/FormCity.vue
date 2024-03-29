@@ -1,9 +1,5 @@
 <template>
-  <CustomForm 
-    @submit.prevent="submit" 
-    ref="cityForm"
-    class="city-form"
-  >
+  <CustomForm @submit.prevent="submit" ref="cityForm" class="city-form">
     <div class="city-form__sub-box">
       <span class="city-form__title">город</span>
       <CustomInput
@@ -29,7 +25,7 @@
     <Button
       type="submit"
       aria-label="Отправить данные"
-      icon="pi pi-chevron-right" 
+      icon="pi pi-chevron-right"
       iconPos="right"
       class="city-form__btn"
       :loading="loadingCity"
@@ -47,10 +43,7 @@ import CustomInput from '@/components/shared/CustomInput.vue';
 const store = useResumeStore();
 const { dataResume, loadingCity } = storeToRefs(useResumeStore());
 
-import {
-  isRequired,
-  charLimit,
-} from '@/utils/validationRules';
+import { isRequired, charLimit } from '@/utils/validationRules';
 
 const cityForm = ref(null);
 const cityData = ref({
@@ -71,7 +64,7 @@ const submit = async () => {
 
   if (!isVolidForm) {
     return;
-  };
+  }
 
   await store.changeCity(cityData.value);
 };

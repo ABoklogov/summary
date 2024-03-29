@@ -1,9 +1,5 @@
 <template>
-  <CustomForm 
-    @submit.prevent="submit" 
-    ref="phoneForm"
-    class="phone-form"
-  >
+  <CustomForm @submit.prevent="submit" ref="phoneForm" class="phone-form">
     <div class="phone-form__sub-box">
       <span class="phone-form__title">телефон</span>
       <CustomInput
@@ -29,7 +25,7 @@
     <Button
       type="submit"
       aria-label="Отправить данные"
-      icon="pi pi-chevron-right" 
+      icon="pi pi-chevron-right"
       iconPos="right"
       class="phone-form__btn"
       :loading="loadingPhone"
@@ -47,11 +43,7 @@ import CustomInput from '@/components/shared/CustomInput.vue';
 const store = useResumeStore();
 const { dataResume, loadingPhone } = storeToRefs(useResumeStore());
 
-import {
-  isRequired,
-  charLimit,
-  phoneValidation,
-} from '@/utils/validationRules';
+import { isRequired, charLimit, phoneValidation } from '@/utils/validationRules';
 
 const phoneForm = ref(null);
 const phoneData = ref({
@@ -72,7 +64,7 @@ const submit = async () => {
 
   if (!isVolidForm) {
     return;
-  };
+  }
 
   await store.changePhone(phoneData.value);
 };

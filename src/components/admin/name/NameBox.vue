@@ -1,6 +1,6 @@
 <template>
   <Box>
-    <SubTitle :text="'Смена имени, профессии и ссылки'" :admin="true"/>
+    <SubTitle :text="'Смена имени, профессии и ссылки'" :admin="true" />
     <FormName />
   </Box>
 </template>

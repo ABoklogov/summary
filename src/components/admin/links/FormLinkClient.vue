@@ -1,9 +1,5 @@
 <template>
-  <CustomForm 
-    @submit.prevent="submit" 
-    ref="clientForm"
-    class="form-link-client"
-  >
+  <CustomForm @submit.prevent="submit" ref="clientForm" class="form-link-client">
     <CustomInput
       name="client"
       id="client"
@@ -14,13 +10,13 @@
     >
       <template #btn>
         <Button
-        type="submit"
-        :disabled="linkClient ? false : true"
-        aria-label="Отправить данные"
-        icon="pi pi-chevron-right" 
-        iconPos="right"
-        class="form-client-box__btn"
-        :loading="loadingLinkClient"
+          type="submit"
+          :disabled="linkClient ? false : true"
+          aria-label="Отправить данные"
+          icon="pi pi-chevron-right"
+          iconPos="right"
+          class="form-client-box__btn"
+          :loading="loadingLinkClient"
         />
       </template>
     </CustomInput>
@@ -37,10 +33,7 @@ import CustomInput from '@/components/shared/CustomInput.vue';
 const { changeLinkClient } = usePortfolioStore();
 const { dataPortfolio, loadingLinkClient } = storeToRefs(usePortfolioStore());
 
-import {
-  charLimit,
-  urlValidation,
-} from '@/utils/validationRules';
+import { charLimit, urlValidation } from '@/utils/validationRules';
 
 const clientForm = ref(null);
 const linkClient = ref('');
@@ -58,7 +51,7 @@ const submit = async () => {
 
   if (!isVolidForm) {
     return;
-  };
+  }
 
   await changeLinkClient(linkClient.value);
 };

@@ -125,28 +125,20 @@
         <div>цвет фона</div>
         <div class="color-picker-box">
           <div class="color-picker-box__color">
-            <span class="color-picker-box__color-label">
-              цвет
-            </span>
+            <span class="color-picker-box__color-label"> цвет </span>
             <div class="color-picker">
-              <ColorPicker 
-                inputId="background-color"
-                format="rgb"
-                v-model="formatColor" 
-              />
+              <ColorPicker inputId="background-color" format="rgb" v-model="formatColor" />
             </div>
           </div>
           <div class="color-picker-box__color-opacity">
-            <span class="color-picker-box__color-label">
-              прозрачность
-            </span>
-            <InputNumber 
-              v-model="formatOpacity" 
-              inputId="opacity" 
-              :min="0" 
-              :max="1" 
+            <span class="color-picker-box__color-label"> прозрачность </span>
+            <InputNumber
+              v-model="formatOpacity"
+              inputId="opacity"
+              :min="0"
+              :max="1"
               :step="0.01"
-              showButtons 
+              showButtons
               buttonLayout="horizontal"
             >
               <template #incrementbuttonicon>
@@ -158,11 +150,10 @@
             </InputNumber>
           </div>
           <div class="color-picker-box__color-total">
-            <span class="color-picker-box__color-label">
-              итоговый цвет
-            </span>
-            <div :style="{
-                backgroundColor: projectData.backgroundColor, 
+            <span class="color-picker-box__color-label"> итоговый цвет </span>
+            <div
+              :style="{
+                backgroundColor: projectData.backgroundColor,
                 width: '100px',
                 height: '100px'
               }"
@@ -176,19 +167,13 @@
     </div>
 
     <div class="form-project-box__footer">
-      <Button 
-        label="Отмена" 
-        icon="pi pi-times" 
-        iconPos="right" 
-        text 
-        @click="props.hideDialog" 
-      />
-      <Button 
+      <Button label="Отмена" icon="pi pi-times" iconPos="right" text @click="props.hideDialog" />
+      <Button
         type="submit"
-        label="Отправить" 
+        label="Отправить"
         aria-label="Отправить данные"
-        icon="pi pi-check" 
-        iconPos="right"  
+        icon="pi pi-check"
+        iconPos="right"
         :loading="loadingProject"
       />
     </div>
@@ -208,43 +193,38 @@ const toast = useToast();
 const { changeProject, addProject } = usePortfolioStore();
 const { loadingProject } = storeToRefs(usePortfolioStore());
 
-import {
-  isRequired,
-  charLimit,
-  loginValidation,
-  urlValidation
-} from '@/utils/validationRules';
+import { isRequired, charLimit, loginValidation, urlValidation } from '@/utils/validationRules';
 
 const projectForm = ref(null);
 const isVolidColor = ref(true);
 const projectData = ref({
-    name: {
+  name: {
+    ru: '',
+    en: ''
+  },
+  description: {
+    ru: '',
+    en: ''
+  },
+  link: {
+    text: {
       ru: '',
       en: ''
     },
-    description: {
-      ru: '',
-      en: ''
-    },
-    link: {
-      text: {
-        ru: '',
-        en: ''
-      },
-      url: ''
-    },
-    linkFiles: {
-      text: '',
-      url: ''
-    },
-    preText: {
-      ru: '',
-      en: ''
-    },
-    tehnology: [],
-    backgroundColor: '',
-    picture: ''
-  });
+    url: ''
+  },
+  linkFiles: {
+    text: '',
+    url: ''
+  },
+  preText: {
+    ru: '',
+    en: ''
+  },
+  tehnology: [],
+  backgroundColor: '',
+  picture: ''
+});
 
 const props = defineProps({
   project: {
@@ -260,10 +240,11 @@ onMounted(() => {
   projectData.value = props.project;
 });
 watch(
-  () => projectData.value.backgroundColor, 
+  () => projectData.value.backgroundColor,
   (value) => {
-  value ? isVolidColor.value = true : isVolidColor.value = false;
-});
+    value ? (isVolidColor.value = true) : (isVolidColor.value = false);
+  }
+);
 
 const textRules = computed(() => {
   return [isRequired, charLimit(50), loginValidation];
@@ -285,26 +266,26 @@ const formatColor = computed({
       const [_, r, g, b] = matches;
       result = { r: parseInt(r), g: parseInt(g), b: parseInt(b) };
     } else {
-      result = {r: 0, g: 0, b: 0};
-    };
+      result = { r: 0, g: 0, b: 0 };
+    }
 
     return result;
   },
-  set({r, g, b}) {
+  set({ r, g, b }) {
     projectData.value.backgroundColor = `rgba(${r}, ${g}, ${b})`;
   }
 });
 const formatOpacity = computed({
   get() {
-    const arr = projectData.value.backgroundColor.split(" ");
+    const arr = projectData.value.backgroundColor.split(' ');
     if (arr.length > 3) {
-      return Number(arr[arr.length - 1].slice(0, -1))
+      return Number(arr[arr.length - 1].slice(0, -1));
     } else {
-      return 1
+      return 1;
     }
   },
   set(value) {
-    const arr = projectData.value.backgroundColor.split(" ");
+    const arr = projectData.value.backgroundColor.split(' ');
     if (arr.length > 3) {
       arr.pop();
       arr.push(`${value})`);
@@ -314,7 +295,7 @@ const formatOpacity = computed({
       arr.push(lastEl);
       arr.push(`, ${value})`);
     }
-    projectData.value.backgroundColor = arr.join(" ");
+    projectData.value.backgroundColor = arr.join(' ');
   }
 });
 const validateColor = () => {
@@ -328,20 +309,20 @@ const submit = async () => {
   validateColor();
 
   if (!isVolidForm || !isVolidColor.value) {
-    toast.add({ 
-      severity: 'error', 
-      summary: 'Ошибка', 
-      detail: 'Форма не прошла валидацию', 
-      life: 5000 
+    toast.add({
+      severity: 'error',
+      summary: 'Ошибка',
+      detail: 'Форма не прошла валидацию',
+      life: 5000
     });
     return;
-  };
- 
+  }
+
   if (projectData.value._id) {
     await changeProject(projectData.value);
   } else {
     await addProject(projectData.value);
-  };
+  }
 
   props.hideDialog();
 };

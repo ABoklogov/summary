@@ -1,8 +1,8 @@
 <template>
   <div class="header-portfolio" :style="heightHeader">
-    <AboutPortfolioBox 
-      class="about-portfolio-box--position" 
-      :language="language" 
+    <AboutPortfolioBox
+      class="about-portfolio-box--position"
+      :language="language"
       :dataPortfolio="dataPortfolio"
     />
     <CustomButton class="header-portfolio__btn-scroll" @click="scrollToProject">

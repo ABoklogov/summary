@@ -1,9 +1,5 @@
 <template>
-  <CustomForm 
-    @submit.prevent="submit" 
-    ref="telegramForm"
-    class="telegram-form"
-  >
+  <CustomForm @submit.prevent="submit" ref="telegramForm" class="telegram-form">
     <div class="telegram-form__sub-box">
       <span class="telegram-form__title">telegram</span>
       <CustomInput
@@ -29,7 +25,7 @@
     <Button
       type="submit"
       aria-label="Отправить данные"
-      icon="pi pi-chevron-right" 
+      icon="pi pi-chevron-right"
       iconPos="right"
       class="telegram-form__btn"
       :loading="loadingTelegram"
@@ -47,12 +43,7 @@ import CustomInput from '@/components/shared/CustomInput.vue';
 const store = useResumeStore();
 const { dataResume, loadingTelegram } = storeToRefs(useResumeStore());
 
-import {
-  isRequired,
-  charLimit,
-  loginValidation,
-  urlValidation
-} from '@/utils/validationRules';
+import { isRequired, charLimit, loginValidation, urlValidation } from '@/utils/validationRules';
 
 const telegramForm = ref(null);
 const telegramData = ref({
@@ -76,7 +67,7 @@ const submit = async () => {
 
   if (!isVolidForm) {
     return;
-  };
+  }
 
   await store.changeTelegram(telegramData.value);
 };

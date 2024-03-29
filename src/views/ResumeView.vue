@@ -1,5 +1,5 @@
 <template>
-  <div class="resume" :style="{height: loading ? '100vh' : 'auto'}">
+  <div class="resume" :style="{ height: loading ? '100vh' : 'auto' }">
     <Spiner
       v-if="loading"
       style="width: 50px; height: 50px; margin: auto; display: block"
@@ -10,26 +10,24 @@
     <template v-else>
       <div class="resume__left">
         <div class="resume__photo-box">
-          <MyPhoto
-            class="photo--position" 
-            :avatar="dataResume.about?.avatar"/>
-          <MyNameBox 
-            :name="dataResume.about?.name"
-            class="my-name-box--position" />
+          <MyPhoto class="photo--position" :avatar="dataResume.about?.avatar" />
+          <MyNameBox :name="dataResume.about?.name" class="my-name-box--position" />
         </div>
-        <AboutBox 
+        <AboutBox
           :about="dataResume.about?.about"
           :contacts="dataResume.contacts"
-          class="about-box--position about-box--mobile" />
+          class="about-box--position about-box--mobile"
+        />
         <SocialBox :social="dataResume.social" class="social-box--position" />
         <TechSkillsBox :techSkills="dataResume.tech_skills" class="tech-skills-box--position" />
       </div>
       <div class="resume__right">
         <EducationBox :education="dataResume.education" class="education-box--position" />
-        <AboutBox 
+        <AboutBox
           :about="dataResume.about?.about"
           :contacts="dataResume.contacts"
-          class="about-box--position about-box--desktop" />
+          class="about-box--position about-box--desktop"
+        />
         <ExperienceBox :experience="dataResume.experience" class="experience-box--position" />
         <CertificateBox :certificate="dataResume.certificate" class="certificate-box--position" />
       </div>

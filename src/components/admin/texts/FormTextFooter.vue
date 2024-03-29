@@ -1,9 +1,5 @@
 <template>
-  <CustomForm 
-    @submit.prevent="submit" 
-    ref="textFooterForm"
-    class="form-text-footer"
-  >
+  <CustomForm @submit.prevent="submit" ref="textFooterForm" class="form-text-footer">
     <div class="form-text-footer__box">
       <CustomTextaria
         name="ru-footer-text"
@@ -35,7 +31,7 @@
         :disabled="footerText ? false : true"
         label="Отправить"
         aria-label="Отправить данные"
-        icon="pi pi-chevron-right" 
+        icon="pi pi-chevron-right"
         iconPos="right"
         class="form-client-box__btn"
         :loading="loadingFooterText"
@@ -75,7 +71,7 @@ const submit = async () => {
 
   if (!isVolidForm) {
     return;
-  };
+  }
 
   await changeFooterText(footerText.value);
 };
@@ -85,8 +81,8 @@ const submit = async () => {
 @import '@/assets/scss/variables';
 .form-text-footer {
   &__box {
-    display: flex; 
-    flex-direction: column; 
+    display: flex;
+    flex-direction: column;
   }
   &__input {
     width: 100%;
@@ -100,12 +96,12 @@ const submit = async () => {
 @media screen and (min-width: 1024px) {
   .form-text-footer {
     &__box {
-      flex-direction: row; 
+      flex-direction: row;
     }
     &__input {
       margin-top: 0;
       margin-left: 30px;
     }
   }
-} 
+}
 </style>

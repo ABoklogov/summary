@@ -1,10 +1,7 @@
 <template>
   <div class="experience-box">
     <SubTitle :text="language === 'ru' ? 'Опыт' : 'Experience'" />
-    <ExperienceList
-      :list="experience"
-      :language="language"
-    />
+    <ExperienceList :list="experience" :language="language" />
   </div>
 </template>
 
@@ -19,6 +16,6 @@ defineProps({
   experience: {
     type: Array,
     required: true
-  },
+  }
 });
 </script>

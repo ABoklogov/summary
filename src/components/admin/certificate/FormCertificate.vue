@@ -92,19 +92,13 @@
     </div>
 
     <div class="form-certificate-box__footer">
-      <Button 
-        label="Отмена" 
-        icon="pi pi-times" 
-        iconPos="right" 
-        text 
-        @click="props.hideDialog" 
-      />
-      <Button 
+      <Button label="Отмена" icon="pi pi-times" iconPos="right" text @click="props.hideDialog" />
+      <Button
         type="submit"
-        label="Отправить" 
+        label="Отправить"
         aria-label="Отправить данные"
-        icon="pi pi-check" 
-        iconPos="right"  
+        icon="pi pi-check"
+        iconPos="right"
         :loading="loadingCertificate"
       />
     </div>
@@ -121,32 +115,27 @@ import CustomInput from '@/components/shared/CustomInput.vue';
 const { changeCertificate, addCertificate } = useResumeStore();
 const { loadingCertificate } = storeToRefs(useResumeStore());
 
-import {
-  isRequired,
-  charLimit,
-  loginValidation,
-  urlValidation
-} from '@/utils/validationRules';
+import { isRequired, charLimit, loginValidation, urlValidation } from '@/utils/validationRules';
 
 const certificateForm = ref(null);
 const certificateData = ref({
-   position: {
-      ru: '',
-      en: ''
-    },
-    company: {
-      ru: '',
-      en: ''
-    },
-    start: {
-      ru: '',
-      en: ''
-    },
-    finish: {
-      ru: '',
-      en: ''
-    },
-    webSite: '',
+  position: {
+    ru: '',
+    en: ''
+  },
+  company: {
+    ru: '',
+    en: ''
+  },
+  start: {
+    ru: '',
+    en: ''
+  },
+  finish: {
+    ru: '',
+    en: ''
+  },
+  webSite: ''
 });
 
 const props = defineProps({
@@ -175,13 +164,13 @@ const submit = async () => {
 
   if (!isVolidForm) {
     return;
-  };
-  
+  }
+
   if (certificateData.value._id) {
     await changeCertificate(certificateData.value);
   } else {
     await addCertificate(certificateData.value);
-  };
+  }
 
   props.hideDialog();
 };

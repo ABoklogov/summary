@@ -1,5 +1,5 @@
 <template>
-  <h2 class="sub-title" :class="{'sub-title--admin': admin}">
+  <h2 class="sub-title" :class="{ 'sub-title--admin': admin }">
     {{ text }}
   </h2>
 </template>
@@ -11,7 +11,7 @@ defineProps({
     required: true
   },
   admin: {
-    type: Boolean,
+    type: Boolean
   }
 });
 </script>

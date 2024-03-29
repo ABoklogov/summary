@@ -102,7 +102,7 @@ const reset = () => {
   flex-direction: column;
   width: 100%;
   position: relative;
-  
+
   &__wrapper {
     position: relative;
   }

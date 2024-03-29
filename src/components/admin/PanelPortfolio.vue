@@ -8,9 +8,9 @@
       aria-label="Custom ProgressSpinner"
     />
     <div v-else>
-      <LinksBox/>
-      <TextBox class="panel-portfolio__one-box"/>
-      <ProjectBox class="panel-portfolio__one-box"/>
+      <LinksBox />
+      <TextBox class="panel-portfolio__one-box" />
+      <ProjectBox class="panel-portfolio__one-box" />
     </div>
   </div>
 </template>

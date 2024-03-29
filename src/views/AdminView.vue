@@ -3,10 +3,10 @@
     <UserBlock class="user-box" />
     <TabView class="admin-view__content">
       <TabPanel header="Resume">
-        <PanelResume/>
+        <PanelResume />
       </TabPanel>
       <TabPanel header="Portfolio">
-        <PanelPortfolio/>
+        <PanelPortfolio />
       </TabPanel>
     </TabView>
   </div>

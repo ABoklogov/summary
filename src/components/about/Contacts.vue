@@ -22,8 +22,8 @@ const { language } = storeToRefs(useViewStore());
 
 defineProps({
   contacts: {
-    type: Object,
-  },
+    type: Object
+  }
 });
 </script>
 

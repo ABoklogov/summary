@@ -3,9 +3,9 @@
     <div>
       <span class="activity-box__position">{{ position }}</span>
       <span class="activity-box__pretext">{{ language === 'ru' ? ' в ' : ' at ' }}</span>
-      <a 
-        class="activity-box__company" 
-        :href="webSite ? webSite : '#'" 
+      <a
+        class="activity-box__company"
+        :href="webSite ? webSite : '#'"
         :target="webSite ? '_blank' : ''"
       >
         {{ company }}
