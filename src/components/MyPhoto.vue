@@ -1,9 +1,22 @@
 <template>
   <div class="photo">
-    <!-- <img :src="require('@/assets/images/default-avatar.jpg')" /> -->
-    <img :src="require('@/assets/images/photo.jpg')" alt="avatart" />
+    <img 
+      :src="avatar ? baseUrl + avatar : require('@/assets/images/default-avatar.jpg')" 
+      alt="avatar" 
+      crossorigin="anonymous"
+    />
   </div>
 </template>
+
+<script setup>
+import {baseUrl} from '@/services/urls.js';
+
+defineProps({
+  avatar: {
+    type: String,
+  },
+});
+</script>
 
 <style scoped lang="scss">
 @import '@/assets/scss/variables';

@@ -12,17 +12,9 @@
 </template>
 
 <script setup>
-import { useAuthStore } from '@/stores/auth'; 
-import { onBeforeMount } from 'vue';
 import Header from '@/components/Header.vue';
 import Curtain from '@/components/shared/Curtain.vue';
 import AppContainer from '@/components/shared/AppContainer.vue';
-
-const store = useAuthStore();
-// запрашиваем текущего юзера
-onBeforeMount(() => {
-  store.fetchCurrentUser();
-});
 </script>
 
 <style scoped lang="scss">

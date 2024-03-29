@@ -9,9 +9,10 @@
         description,
         tehnology,
         linkFiles,
-        backgroundColor
-      } in projects"
-      :key="name"
+        backgroundColor,
+        _id
+      } in dataPortfolio.projects"
+      :key="_id"
       class="project-list__item"
       :style="{ backgroundColor: backgroundColor }"
     >
@@ -20,10 +21,10 @@
         :link="link"
         :preText="preText"
         :picture="picture"
-        :language="language"
         :description="description"
         :tehnology="tehnology"
         :linkFiles="linkFiles"
+        :language="language"
       />
     </li>
   </ul>
@@ -33,8 +34,8 @@
 import ProjectItem from './ProjectItem.vue';
 
 defineProps({
-  projects: {
-    type: Array,
+  dataPortfolio: {
+    type: Object,
     required: true
   },
   language: {
@@ -51,12 +52,6 @@ defineProps({
   }
 }
 
-@media screen and (min-width: 768px) {
-  .project-list {
-    &__item {
-    }
-  }
-}
 @media screen and (min-width: 1024px) {
   .project-list {
     &__item {

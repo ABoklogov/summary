@@ -1,5 +1,5 @@
 <template>
-  <h2 class="sub-title">
+  <h2 class="sub-title" :class="{'sub-title--admin': admin}">
     {{ text }}
   </h2>
 </template>
@@ -9,6 +9,9 @@ defineProps({
   text: {
     type: String,
     required: true
+  },
+  admin: {
+    type: Boolean,
   }
 });
 </script>
@@ -21,10 +24,17 @@ defineProps({
   font-style: $fontStyle;
   line-height: $lineHeight;
   font-weight: $fontWeightSemibold;
+  &--admin {
+    font-size: $fontSmall;
+    font-weight: $fontWeightBold;
+  }
 }
 @media screen and (min-width: 768px) {
   .sub-title {
     font-size: $fontNorm;
+    &--admin {
+      font-size: $fontMedium;
+    }
   }
 }
 </style>

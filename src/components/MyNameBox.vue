@@ -1,19 +1,24 @@
 <template>
   <div class="my-name-box">
     <span class="my-name-box__name">
-      {{ language === 'ru' ? myName.ru.name : myName.en.name }}
+      {{ language === 'ru' ? name.ru.name : name.en.name }}
     </span>
     <span class="my-name-box__job-title">
-      {{ language === 'ru' ? myName.ru.profession : myName.en.profession }}
+      {{ language === 'ru' ? name.ru.profession : name.en.profession }}
     </span>
   </div>
 </template>
 
 <script setup>
 import { storeToRefs } from 'pinia';
-import { myName } from '@/services/dataResume.js';
 import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
+
+defineProps({
+  name: {
+    type: Object,
+  },
+});
 </script>
 
 <style scoped lang="scss">

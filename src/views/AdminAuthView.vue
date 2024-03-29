@@ -9,7 +9,7 @@
       </template>
 
       <template #content>
-        <AuthForm/>
+        <AuthForm />
       </template>
     </Card>
   </div>

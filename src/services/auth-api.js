@@ -6,7 +6,7 @@ const token = {
   },
   unset() {
     axios.defaults.headers.common.Authorization = '';
-  },
+  }
 };
 
 // вход
@@ -14,12 +14,13 @@ async function logInUser(credentials) {
   const { data } = await axios.post('/auth/login', credentials);
   if (data) token.set(data.token);
   return data;
-};
+}
 
 // выход
 async function logOutUser() {
   axios.get('/auth/logout');
-};
+  token.unset();
+}
 
 // определение текущего юзера
 async function fetchCurrentUser(persistedToken) {
@@ -27,11 +28,11 @@ async function fetchCurrentUser(persistedToken) {
 
   const { data } = await axios.get('/auth/current');
   return data;
-};
+}
 
 const API = {
   logInUser,
   logOutUser,
-  fetchCurrentUser,
+  fetchCurrentUser
 };
 export default API;

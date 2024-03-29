@@ -1,24 +1,46 @@
 <template>
-  <div class="resume">
-    <div class="resume__left">
-      <div class="resume__photo-box">
-        <MyPhoto class="photo--position" />
-        <MyNameBox class="my-name-box--position" />
+  <div class="resume" :style="{height: loading ? '100vh' : 'auto'}">
+    <Spiner
+      v-if="loading"
+      style="width: 50px; height: 50px; margin: auto; display: block"
+      strokeWidth="5"
+      animationDuration=".5s"
+      aria-label="Custom ProgressSpinner"
+    />
+    <template v-else>
+      <div class="resume__left">
+        <div class="resume__photo-box">
+          <MyPhoto
+            class="photo--position" 
+            :avatar="dataResume.about?.avatar"/>
+          <MyNameBox 
+            :name="dataResume.about?.name"
+            class="my-name-box--position" />
+        </div>
+        <AboutBox 
+          :about="dataResume.about?.about"
+          :contacts="dataResume.contacts"
+          class="about-box--position about-box--mobile" />
+        <SocialBox :social="dataResume.social" class="social-box--position" />
+        <TechSkillsBox :techSkills="dataResume.tech_skills" class="tech-skills-box--position" />
       </div>
-      <AboutBox class="about-box--position about-box--mobile" />
-      <SocialBox class="social-box--position" />
-      <TechSkillsBox class="tech-skills-box--position" />
-    </div>
-    <div class="resume__right">
-      <EducationBox class="education-box--position" />
-      <AboutBox class="about-box--position about-box--desktop" />
-      <ExperienceBox class="experience-box--position" />
-      <CertificateBox class="certificate-box--position" />
-    </div>
+      <div class="resume__right">
+        <EducationBox :education="dataResume.education" class="education-box--position" />
+        <AboutBox 
+          :about="dataResume.about?.about"
+          :contacts="dataResume.contacts"
+          class="about-box--position about-box--desktop" />
+        <ExperienceBox :experience="dataResume.experience" class="experience-box--position" />
+        <CertificateBox :certificate="dataResume.certificate" class="certificate-box--position" />
+      </div>
+    </template>
   </div>
 </template>
 
 <script setup>
+import { useResumeStore } from '@/stores/resume';
+import { storeToRefs } from 'pinia';
+import { onBeforeMount } from 'vue';
 import MyPhoto from '@/components/MyPhoto.vue';
 import MyNameBox from '@/components/MyNameBox.vue';
 import SocialBox from '@/components/social/SocialBox.vue';
@@ -27,6 +49,13 @@ import EducationBox from '@/components/education/EducationBox.vue';
 import AboutBox from '@/components/about/AboutBox.vue';
 import ExperienceBox from '@/components/experience/ExperienceBox.vue';
 import CertificateBox from '@/components/certificate/CertificateBox.vue';
+
+const store = useResumeStore();
+const { loading, dataResume } = storeToRefs(useResumeStore());
+// запрашиваем dataResume
+onBeforeMount(() => {
+  store.getDataResume();
+});
 </script>
 
 <style scoped lang="scss">
@@ -35,6 +64,7 @@ import CertificateBox from '@/components/certificate/CertificateBox.vue';
 .resume {
   display: flex;
   flex-direction: column;
+  height: 100vh;
   padding: $contentPaddingMobile;
   background-color: $pink;
 

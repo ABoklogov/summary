@@ -6,15 +6,15 @@
       class="experience-list__item"
     >
       <ActivityBox
-        :position="position"
-        :company="company"
+        :position="language === 'ru' ? position.ru : position.en"
+        :company="language === 'ru' ? company.ru : company.en"
+        :start="language === 'ru' ? start.ru : start.en"
+        :finish="language === 'ru' ? finish.ru : finish.en"
         :webSite="webSite"
-        :start="start"
-        :finish="finish"
         :language="language"
       />
       <span class="experience-list__responsibility">
-        {{ responsibility }}
+        {{ language === 'ru' ? responsibility.ru : responsibility.en }}
       </span>
     </li>
   </ul>

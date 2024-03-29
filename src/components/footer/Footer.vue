@@ -3,32 +3,49 @@
     <div class="footer__top">
       <FooterLinksBox
         :title="language === 'ru' ? 'Контакты' : 'Contact'"
-        :list="[email, phone, telegram]"
+        :list="contactsList"
       />
 
       <FooterLinksBox
         class="footer__social"
         :title="language === 'ru' ? 'Социальные сети' : 'Social'"
-        :list="socialList"
+        :list="dataResume.social"
         :social="true"
       />
     </div>
 
-    <FooterTextBox class="text-box--position" />
+    <FooterTextBox 
+      class="text-box--position"
+      :language="language" 
+      :dataPortfolio="dataPortfolio"
+      :dataResume="dataResume"
+    />
   </footer>
 </template>
 
 <script setup>
 import { computed } from 'vue';
-import { telegram, email, phone, socialLinks } from '@/services/dataResume.js';
-import FooterLinksBox from './FooterLinksBox.vue';
-import FooterTextBox from './FooterTextBox.vue';
 import { storeToRefs } from 'pinia';
 import { useViewStore } from '@/stores/view';
+import FooterLinksBox from './FooterLinksBox.vue';
+import FooterTextBox from './FooterTextBox.vue';
+
 const { language } = storeToRefs(useViewStore());
 
-const socialList = computed(() => {
-  return language.velue === 'ru' ? socialLinks.ru : socialLinks.en;
+const props = defineProps({
+  dataPortfolio: {
+    type: Object,
+    required: true
+  },
+  dataResume: {
+    type: Object,
+    required: true
+  },
+});
+
+const contactsList = computed(() => {
+  const { email, phone, telegram } = props.dataResume?.contacts;
+  return [email, phone, telegram]
 });
 </script>
 

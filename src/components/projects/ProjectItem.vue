@@ -9,9 +9,8 @@
         :name="name"
         :preText="preText"
       />
-
       <span v-if="showDescription" class="project-item__description-text">
-        {{ description }}
+        {{ language === 'ru' ? description.ru : description.en }}
       </span>
 
       <ButtonDescription
@@ -21,8 +20,12 @@
         @click="toggleDescription"
       />
     </div>
-
-    <img :src="picture" class="project-item__image" />
+    <img 
+      :src="picture ? baseUrl + picture : require('@/assets/images/default-image.jpg')" 
+      alt="project picture"
+      crossorigin="anonymous"
+      class="project-item__image" 
+    />
   </div>
 </template>
 
@@ -30,10 +33,18 @@
 import { ref, computed } from 'vue';
 import MainProject from './MainProject.vue';
 import ButtonDescription from './ButtonDescription.vue';
+import {baseUrl} from '@/services/urls.js';
 
 const props = defineProps({
   name: {
-    type: String,
+    type: Object,
+    validator(obj) {
+      let result;
+      for (var key in obj) {
+        result = typeof obj[key] === 'string';
+      }
+      return result;
+    },
     required: true
   },
   link: {
@@ -58,7 +69,14 @@ const props = defineProps({
     }
   },
   preText: {
-    type: String,
+    type: Object,
+    validator(obj) {
+      let result;
+      for (var key in obj) {
+        result = typeof obj[key] === 'string';
+      }
+      return result;
+    },
     required: true
   },
   picture: {
@@ -66,7 +84,14 @@ const props = defineProps({
     required: true
   },
   description: {
-    type: String
+    type: Object,
+    validator(obj) {
+      let result;
+      for (var key in obj) {
+        result = typeof obj[key] === 'string';
+      }
+      return result;
+    },
   },
   tehnology: {
     type: Array,

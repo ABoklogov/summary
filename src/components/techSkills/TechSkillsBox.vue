@@ -8,8 +8,19 @@
 <script setup>
 import SubTitle from '@/components/shared/SubTitle.vue';
 import TechSkillsList from './TechSkillsList.vue';
-import { techSkills } from '@/services/dataResume.js';
 import { storeToRefs } from 'pinia';
 import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
+
+defineProps({
+  techSkills: {
+    type: Array,
+    validator(arr) {
+      return arr.every(obj => {
+        return Object.values(obj).every(el => typeof el === 'string');
+      });
+    },
+    required: true
+  },
+});
 </script>

@@ -6,14 +6,20 @@
       class="certificate-list__item"
     >
       <ActivityBox
-        :position="position"
-        :company="company"
+        :position="language === 'ru' ? position.ru : position.en"
+        :company="language === 'ru' ? company.ru : company.en"
+        :start="language === 'ru' ? start.ru : start.en"
+        :finish="language === 'ru' ? finish.ru : finish.en"
         :webSite="webSite"
-        :start="start"
-        :finish="finish"
         :language="language"
       />
-      <a :href="path" download class="btn-download">
+      <a
+        v-if="path"
+        :href="baseUrl + path" 
+        download 
+        class="btn-download"
+        target="_blank"
+      >
         <IconDownload />
       </a>
     </li>
@@ -23,6 +29,7 @@
 <script setup>
 import ActivityBox from '@/components/shared/ActivityBox.vue';
 import IconDownload from '@/components/icons/IconDownload.vue';
+import {baseUrl} from '@/services/urls.js';
 
 defineProps({
   list: {

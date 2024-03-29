@@ -1,7 +1,7 @@
 <template>
   <div class="social-box">
     <SubTitle :text="language === 'ru' ? 'Социальные сети' : 'Social'" />
-    <SocialList :list="language === 'ru' ? socialLinks.ru : socialLinks.en" />
+    <SocialList :list="social" />
   </div>
 </template>
 
@@ -9,7 +9,18 @@
 import { storeToRefs } from 'pinia';
 import SubTitle from '@/components/shared/SubTitle.vue';
 import SocialList from './SocialList.vue';
-import { socialLinks } from '@/services/dataResume.js';
 import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
+
+defineProps({
+  social: {
+    type: Array,
+    validator(arr) {
+      return arr.every((obj) => {
+        return Object.values(obj).every((el) => typeof el === 'string');
+      });
+    },
+    required: true
+  },
+});
 </script>

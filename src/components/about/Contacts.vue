@@ -1,9 +1,17 @@
 <template>
   <div class="contacts">
-    <a :href="telegram.link">{{ telegram.text }}</a>
-    <a :href="phone.link">{{ phone.text }}</a>
-    <a :href="email.link">{{ email.text }}</a>
-    <span>{{ language === 'ru' ? city.ru : city.en }}</span>
+    <a :href="contacts?.telegram.link">
+      {{ contacts?.telegram.text }}
+    </a>
+    <a :href="contacts?.phone.link">
+      {{ contacts?.phone.text }}
+    </a>
+    <a :href="contacts?.email.link">
+      {{ contacts?.email.text }}
+    </a>
+    <span>
+      {{ language === 'ru' ? contacts?.city.ru : contacts?.city.en }}
+    </span>
   </div>
 </template>
 
@@ -11,7 +19,12 @@
 import { storeToRefs } from 'pinia';
 import { useViewStore } from '@/stores/view';
 const { language } = storeToRefs(useViewStore());
-import { telegram, city, email, phone } from '@/services/dataResume.js';
+
+defineProps({
+  contacts: {
+    type: Object,
+  },
+});
 </script>
 
 <style scoped lang="scss">
