@@ -108,9 +108,7 @@ const submit = async () => {
     await changeEducation(educationData.value);
   } else {
     await addEducation(educationData.value);
-  }
-
-  props.hideDialog();
+  };
 };
 </script>
 

@@ -202,9 +202,7 @@ const submit = async () => {
     await changeExperience(experienceData.value);
   } else {
     await addExperience(experienceData.value);
-  }
-
-  props.hideDialog();
+  };
 };
 </script>
 
