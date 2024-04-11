@@ -138,7 +138,7 @@
         :modal="true"
         class="p-fluid"
       >
-        <FormExportImageProject :hideDialog="hideExportDialog" :id="project._id" />
+        <FormExportImageProject :id="project._id" />
       </Dialog>
 
       <Dialog

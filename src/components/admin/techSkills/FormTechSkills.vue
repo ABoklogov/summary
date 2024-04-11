@@ -72,9 +72,7 @@ const submit = async () => {
     await changeTechSkills(techSkillsData.value);
   } else {
     await addTechSkills(techSkillsData.value);
-  }
-
-  props.hideDialog();
+  };
 };
 </script>
 

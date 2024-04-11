@@ -322,9 +322,7 @@ const submit = async () => {
     await changeProject(projectData.value);
   } else {
     await addProject(projectData.value);
-  }
-
-  props.hideDialog();
+  };
 };
 </script>
 

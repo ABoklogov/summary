@@ -170,9 +170,7 @@ const submit = async () => {
     await changeCertificate(certificateData.value);
   } else {
     await addCertificate(certificateData.value);
-  }
-
-  props.hideDialog();
+  };
 };
 </script>
 

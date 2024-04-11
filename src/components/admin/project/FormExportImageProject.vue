@@ -41,9 +41,6 @@ const props = defineProps({
     type: String,
     required: true
   },
-  hideDialog: {
-    type: Function
-  }
 });
 
 const textBtn = computed(() => {
@@ -67,8 +64,7 @@ const submitFile = async () => {
 
   if (result) {
     file.value = null;
-  }
-  props.hideDialog();
+  };
 };
 </script>
 

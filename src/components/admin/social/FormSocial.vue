@@ -97,9 +97,7 @@ const submit = async () => {
     await changeSocial(socialData.value);
   } else {
     await addSocial(socialData.value);
-  }
-
-  props.hideDialog();
+  };
 };
 </script>
 

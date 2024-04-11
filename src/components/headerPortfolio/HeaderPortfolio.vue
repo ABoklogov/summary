@@ -128,7 +128,7 @@ const heightHeader = computed(() => {
 
     &__btn-scroll {
       width: 126px;
-      margin-top: 175px;
+      margin-top: 80px;
     }
     &__btn-scroll span {
       font-size: $fontSmall;

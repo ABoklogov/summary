@@ -106,7 +106,7 @@
         :modal="true"
         class="p-fluid"
       >
-        <FormExportCertificate :hideDialog="hideExportDialog" :id="certificate._id" />
+        <FormExportCertificate :id="certificate._id" />
       </Dialog>
 
       <Dialog
