@@ -1,7 +1,7 @@
 <template>
   <ul class="experience-list">
     <li
-      v-for="{ position, company, webSite, responsibility, start, finish } in list"
+      v-for="{ position, company, webSite, responsibility, start, finish } in listReverse"
       :key="webSite"
       class="experience-list__item"
     >
@@ -21,9 +21,10 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import ActivityBox from '@/components/shared/ActivityBox.vue';
 
-defineProps({
+const props = defineProps({
   list: {
     type: Array,
     required: true
@@ -31,6 +32,10 @@ defineProps({
   language: {
     type: String
   }
+});
+
+const listReverse = computed(() => {
+  return props.list.reverse();
 });
 </script>
 
