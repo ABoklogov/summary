@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { ref, watch, defineProps, defineEmits, inject, onMounted, onBeforeUnmount } from 'vue';
+import { ref, watch, inject, onMounted, onBeforeUnmount } from 'vue';
 const props = defineProps({
   value: {
     type: String,
