@@ -253,7 +253,7 @@ const responsibilityRules = computed(() => {
   return [isRequired, charLimit(500), loginValidation];
 });
 const urlRules = computed(() => {
-  return [isRequired, charLimit(50), urlValidation];
+  return [isRequired, charLimit(100), urlValidation];
 });
 const formatColor = computed({
   get() {
