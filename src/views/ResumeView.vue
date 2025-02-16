@@ -28,7 +28,7 @@
           :contacts="dataResume.contacts"
           class="about-box--position about-box--desktop"
         />
-        <ExperienceBox :experience="dataResume.experience.reverse()" class="experience-box--position" />
+        <ExperienceBox :experience="dataResume.experience" class="experience-box--position" />
         <CertificateBox :certificate="dataResume.certificate" class="certificate-box--position" />
       </div>
     </template>
