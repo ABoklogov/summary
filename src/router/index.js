@@ -14,17 +14,17 @@ const router = createRouter({
     {
       path: '/',
       name: 'resume',
-      component: ResumeView
+      component: () => import('@/views/ResumeView.vue')
     },
     {
       path: '/portfolio',
       name: 'portfolio',
-      component: PortfolioView
+      component: () => import('@/views/PortfolioView.vue')
     },
     {
       path: '/admin',
       name: 'adminPage',
-      component: AdminView,
+      component: () => import('@/views/AdminView.vue'),
       meta: {
         requiresAuth: true
       }
@@ -32,7 +32,7 @@ const router = createRouter({
     {
       path: '/admin/auth',
       name: 'adminAuthPage',
-      component: AdminAuthView,
+      component: () => import('@/views/AdminAuthView.vue'),
       meta: {
         hideForAuth: true
       }
@@ -40,7 +40,7 @@ const router = createRouter({
     {
       path: '/404',
       name: 'notPage',
-      component: NotPageView
+      component: () => import('@/views/NotPageView.vue'),
     },
     {
       path: '/:catchAll(.*)',
